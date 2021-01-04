@@ -4,8 +4,8 @@
 
 ### `Sign Up`
 Email을 통해 회원가입한다.\
-&nbsp;Email 인증이 필요\
-&nbsp;&nbsp;Email이 아싳 계정이면 Admin 계정으로 간주\
+<space><space>*<space>Email 인증이 필요\
+<space><space>*<space><space><space>*<space>Email이 아싳 계정이면 Admin 계정으로 간주
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
