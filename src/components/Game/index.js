@@ -19,16 +19,6 @@ class GamePage extends React.Component {
                 {id: 5, checked: false},
                 {id: 6, checked: false},
                 {id: 7, checked: false},
-            ],
-            pending1: [
-                {id: 0, pending: false},
-                {id: 1, pending: false},
-                {id: 2, pending: false},
-                {id: 3, pending: false},
-                {id: 4, pending: false},
-                {id: 5, pending: false},
-                {id: 6, pending: false},
-                {id: 7, pending: false},
             ]
         }
     }
@@ -36,7 +26,7 @@ class GamePage extends React.Component {
     async componentDidMount() {
         this.setState({ loading: true });
         console.log(SignUpForm);
-        console.log("firebase",SignUpForm.firebase);
+        console.log("firebase",SignUpForm.props);
     /*await su.firebase.user(su.firebase.auth.currentUser.uid).on('value', snapshot => {
             const usersObject = snapshot.val();
             this.setState({
