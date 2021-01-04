@@ -59,7 +59,6 @@ class GamePageBase extends React.Component {
                 const uid = user.uid;
                 fb.db.ref('/users/'+uid+'/asset').once('value').then((snapshot) => {
                     var asset = snapshot.val();
-                    console.log("ho...",asset);
                     updates['/users/' + uid + '/' + 'asset'] = asset + 100;
                     return fb.db.ref().update(updates);
                 })
