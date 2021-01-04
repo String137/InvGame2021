@@ -34,7 +34,6 @@ class HomePage extends React.Component {
       this.props.firebase.user(this.props.firebase.auth.currentUser.uid).child("messages").child("front").on('value', snapshot => {
         this.props.firebase.user(this.props.firebase.auth.currentUser.uid).child("messages").transaction(snapshot => {
           if(snapshot==null){
-            console.log('messages null!!!');
             return snapshot;
           }
           if(snapshot.queue==undefined)

@@ -39,6 +39,7 @@ class SignUpFormBase extends Component {
             username,
             email,
             asset: assets.INITIAL_ASSET,
+            reward: 0,
           });
       })
       .then(() => {
