@@ -9,6 +9,27 @@ Email을 통해 회원가입한다.
 <li>Email이 아싳 계정이면 Admin 계정으로 간주</li>
 </ul>
 
+### `Firebase`
+<h1>Structure</h1>
+<ul>
+<li>
+users
+    <ul>
+    <li>uid
+        <ul>
+        <li>asset</li>
+        <li>email</li>
+        <li>reward</li>
+        <li>username</li>
+        <li>checked(selected company)</li>
+        </ul>
+    </li>
+    </ul>
+</li>
+</ul>
+
+### `Hosting`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
