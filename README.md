@@ -5,11 +5,8 @@
 ### `Sign Up`
 Email을 통해 회원가입한다.
 <ul>
-<li>
-::marker
-"Email 인증이 필요"
-"Email이 아싳 계정이면 Admin 계정으로 간주"
-</li>
+<li>Email 인증이 필요</li>
+<li>Email이 아싳 계정이면 Admin 계정으로 간주</li>
 </ul>
 # Getting Started with Create React App
 
