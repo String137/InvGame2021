@@ -10,7 +10,7 @@ Email을 통해 회원가입한다.
 </ul>
 
 ### `Firebase`
-<h1>Structure</h1>
+<h3>Structure</h3>
 <ul>
 <li>
 users
