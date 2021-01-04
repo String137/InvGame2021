@@ -1,7 +1,7 @@
 import React from 'react';
 import * as assets from '../../constants/money';
 import { withAuthorization } from '../Session';
-import firebase from '../Firebase/firebase';
+import SignUpForm from '../SignUp/';
 import Images1 from '../Images';
 
 class GamePage extends React.Component {
@@ -35,14 +35,14 @@ class GamePage extends React.Component {
 
     async componentDidMount() {
         this.setState({ loading: true });
-        console.log(this);
-        console.log("firebase",firebase);
-        await this.props.firebase.user(this.props.firebase.auth.currentUser.uid).on('value', snapshot => {
+        console.log(SignUpForm);
+        console.log("firebase",SignUpForm.firebase);
+    /*await su.firebase.user(su.firebase.auth.currentUser.uid).on('value', snapshot => {
             const usersObject = snapshot.val();
             this.setState({
                 checked1: usersObject.checked1,
             });
-        });
+        });*/
     }
 
 
