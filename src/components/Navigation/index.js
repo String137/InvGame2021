@@ -8,7 +8,7 @@ import { AuthUserContext } from '../Session';
 function isAdmin(user){
   console.log(user);
   return user.email === "icists@icists.org";
-  /* Admin 접속 권한 수정해야함 */
+  /* Admin 접속 권한 수정해야함  */
 }
 const Navigation = () => (
   <div>
