@@ -18,6 +18,7 @@ const SignInPage = () => (
 const INITIAL_STATE = {
   email: '',
   password: '',
+  cert: false,
   error: null,
 };
 
@@ -30,7 +31,7 @@ class SignInFormBase extends Component {
 
   onSubmit = event => {
     const { email, password } = this.state;
-
+    var cert = false;
     this.props.firebase
     .doSignInWithEmailAndPassword(email, password)
     .then(() => {

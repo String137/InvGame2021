@@ -16,6 +16,8 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  certificationRight: '',
+  certificationInput: '',
   error: null,
 };
 
@@ -26,7 +28,7 @@ class SignUpFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-  onSubmit = event => {
+  onSubmit1 = event => {
     const { username, email, passwordOne } = this.state;
     console.log("sign in!!",this);
     this.props.firebase
@@ -60,6 +62,9 @@ class SignUpFormBase extends Component {
  
     event.preventDefault();
   };
+  onSubmit2 = event => {
+    
+  };
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -71,6 +76,8 @@ class SignUpFormBase extends Component {
       email,
       passwordOne,
       passwordTwo,
+      certificationRight,
+      certificationInput,
       error,
     } = this.state;
 
@@ -79,9 +86,13 @@ class SignUpFormBase extends Component {
       passwordOne === '' ||
       email === '' ||
       username === '';
+    const isInvalid2 =
+      certificationInput !== certificationRight ||
+      certificationRight === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <div>
+      <form onSubmit={this.onSubmit1}>
         <input
           name="username"
           value={username}
@@ -111,11 +122,24 @@ class SignUpFormBase extends Component {
           placeholder="Confirm Password"
         />
         <button disabled={isInvalid} type="submit">
-          Sign Up
+          Send
         </button>
 
         {error && <p>{error.message}</p>}
       </form>
+      <form onSubmit={this.onSubmit2}>
+        <input
+          name="certification"
+          value={certificationInput}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Certification Number"
+        />
+        <button disabled={isInvalid2} type="submit">
+          Sign Up
+        </button>
+      </form>
+      </div>
     );
   }
 }

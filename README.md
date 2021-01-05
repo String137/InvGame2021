@@ -44,6 +44,13 @@ users
 </li>
 </ul>
 
+### `Company`
+<h3>failround</h3>
+<ul>
+<li>탈락한 라운드를 말한다.</li>
+<li>0일 경우 아직 탈락하지 않았다는 뜻임.</li>
+</ul>
+
 ### `Hosting`
 
 # Getting Started with Create React App
