@@ -8,6 +8,7 @@ Email을 통해 회원가입한다.
 <li>Email 인증이 필요</li>
 <li>Email이 아싳 계정이면 Admin 계정으로 간주</li>
 <li>랜덤으로 인증번호를 만들어서 Email로 보내자. 받은 인증번호로 인증하자</li>
+<li>또는, https://blog.bitsrc.io/email-confirmation-with-react-257e5d9de725 와 같이 하자.</li>
 </ul>
 
 ### `Firebase`
