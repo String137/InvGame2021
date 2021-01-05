@@ -7,6 +7,7 @@ Email을 통해 회원가입한다.
 <ul>
 <li>Email 인증이 필요</li>
 <li>Email이 아싳 계정이면 Admin 계정으로 간주</li>
+<li>랜덤으로 인증번호를 만들어서 Email로 보내자. 받은 인증번호로 인증하자</li>
 </ul>
 
 ### `Firebase`
@@ -24,6 +25,21 @@ users
         <li>checked(selected company)</li>
         </ul>
     </li>
+    </ul>
+</li>
+</ul>
+
+### `Game`
+<h3>Video</h3>
+<ul>
+<li>서버에서 전체 진행 시간 관리</li>
+<li>그 시간에 맞게 영상 현재 시간 설정</li>
+</ul>
+<h3>Game</h3>
+<ul>
+<li>현재 시간에 따라 맞는 페이지 보여주도록
+    <ul>
+    <li>xx:xx~yy:yy동안엔 GameNav.js에서 Round1.js를 띄우고...
     </ul>
 </li>
 </ul>
