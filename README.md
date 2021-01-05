@@ -1,5 +1,22 @@
 # Investment Game 2021
 
+## 개발 과정
+
+### Firebase 시작하가
+
+<h3>참고자료</h3>
+<ul>
+<li>https://shs400.github.io/2019/10/17/firebase/</li>
+<li>https://firebase.google.com/docs/storage/web/start?hl=ko</li>
+<li>https://firebase.google.com/docs/functions/get-started?hl=ko</li>
+<li>https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial</li>
+</ul>
+<h3>Firebase 링크</h3>
+<ul>
+<li>https://console.firebase.google.com/u/1/project/invgame2021/overview</li>
+<li>아싳 구글 계정으로 들어가기</li>
+</ul>
+
 ## TODO
 
 ### `Sign Up`
