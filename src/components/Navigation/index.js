@@ -13,8 +13,10 @@ function isAdmin(user){
 const Navigation = () => (
   <div>
     <AuthUserContext.Consumer>
-      {authUser => 
-        authUser ? (isAdmin(authUser) ? <NavigationAdmin/> : <NavigationAuth /> ) : <NavigationNonAuth />
+      {authUser => {
+        console.log("authUser", authUser);
+        return (authUser && authUser.emailVerified) ? (isAdmin(authUser) ? <NavigationAdmin/> : <NavigationAuth /> ) : <NavigationNonAuth />;
+      }
       }
     </AuthUserContext.Consumer>
  </div>

@@ -60,7 +60,6 @@ class SignUpFormBase extends Component {
       .catch(error => {
         this.setState({ error });
       });
- 
     event.preventDefault();
   };
   onSubmit2 = event => {
