@@ -32,7 +32,7 @@ class SignUpFormBase extends Component {
     const { username, email, passwordOne } = this.state;
     console.log("sign in!!",this);
     this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+    .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in your Firebase realtime database
         return this.props.firebase
@@ -47,13 +47,14 @@ class SignUpFormBase extends Component {
       .then(() => {
         this.setState({ ...INITIAL_STATE });
         console.log("hi");
-        this.props.history.push(ROUTES.HOME);
+        this.props.history.push(ROUTES.SIGN_IN);
         console.log("hihi");
         let user = this.props.firebase.auth.currentUser;
         console.log("sisisissi");
         console.log("user",user);
-        user.sendEmailVerification().addOnCompleteListener((task) => {
-          console.log("hello");
+        user.sendEmailVerification().then(function() {
+        }).catch(function(error) {
+          console.log(error);
         });
       })
       .catch(error => {

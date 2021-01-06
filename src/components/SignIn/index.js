@@ -34,9 +34,14 @@ class SignInFormBase extends Component {
     var cert = false;
     this.props.firebase
     .doSignInWithEmailAndPassword(email, password)
-    .then(() => {
-      this.setState({...INITIAL_STATE});
-      this.props.history.push(ROUTES.HOME);
+    .then((user) => {
+      if(user.user.emailVerified){
+        this.setState({...INITIAL_STATE});
+        this.props.history.push(ROUTES.HOME);
+      }
+      else{
+        alert("verify your email");
+      }
     })
     .catch(error => {
       this.setState({ error });
