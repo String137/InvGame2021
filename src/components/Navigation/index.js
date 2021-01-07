@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
- 
+import { withFirebase } from '../Firebase';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
@@ -15,7 +15,12 @@ const Navigation = () => (
     <AuthUserContext.Consumer>
       {authUser => {
         console.log("authUser", authUser);
-        return (authUser && authUser.emailVerified) ? (isAdmin(authUser) ? <NavigationAdmin/> : <NavigationAuth /> ) : <NavigationNonAuth />;
+        if(window.location.pathname==="/emailsent"){
+          return <div>Verification Link Sent to Email</div>;
+        }
+        else{
+          return (authUser && authUser.emailVerified) ? (isAdmin(authUser) ? <NavigationAdmin/> : <NavigationAuth /> ) : <NavigationNonAuth />;
+        }
       }
       }
     </AuthUserContext.Consumer>
