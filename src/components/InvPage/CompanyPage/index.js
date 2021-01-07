@@ -10,16 +10,16 @@ const CompanyPage = ({curm, name, aftm}) => {
             <CurInv money = {curm} class = "curinv"/>
             <Input class="input"/>
             <div>
-                <input type="radio" id="inv" name="inv"/>
-                <label for="inv">투자</label>
+                <input type="radio" id={name+"inv"} name={name+"select"}/>
+                <label htmlFor={name+"inv"}>투자</label>
             </div>
             <div>
-                <input type="radio" id="wd" name="wd"/>
-                <label for="wd">철회</label>
+                <input type="radio" id={name+"wd"} name={name+"select"}/>
+                <label htmlFor={name+"wd"}>철회</label>
             </div>
             <div>
-                <input type="radio" id="cancel" name="cancel"/>
-                <label for="cancel">취소</label>
+                <input type="radio" id={name+"cancel"} name={name+"select"}/>
+                <label htmlFor={name+"cancel"}>취소</label>
             </div>
             
             <AfterInv money = {aftm}/>

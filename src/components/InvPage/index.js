@@ -9,71 +9,45 @@ import { listenerCount } from 'process';
 
 
 const InvPageBase = (props) => {
-    const [curm, setCurm] = useState(0);
-    const [aftm, setAftm] = useState(0);
-    const [name, setName] = useState("");
+    const [curms, setCurms] = useState([]);
+    const [aftms, setAftms] = useState([]);
+    const [names, setNames] = useState([]);
     var fb = props.firebase;
-    //console.log(fb);
     var user = fb.auth.currentUser;
-    var updates = {};
-    var curms = [0, 0, 0, 0, 0, 0];
-    var aftms = [0, 0, 0, 0, 0, 0];
-    var names = ["","","","","",""];
-    async function getNames(i){
-        const snapshot = await fb.db.ref(`/companies/${i}`).once('value')
-        return snapshot.val().companyname;
+    var uid = user.uid;
+    async function getNames(){
+        const snapshot = await fb.db.ref(`/companies/`).once('value')
+        snapshot.forEach((document)=>setNames(prev=>[document.val().companyname,...prev]));
+        return snapshot;
     }
-    //const namee = await getNames(0);
-    console.log(namee);
-
-    for(var i=0;i<6;i++){
-    names[i] = fb.db.ref(`/companies/${i}`).once('value').then((snapshot) => {
-        return snapshot.val();
-    }).then(res=>res.companyname);
+    async function getCurms(){
+        const snapshot = await fb.db.ref('/users/'+uid+`/invest/`).once('value')
+        snapshot.forEach((document)=>setCurms(prev=>[document.val().curm,...prev]));
+        return snapshot;
     }
-    if(!user){
-        console.log("no user!");
-        return<div>No user!!</div>;
+    async function getAftms(){
+        const snapshot = await fb.db.ref('/users/'+uid+`/invest/`).once('value')
+        snapshot.forEach((document)=>setAftms(prev=>[document.val().aftm,...prev]));
+        return snapshot;
     }
-    else{
-        console.log("hey",user);
-        console.log("hiahdfiahsfiahfih");
-        const uid = user.uid;
-        for(var i=0;i<6;i++){
-            fb.db.ref('/users/'+uid+`/invest/company${i}`).once('value').then((snapshot) => {
-            return snapshot.val();
-            }).then(res=>{setCurm(res.curm); setAftm(res.aftm)});
-            curms[i] = curm;
-            aftms[i] = aftm;
-            // console.log(curms,aftms);
-
-            
-        }
-        console.log(curms,aftms,names);
-        // console.log(null.size);
-
-        // var curmss = index.map((i)=>{
-        //     return fb.db.ref('/users/'+uid+`/invest/company${i}`).once('value').then((snapshot) => {
-        //         //console.log(snapshot.val());
-        //         return snapshot.val();
-        //     }).then(res=>{setCurm(res.curm)});
-        // })
-        // console.log(curms);
-        
-            
+    if(names.length < 6){
+        getNames();
+    }
+    if(curms.length < 6){
+        getCurms();
+    }
+    if(aftms.length < 6){
+        getAftms();
+    }
     
-        // }
-    }
-    console.log("hohoho");
+    
+    const index = [0,1,2,3,4,5];
+
+    // }
     return (
         <>
             <h1>Game</h1>
-            <CompanyPage/>
-            <CompanyPage/>
-            <CompanyPage/>
-            <CompanyPage/>
-            <CompanyPage/>
-            <CompanyPage/>
+            {index.map(i => <CompanyPage key={i} name={names[i]} curm={curms[i]} aftm={aftms[i]}/>)}
         </>
 
     );

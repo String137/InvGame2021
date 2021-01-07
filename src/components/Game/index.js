@@ -4,7 +4,6 @@ import { withAuthorization } from '../Session';
 import { SignUpForm } from '../SignUp';
 import { withFirebase } from "../Firebase";
 import { Link, withRouter } from 'react-router-dom';
-import Round1 from './round1';
 import Video1 from '../Video/video1';
 import Video2 from '../Video/video2';
 import Video3 from '../Video/video3';
@@ -22,7 +21,7 @@ const GamepageBase = () => {
                 setExpired(expired+1);
             }, startTime + time[expired] - new Date().getTime());
         }
-    });
+    }, [expired]);
     switch (expired){
         case 0:
             return <Video1 />;
@@ -31,7 +30,7 @@ const GamepageBase = () => {
         case 2:
             return <Video2 />;
         case 3:
-            return <Round1 />;
+            return <InvPage />;
         case 4:
             return <Video3 />;
         default:
