@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Time from '../../constants/time'
+// import Time from '../../constants/time'
 import { withFirebase } from '../Firebase';
 
 class AdminPage extends Component {
@@ -45,7 +45,7 @@ class AdminPage extends Component {
         {loading && <div>Loading ...</div>}
 
         <UserList users={users} />
-        <button onClick={Time.setStartTime}>SET START TIME</button>
+        <button onClick={function(){console.log("hi")}}>SET START TIME</button>
       </div>
     );
   }

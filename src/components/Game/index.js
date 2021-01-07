@@ -8,6 +8,7 @@ import Round1 from './round1';
 import Video1 from '../Video/video1';
 import Video2 from '../Video/video2';
 import Video3 from '../Video/video3';
+import InvPage from '../InvPage';
 
 const GamepageBase = () => {
     const [startTime, setStartTime] = useState(new Date().getTime());
@@ -26,7 +27,7 @@ const GamepageBase = () => {
         case 0:
             return <Video1 />;
         case 1:
-            return <Round1 />;
+            return <InvPage />;
         case 2:
             return <Video2 />;
         case 3:

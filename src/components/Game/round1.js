@@ -38,11 +38,11 @@ class Round1Base extends React.Component {
         else{
             await this.props.firebase.user(user.uid).on('value', snapshot => {
                 const usersObject = snapshot.val();
-                this.setState({
-                username: usersObject.username,
-                asset: usersObject.asset,
-                mountInfo: usersObject.mountInfo,
-                });
+                // this.setState({
+                // username: usersObject.username,
+                // asset: usersObject.asset,
+                // mountInfo: usersObject.mountInfo,
+                // });
             });
         }
     }
