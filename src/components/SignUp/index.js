@@ -56,7 +56,7 @@ class SignUpFormBase extends Component {
         }).catch(function(error) {
           console.log(error);
         });
-        this.props.history.push(ROUTES.EMAIL_HAS_BEEN_SENT);
+        window.location.href = ROUTES.EMAIL_HAS_BEEN_SENT;
       })
       .catch(error => {
         this.setState({ error });
