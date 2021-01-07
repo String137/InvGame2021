@@ -13,7 +13,7 @@ const GamepageBase = () => {
     const [startTime, setStartTime] = useState(new Date().getTime());
     const [expired, setExpired] = useState(0);
     const [index, setIndex] = useState(0);
-    const time = [1000, 10000000, 9000000000, 11000000000];
+    const time = [1000, 10000000, 10000010, 1000020];
     useEffect(() => {
         if(expired <=3 ){
             console.log("useEffect is called");
@@ -33,7 +33,8 @@ const GamepageBase = () => {
             return <Round1 />;
         case 4:
             return <Video3 />;
-    
+        default:
+            return <div>Game ended!!</div>;
     }
 }
 

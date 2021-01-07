@@ -28,8 +28,8 @@ class Round1Base extends React.Component {
     }
 
     async componentDidMount() {
-        this.setState({ loading: true });
-        console.log(this.props.firebase);
+        //this.setState({ loading: true });
+        console.log("hi",this.props.firebase);
         console.log(this.props.firebase.auth.currentUser);
         var user = this.props.firebase.auth.currentUser;
         if(user==null){
@@ -68,7 +68,7 @@ class Round1Base extends React.Component {
 
     render() {
         const { checked1 } = this.state;
-
+        console.log("rendereerererere");
         return (
             <div>
                 <h1>Game</h1>
