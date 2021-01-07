@@ -13,6 +13,7 @@ import AdminPage from '../Admin';
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 import GamePage from '../Game';
+import EmailSent from '../SignUp/emailsent';
 const App = () => (
 
   <Router>
@@ -33,6 +34,7 @@ const App = () => (
       <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route exact path={ROUTES.ADMIN} component={AdminPage} />
       <Route exact path={ROUTES.GAME} component={GamePage} />
+      <Route exact path={ROUTES.EMAIL_HAS_BEEN_SENT} component={EmailSent} />
       <footer><div className ="copyrightFooter"> N13-1, KAIST 291 DAEHAK-RO, YUSEONG-GU, DAEJEON, KOREA<br></br>
 Copyright @ 2021 ICISTS Div. Tech & Design</div></footer> 
     </div>

@@ -40,6 +40,7 @@ class SignInFormBase extends Component {
         this.props.history.push(ROUTES.HOME);
       }
       else if(user != null){
+        this.props.firebase.auth.signOut();
         alert("verify your email");
       }
     })
@@ -55,7 +56,6 @@ class SignInFormBase extends Component {
 
   render() {
     const { email, password, error } = this.state;
-    this.props.firebase.auth.signOut();
     const isInvalid = password === '' || email === '';
 
     return (

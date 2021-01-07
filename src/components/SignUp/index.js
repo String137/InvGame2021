@@ -47,7 +47,7 @@ class SignUpFormBase extends Component {
       .then(() => {
         this.setState({ ...INITIAL_STATE });
         console.log("hi");
-        this.props.history.push(ROUTES.SIGN_IN);
+        this.props.history.push(ROUTES.EMAIL_HAS_BEEN_SENT);
         console.log("hihi");
         let user = this.props.firebase.auth.currentUser;
         console.log("sisisissi");
@@ -56,12 +56,15 @@ class SignUpFormBase extends Component {
         }).catch(function(error) {
           console.log(error);
         });
+        this.props.history.push(ROUTES.EMAIL_HAS_BEEN_SENT);
       })
       .catch(error => {
         this.setState({ error });
       });
+      
     event.preventDefault();
   };
+  
   onSubmit2 = event => {
     
   };
