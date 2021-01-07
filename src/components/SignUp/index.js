@@ -42,6 +42,32 @@ class SignUpFormBase extends Component {
             email,
             asset: assets.INITIAL_ASSET,
             reward: 0,
+            invest: {
+              company0: {
+                curm: 0,
+                aftm: 0,
+              },
+              company1: {
+                curm: 0,
+                aftm: 0,
+              },
+              company2: {
+                curm: 0,
+                aftm: 0,
+              },
+              company3: {
+                curm: 0,
+                aftm: 0,
+              },
+              company4: {
+                curm: 0,
+                aftm: 0,
+              },
+              company5: {
+                curm: 0,
+                aftm: 0,
+              },
+            }
           });
       })
       .then(() => {

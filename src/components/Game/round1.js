@@ -5,6 +5,7 @@ import { SignUpForm } from '../SignUp';
 import Images1 from '../Images';
 import { withFirebase } from "../Firebase";
 import { Link, withRouter } from 'react-router-dom';
+import InvPage from '../InvPage';
 
 class Round1Base extends React.Component {
     constructor(props) {
@@ -51,18 +52,18 @@ class Round1Base extends React.Component {
         var fb = this.props.firebase;
         var user = fb.auth.currentUser;
         var updates = {};
-            if(user==null){
-                console.log("no new user");
-            }
-            else{
-                console.log("heyhey", fb.db);
-                const uid = user.uid;
-                fb.db.ref('/users/'+uid+'/asset').once('value').then((snapshot) => {
-                    var asset = snapshot.val();
-                    updates['/users/' + uid + '/' + 'asset'] = asset + 100;
-                    return fb.db.ref().update(updates);
-                })
-            }
+        if(user==null){
+            console.log("no new user");
+        }
+        else{
+            console.log("heyhey", fb.db);
+            const uid = user.uid;
+            fb.db.ref('/users/'+uid+'/asset').once('value').then((snapshot) => {
+                var asset = snapshot.val();
+                updates['/users/' + uid + '/' + 'asset'] = asset + 100;
+                return fb.db.ref().update(updates);
+            })
+        }
     }
 
     render() {
@@ -76,6 +77,7 @@ class Round1Base extends React.Component {
                 <button onClick={this.inc}>
                     Increment Test
                 </button>
+                <InvPage/>
             </div>
         );
     }
