@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 
 const CurInv = ({money}) => {
-    return (
-        <div>
-            {money}
-        </div>
-    );
+    if(money!=null){
+        return (
+            <div>
+                {money}
+            </div>
+        );
+    }
+    else{
+        return (
+            <div>
+                Loading...
+            </div>
+        )
+    }
 }
 
 export default CurInv;
