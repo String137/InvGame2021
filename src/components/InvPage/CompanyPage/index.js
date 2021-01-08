@@ -3,6 +3,7 @@ import Company from './Company';
 import AfterInv from './AfterInv';
 import CurInv from './CurInv';
 import Input from './Input';
+import './index.css';
 const CompanyPage = ({curm, name}) => {
     var aftm = 0;
     const [inputm, setInputm] = useState(0);
@@ -32,20 +33,20 @@ const CompanyPage = ({curm, name}) => {
             aftm = 0;
     }
     return(
-        <div>
-            <Company name = {name} className = "company"/>
-            <CurInv money = {curm} className = "curinv"/>
+        <div class="wrapper">
+            <Company name = {name} class = "company"/>
+            <CurInv money = {curm} class = "curinv"/>
             <input type="number" class="input" onChange={handleChange} value={inputm}/>
             <div>
-                <input type="radio" id={name+"inv"} name={name+"select"} onClick={()=>{setRadioNum(0)}}/>
+                <input type="radio" id={name+"inv"} name={name+"select"} class = "inv" onClick={()=>{setRadioNum(0)}}/>
                 <label htmlFor={name+"inv"}>투자</label>
             </div>
             <div>
-                <input type="radio" id={name+"wd"} name={name+"select"} onClick={()=>{setRadioNum(1)}}/>
+                <input type="radio" id={name+"wd"} name={name+"select"} class = "with" onClick={()=>{setRadioNum(1)}}/>
                 <label htmlFor={name+"wd"}>철회</label>
             </div>
             
-            <AfterInv money = {aftm}/>
+            <AfterInv money = {aftm} class="aftinv"/>
         </div>
     );
 }

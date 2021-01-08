@@ -1,0 +1,23 @@
+.wrapper{
+    display: grid;
+    grid-template-columns: repeat(6, 200px);
+    grid-gap: 10px;
+}
+.company{
+    grid-column: 1;
+}
+.curinv{
+    grid-column: 2;
+}
+.input{
+    grid-column: 3;
+}
+.inv{
+    grid-column: 4;
+}
+.with{
+    grid-column: 5;
+}
+.aftinv{
+    grid-column: 6;
+}

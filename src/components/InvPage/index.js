@@ -6,7 +6,7 @@ import * as ROUTES from '../../constants/routes';
 import * as assets from '../../constants/money';
 import CompanyPage from './CompanyPage';
 import { listenerCount } from 'process';
-
+import './index.css';
 
 const InvPageBase = (props) => {
     const [curms, setCurms] = useState([]);
@@ -60,10 +60,10 @@ const InvPageBase = (props) => {
 
     // }
     return (
-        <>
+        <div class="wrapper">
             <h1>Game</h1>
-            {index.map(i => <CompanyPage key={i} name={names[i]} curm={curms[i]} aftm={aftms[i]}/>)}
-        </>
+            {index.map(i => <div class={`comp${i}`}><CompanyPage key={i} name={names[i]} curm={curms[i]} aftm={aftms[i]}/></div>)}
+        </div>
 
     );
 

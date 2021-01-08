@@ -1,0 +1,27 @@
+.wrapper{
+    display: grid;
+    grid-template-rows: 100px,100px,100px,100px,100px,100px;
+    height: 30px;
+}
+.comp0{
+
+    grid-row: 1;
+    /* grid-column: 1; */
+}
+.comp1{
+    grid-row: 2;
+    /* grid-column: 2; */
+}
+.comp2{
+    grid-row: 3;
+    /* grid-column: 3; */
+}
+.comp3{
+    grid-row: 4;
+}
+.comp4{
+    grid-row: 5;
+}
+.comp5{
+    grid-row: 6;
+}

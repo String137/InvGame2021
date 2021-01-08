@@ -14,6 +14,7 @@ import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 import GamePage from '../Game';
 import EmailSent from '../SignUp/emailsent';
+import './index.css';
 const App = () => (
 
   <Router>
