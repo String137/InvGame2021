@@ -5,20 +5,26 @@
 }
 .company{
     grid-column: 2;
+    color:darkorange;
 }
 .curinv{
     grid-column: 3;
+    color: darkorchid;
 }
 .input{
     grid-column: 4;
     height: 20px;
+    color: darksalmon;
 }
 .inv{
     grid-column: 5;
+    color:darkturquoise;
 }
 .with{
     grid-column: 6;
+    color: deeppink;
 }
 .aftinv{
     grid-column: 7;
+    color: gold;
 }
