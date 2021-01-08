@@ -72,12 +72,8 @@ class SignUpFormBase extends Component {
       })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        console.log("hi");
         //this.props.history.push(ROUTES.EMAIL_HAS_BEEN_SENT);
-        console.log("hihi");
         let user = this.props.firebase.auth.currentUser;
-        console.log("sisisissi");
-        console.log("user",user);
         user.sendEmailVerification().then(function() {
           window.location.href=ROUTES.EMAIL_HAS_BEEN_SENT;
         }).catch(function(error) {

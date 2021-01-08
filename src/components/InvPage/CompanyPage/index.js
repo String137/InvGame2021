@@ -9,7 +9,7 @@ const CompanyPage = ({curm, name}) => {
     const [inputm, setInputm] = useState(0);
     const [radioNum, setRadioNum] = useState(0);
     const handleChange = (event) => {
-        console.log(event);
+        // console.log(event);
         const {target: {value}} = event;
         if(!isNaN(parseInt(value))){
             setInputm(parseInt(value));

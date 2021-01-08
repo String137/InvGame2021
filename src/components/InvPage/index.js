@@ -62,16 +62,20 @@ const InvPageBase = (props) => {
     
     
     const index = [0,1,2,3,4,5];
+    var companyPages = index.map(i => <div class={`comp${i}`}><CompanyPage key={i} name={names[i]} curm={curms[i]} aftm={aftms[i]}/></div>);
+            
     function complete(){
-        
+        //CompanyPage.aftm
+        for(var i=0;i<6;i++){
+
+        }
+        console.log("hi",companyPages[0].props.children.props);
         console.log(user);
-        console.log("졸려 ㅠㅠ");
     }
-    // }
     return (
         <div class="wrapper">
             <h1 class="header">Game</h1>
-            {index.map(i => <div class={`comp${i}`}><CompanyPage key={i} name={names[i]} curm={curms[i]} aftm={aftms[i]}/></div>)}
+            {companyPages}
             <button class="button" onClick={complete}>투자 완료</button>
         </div>
 
