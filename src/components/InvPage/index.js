@@ -16,7 +16,9 @@ const InvPageBase = (props) => {
     var fb = props.firebase;
     var user = fb.auth.currentUser;
     if(user==null){
-        return(<div>No user</div>);
+        return(
+        <div>No user</div>
+        );
     }
     var uid = user.uid;
     async function getNames(){
@@ -60,12 +62,15 @@ const InvPageBase = (props) => {
     
     
     const index = [0,1,2,3,4,5];
-
+    function complete(){
+        console.log(user);
+    }
     // }
     return (
         <div class="wrapper">
             <h1 class="header">Game</h1>
             {index.map(i => <div class={`comp${i}`}><CompanyPage key={i} name={names[i]} curm={curms[i]} aftm={aftms[i]}/></div>)}
+            <button class="button" onClick={complete}>투자 완료</button>
         </div>
 
     );
