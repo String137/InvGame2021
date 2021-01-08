@@ -63,7 +63,9 @@ const InvPageBase = (props) => {
     
     const index = [0,1,2,3,4,5];
     function complete(){
+        
         console.log(user);
+        console.log("졸려 ㅠㅠ");
     }
     // }
     return (
