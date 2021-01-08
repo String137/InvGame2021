@@ -37,7 +37,12 @@ class SignInFormBase extends Component {
     .then((user) => {
       if(user.user.emailVerified){
         this.setState({...INITIAL_STATE});
-        this.props.history.push(ROUTES.HOME);
+        if(user.user.email=="icists@icists.org"){
+          this.props.history.push(ROUTES.ADMIN);
+        }
+        else{
+          this.props.history.push(ROUTES.HOME);
+        }
       }
       else if(user != null){
         this.props.firebase.auth.signOut();

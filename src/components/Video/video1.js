@@ -5,9 +5,9 @@ import { SignUpForm } from '../SignUp';
 import Images1 from '../Images';
 import { withFirebase } from "../Firebase";
 import { Link, withRouter } from 'react-router-dom';
-
+import './video1.css';
 const Video1 = () => {
-    return <div>Video1</div>
+    return <div class="v1">Video1</div>
 } 
 
 export default Video1;

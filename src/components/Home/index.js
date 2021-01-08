@@ -50,13 +50,14 @@ class HomePage extends React.Component {
         )
       });
     }
-
+    
     return (
       <div>
         <h1 class="homepage">Home Page</h1>
-        <h1 class="homemoney">{username} 님의 ⭐️잔고⭐️ ${asset}</h1>
+        <h1 class="homemoney">{username} 님의 ⭐️잔고⭐️ {asset} BRD($500)</h1>
       </div>
     );
+    
   }
 
 }
