@@ -15,6 +15,9 @@ const InvPageBase = (props) => {
     
     var fb = props.firebase;
     var user = fb.auth.currentUser;
+    if(user==null){
+        return(<div>No user</div>);
+    }
     var uid = user.uid;
     async function getNames(){
         const snapshot = await fb.db.ref(`/companies/`).once('value');

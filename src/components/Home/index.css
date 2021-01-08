@@ -1,0 +1,11 @@
+.homepage{
+    position: absolute;
+    top:40px;
+    left:30px;
+}
+.homemoney{
+    position: absolute;
+    font-size: 60px;
+    top:400px;
+    left:600px;
+}

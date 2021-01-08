@@ -4,6 +4,7 @@ import { withFirebase } from '../Firebase';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
+import './index.css';
  
 function isAdmin(user){
   console.log(user);
@@ -29,21 +30,24 @@ const Navigation = () => (
 
 const NavigationAuth = () => (
     <ul>
-      <li>
+      <div class="au1">
         <Link to={ROUTES.LANDING}>Landing</Link>
-      </li>
-      <li>
+      </div>
+      <div class="au2">
         <Link to={ROUTES.HOME}>Home</Link>
-      </li>
-      <li>
+      </div>
+      <div class="au3">
         <Link to={ROUTES.ACCOUNT}>Account</Link>
-      </li>
-      <li>
+      </div>
+      <div class="au4">
         <Link to={ROUTES.GAME}>Game</Link>
-      </li>
-      <li>
+      </div>
+      <div class="au5">
         <SignOutButton/>
-      </li>
+      </div>
+      <div class="hr">
+        <hr />
+      </div>
     </ul>
 );
 const NavigationAdmin = () => (

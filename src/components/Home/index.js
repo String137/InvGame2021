@@ -2,7 +2,7 @@ import React from 'react';
 import * as assets from '../../constants/money';
 import { withAuthorization } from '../Session';
 import firebase from '../Firebase/firebase'
-
+import './index.css';
 
 
 class HomePage extends React.Component {
@@ -53,8 +53,8 @@ class HomePage extends React.Component {
 
     return (
       <div>
-        <h1>Home Page</h1>
-        <h1>{username} 님의 잔고 ${asset}</h1>
+        <h1 class="homepage">Home Page</h1>
+        <h1 class="homemoney">{username} 님의 ⭐️잔고⭐️ ${asset}</h1>
       </div>
     );
   }
