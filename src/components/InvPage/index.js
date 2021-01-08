@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import { withFirebase } from '../Firebase';
@@ -12,24 +12,39 @@ const InvPageBase = (props) => {
     const [curms, setCurms] = useState([]);
     const [aftms, setAftms] = useState([]);
     const [names, setNames] = useState([]);
+    
     var fb = props.firebase;
     var user = fb.auth.currentUser;
     var uid = user.uid;
     async function getNames(){
-        const snapshot = await fb.db.ref(`/companies/`).once('value')
-        snapshot.forEach((document)=>setNames(prev=>[document.val().companyname,...prev]));
+        const snapshot = await fb.db.ref(`/companies/`).once('value');
+        const value_list = snapshot.val().map(e=>e.companyname);
+        if(names !== value_list)
+        {
+            setNames(value_list);
+        }
         return snapshot;
     }
     async function getCurms(){
-        const snapshot = await fb.db.ref('/users/'+uid+`/invest/`).once('value')
-        snapshot.forEach((document)=>setCurms(prev=>[document.val().curm,...prev]));
+        const snapshot = await fb.db.ref('/users/'+uid+`/invest/`).once('value');
+        const value_list = Object.values(snapshot.val()).map(e=>e.curm);
+        if(curms !== value_list){
+            setCurms(value_list);
+        }
         return snapshot;
     }
     async function getAftms(){
-        const snapshot = await fb.db.ref('/users/'+uid+`/invest/`).once('value')
-        snapshot.forEach((document)=>setAftms(prev=>[document.val().aftm,...prev]));
+        const snapshot = await fb.db.ref('/users/'+uid+`/invest/`).once('value');
+        const value_list = Object.values(snapshot.val()).map(e=>e.aftm);
+        if(aftms !== value_list){
+            setAftms(value_list);
+        }
         return snapshot;
     }
+    
+
+    
+    
     if(names.length < 6){
         getNames();
     }
