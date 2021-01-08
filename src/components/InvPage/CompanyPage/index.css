@@ -1,23 +1,24 @@
 .wrapper{
     display: grid;
-    grid-template-columns: repeat(6, 200px);
+    grid-template-columns: 20px 100px 100px 100px 100px 100px 100px;
     grid-gap: 10px;
 }
 .company{
-    grid-column: 1;
-}
-.curinv{
     grid-column: 2;
 }
-.input{
+.curinv{
     grid-column: 3;
 }
-.inv{
+.input{
     grid-column: 4;
+    height: 20px;
 }
-.with{
+.inv{
     grid-column: 5;
 }
-.aftinv{
+.with{
     grid-column: 6;
+}
+.aftinv{
+    grid-column: 7;
 }

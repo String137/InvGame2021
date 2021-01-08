@@ -34,8 +34,12 @@ const CompanyPage = ({curm, name}) => {
     }
     return(
         <div class="wrapper">
-            <Company name = {name} class = "company"/>
+            <div class="company">
+            <Company name = {name}/>
+            </div>
+            <div class= "curinv">
             <CurInv money = {curm} class = "curinv"/>
+            </div>
             <input type="number" class="input" onChange={handleChange} value={inputm}/>
             <div>
                 <input type="radio" id={name+"inv"} name={name+"select"} class = "inv" onClick={()=>{setRadioNum(0)}}/>

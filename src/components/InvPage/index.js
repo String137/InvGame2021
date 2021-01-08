@@ -61,7 +61,7 @@ const InvPageBase = (props) => {
     // }
     return (
         <div class="wrapper">
-            <h1>Game</h1>
+            <h1 class="header">Game</h1>
             {index.map(i => <div class={`comp${i}`}><CompanyPage key={i} name={names[i]} curm={curms[i]} aftm={aftms[i]}/></div>)}
         </div>
 
