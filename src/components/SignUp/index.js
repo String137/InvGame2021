@@ -16,8 +16,6 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
-  certificationRight: '',
-  certificationInput: '',
   error: null,
 };
 
@@ -45,27 +43,21 @@ class SignUpFormBase extends Component {
             invest: {
               company0: {
                 curm: 0,
-                aftm: 0,
               },
               company1: {
                 curm: 0,
-                aftm: 0,
               },
               company2: {
                 curm: 0,
-                aftm: 0,
               },
               company3: {
                 curm: 0,
-                aftm: 0,
               },
               company4: {
                 curm: 0,
-                aftm: 0,
               },
               company5: {
                 curm: 0,
-                aftm: 0,
               },
             }
           });
@@ -87,10 +79,6 @@ class SignUpFormBase extends Component {
     event.preventDefault();
   };
   
-  onSubmit2 = event => {
-    
-  };
-
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -101,8 +89,6 @@ class SignUpFormBase extends Component {
       email,
       passwordOne,
       passwordTwo,
-      certificationRight,
-      certificationInput,
       error,
     } = this.state;
 
@@ -111,9 +97,6 @@ class SignUpFormBase extends Component {
       passwordOne === '' ||
       email === '' ||
       username === '';
-    const isInvalid2 =
-      certificationInput !== certificationRight ||
-      certificationRight === '';
 
     return (
       <div>
@@ -152,18 +135,7 @@ class SignUpFormBase extends Component {
 
         {error && <p>{error.message}</p>}
       </form>
-      <form onSubmit={this.onSubmit2}>
-        <input
-          name="certification"
-          value={certificationInput}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Certification Number"
-        />
-        <button disabled={isInvalid2} type="submit">
-          Sign Up
-        </button>
-      </form>
+      
       </div>
     );
   }

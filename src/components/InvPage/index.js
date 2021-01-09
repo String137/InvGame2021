@@ -16,13 +16,12 @@ const InvPageBase = (props) => {
     const [invDone, setInvDone] = useState(false);
     const [invDoneCheck, setInvDoneCheck] = useState(true);
     
+
     var fb = props.firebase;
     var user = fb.auth.currentUser;
-    // if(user==null){
-    //     return(
-    //     <div>No user</div>
-    //     );
-    // }
+    if(user===null){
+        props.history.push(ROUTES.SIGN_IN);
+    }
     var uid = user.uid;
     async function getNames(){
         const snapshot = await fb.db.ref(`/companies/`).once('value');
