@@ -1,7 +1,6 @@
 .wrapper{
     display: grid;
-    grid-template-rows: 140px 20px 20px 20px 20px 20px 20px 20px 20px;
-    height: 30px;
+    grid-template-rows: 80px 20px 20px 20px 20px 20px 20px 20px 20px;
 }
 .comp0{
     grid-row: 2;
@@ -31,14 +30,14 @@
     grid-row: 9;
 }
 .header{
-    position: absolute;
-    top:60px;
-    left: 30px;
+    /* position: relative; */
+    /* top:60px; */
+    /* left: 30px; */
     grid-row: 1;
 }
 .button{
-    position: absolute;
-    top: 700px;
-    left: 700px;
+    /* position: relative; */
+    /* top: 700px; */
+    /* left: 700px; */
     font-size: 50px;
 }

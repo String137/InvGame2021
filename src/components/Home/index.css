@@ -1,13 +1,13 @@
 .homepage{
-    position: absolute;
-    top:40px;
-    left:30px;
+    /* position: absolute; */
+    /* top:40px; */
+    /* left:30px; */
 }
 .homemoney{
-    position: absolute;
+    /* position: absolute; */
     font-size: 60px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%); 
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%,-50%);  */
     color:black;
 }

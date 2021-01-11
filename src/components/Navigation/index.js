@@ -29,24 +29,21 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-    <ul>
-      <div class="au1">
+    <ul className="container">
+      <div className="au1">
         <Link to={ROUTES.LANDING}>Landing</Link>
       </div>
-      <div class="au2">
+      <div className="au2">
         <Link to={ROUTES.HOME}>Home</Link>
       </div>
-      <div class="au3">
+      <div className="au3">
         <Link to={ROUTES.ACCOUNT}>Account</Link>
       </div>
-      <div class="au4">
+      <div className="au4">
         <Link to={ROUTES.GAME}>Game</Link>
       </div>
-      <div class="au5">
+      <div className="au5">
         <SignOutButton/>
-      </div>
-      <div class="hr">
-        <hr />
       </div>
     </ul>
 );
