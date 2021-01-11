@@ -13,6 +13,7 @@ const InvPageBase = (props) => {
     const [curms, setCurms] = useState([]);
     const [aftms, setAftms] = useState([]);
     const [names, setNames] = useState([]);
+    const [inputsum, setInputsum] = useState([0,0,0,0,0,0,0,0]);
     const [invDone, setInvDone] = useState(false);
     const [invDoneCheck, setInvDoneCheck] = useState(true);
     
@@ -23,6 +24,13 @@ const InvPageBase = (props) => {
         props.history.push(ROUTES.SIGN_IN);
     }
     var uid = user.uid;
+    function getInput(data, index){
+        console.log("datatattataatat",data);
+        var list = inputsum;
+        list[index]=data;
+        setInputsum(list);
+        console.log(list);
+    }
     async function getNames(){
         const snapshot = await fb.db.ref(`/companies/`).once('value');
         const value_list = snapshot.val().map(e=>e.companyname);
@@ -71,25 +79,22 @@ const InvPageBase = (props) => {
         if(invDone){
             setInvDone(false);
         }
-    },[invDone]);
+        console.log("lll", inputsum);
+    },[inputsum]);
     
     
     
     
     const index = [0,1,2,3,4,5,6,7];
-    var companyPages = index.map(i => <div class={`comp${i}`}><CompanyPage key={i} name={names[i]} curm={curms[i]} invDone={invDone} index={i}/></div>);
+    var companyPages = index.map(i => <div class={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} index={i}/></div>);
             
     function complete(){
         //CompanyPage.aftm
         setInvDone(true);
         setInvDoneCheck(true);
-        for(var i=0;i<6;i++){
-
-        }
-        console.log("hi",companyPages[0].props.children.props);
-        console.log(user);
-        console.log(companyPages[0].props.children.props.children);
     }
+    
+    console.log("wawawa",companyPages[0].props.children);
     return (
         <div class="wrapper">
             <h1 class="header">Game</h1>

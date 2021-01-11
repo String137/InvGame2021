@@ -23,9 +23,6 @@ const Redirection1Base = (props) => {
         const curAsset = Object.values(snapshot3.val())[0];
         var updates = {}
         var reward = 0;
-        console.log(RATIOS.ROUND1_REWARD_RATIO[7]);
-        console.log("vlavalvalvl",value_list);
-        console.log("rararar",rank_list);
         for(var index = 0; index < 8; index++){
             reward += parseInt(value_list[index]*RATIOS.ROUND1_REWARD_RATIO[rank_list[index]-1]);
         }
