@@ -40,7 +40,7 @@ const CompanyPage = ({curm, name, invDone, index, firebase}) => {
          const uid = user.uid;
          var updates = {}
 
-         updates[`/users/${uid}/invest/company${index}/curm`] = aftm;  
+         updates[`/users/${uid}/invest/company${index}/aftm`] = aftm;  
          console.log("2",aftm);
 
          console.log("1",index);

@@ -1,6 +1,6 @@
 .wrapper{
     display: grid;
-    grid-template-rows: 140px 20px 20px 20px 20px 20px 20px;
+    grid-template-rows: 140px 20px 20px 20px 20px 20px 20px 20px 20px;
     height: 30px;
 }
 .comp0{
@@ -23,6 +23,12 @@
 }
 .comp5{
     grid-row: 7;
+}
+.comp6{
+    grid-row: 8;
+}
+.comp7{
+    grid-row: 9;
 }
 .header{
     position: absolute;

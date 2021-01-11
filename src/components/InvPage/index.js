@@ -76,7 +76,7 @@ const InvPageBase = (props) => {
     
     
     
-    const index = [0,1,2,3,4,5];
+    const index = [0,1,2,3,4,5,6,7];
     var companyPages = index.map(i => <div class={`comp${i}`}><CompanyPage key={i} name={names[i]} curm={curms[i]} invDone={invDone} index={i}/></div>);
             
     function complete(){
@@ -94,7 +94,7 @@ const InvPageBase = (props) => {
         <div class="wrapper">
             <h1 class="header">Game</h1>
             {companyPages}
-            <button class="button" onClick={complete}>투자 완료</button>
+            <button class="button" onClick={complete}>저장</button>
         </div>
 
     );

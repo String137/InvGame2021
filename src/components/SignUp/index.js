@@ -43,22 +43,36 @@ class SignUpFormBase extends Component {
             invest: {
               company0: {
                 curm: 0,
+                aftm: 0,
               },
               company1: {
                 curm: 0,
+                aftm: 0,
               },
               company2: {
                 curm: 0,
+                aftm: 0,
               },
               company3: {
                 curm: 0,
+                aftm: 0,
               },
               company4: {
                 curm: 0,
+                aftm: 0,
               },
               company5: {
                 curm: 0,
+                aftm: 0,
               },
+              company6: {
+                curm: 0,
+                aftm: 0,
+              },
+              company7: {
+                curm: 0,
+                aftm: 0,
+              }
             }
           });
       })
