@@ -34,7 +34,30 @@ const Redirection1Base = (props) => {
         for(var index = 0; index < 8; index++){
             updates[`/companies/${index}/stock`] = stocks[index] + aftms[index] - curms[index];
         }
+        const snapshot3 = await fb.db.ref('/round1submitted').once('value');
+        const snapshot4 = await fb.db.ref('/loggedinUser').once('value');
+        const r1s = snapshot3.val();
+        const log = snapshot4.val();
+        updates['/round1submitted']=r1s+1;
+        if(r1s+1===log){
+            updates['/equal1'] = true;
+        }
         fb.db.ref().update(updates);
+    }
+    async function setRank(){
+        var updates = {};
+        updates['/equal1']=false;
+        updates['/round1submitted']=0;
+        const snapshot = await fb.db.ref('/companies/').once('value');
+        const objs = snapshot.val();
+        console.log(objs[0]["stock"]);
+        const rank = objs.sort((a, b) => a["stock"] < b["stock"] ? 1 : -1);
+        console.log(rank);
+        for(var i=0;i<objs.length;i++){
+            updates[`/companies/${rank[i]["index"]}/round1rank`]=i+1;
+        }
+        fb.db.ref().update(updates);
+
     }
     async function getCurmsAndSet(){
         const snapshot = await fb.db.ref(`/users/${user.uid}/invest/`).once('value');
@@ -58,7 +81,14 @@ const Redirection1Base = (props) => {
     }
     setAsset().then(()=>{
         setCompany().then(()=>{
-            getCurmsAndSet();
+            fb.db.ref('/equal1').onDataChange(
+                () => {
+
+                }
+            )
+            setRank().then(()=>{
+                getCurmsAndSet();
+            })
         }) 
     })
     
