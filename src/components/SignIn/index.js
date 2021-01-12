@@ -29,12 +29,15 @@ class SignInFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
   async getLoggedIn(user){
-    const snapshot = await this.props.firebase.db.ref(`/users/${user.uid}/loggedin`);
+    const snapshot = await this.props.firebase.db.ref(`/users/${user.uid}/loggedin`).once('value');
+    console.log(user);
+    console.log("help..",snapshot);
     const loggedin = snapshot.val();
+    console.log("loglog",loggedin);
     return loggedin;     
   }
   async getLoggedinUser(){
-    const snapshot = await this.props.firebase.db.ref('/loggedinUser');
+    const snapshot = await this.props.firebase.db.ref('/loggedinUser').once('value');
     return snapshot.val();
   }
   onSubmit = event => {
@@ -43,23 +46,31 @@ class SignInFormBase extends Component {
     .doSignInWithEmailAndPassword(email, password)
     .then((user) => {
       if(user.user.emailVerified){
-        if(!this.getLoggedIn(user)){
-        this.setState({...INITIAL_STATE});
-        if(user.user.email==="icists@icists.org"){
-          this.props.history.push(ROUTES.ADMIN);
-        }
-        else{
-          var updates = {};
-          const logus = this.getLoggedinUser();
-          updates[`/loggedinUser/`] = logus + 1;
-          updates[`/users/${user.uid}/loggedin`] = true;
-          this.props.firebase.db.ref().update(updates);
-          this.props.history.push(ROUTES.HOME);
-        }
-      }
-      else{
-        alert("이미 로그인함");
-      }
+        this.getLoggedIn(user.user).then((res) => {
+          if(res===false){
+            console.log("this",this);
+            this.setState({...INITIAL_STATE});
+            if(user.user.email==="icists@icists.org"){
+              this.props.history.push(ROUTES.ADMIN);
+            }
+            else{
+              var updates = {};
+              console.log("hey");
+              this.getLoggedinUser().then(
+                (logus) => {
+                  updates[`/loggedinUser/`] = logus + 1;
+              updates[`/users/${user.user.uid}/loggedin`] = true;
+              this.props.firebase.db.ref().update(updates);
+              this.props.history.push(ROUTES.HOME);
+                }
+              );
+            }
+          }
+          else{
+            alert("이미 로그인함");
+          }
+        });
+       
       }
       else if(user != null){
         this.props.firebase.auth.signOut();

@@ -3,13 +3,28 @@ import { withFirebase } from '../Firebase';
 import './index.css';
 import * as ROUTES from '../../constants/routes';
 
-const SignOutButton = ({ firebase, history }) => (
+
+const SignOutButton = ({ firebase, history }) => {
+  async function getLog(){
+    const snapshot = await firebase.db.ref(`/loggedinUser`).once('value');
+    return snapshot.val();
+  }
+  return(
   <button class="sb" type="button" onClick={function(){
-    firebase.doSignOut();
-    window.location.href=ROUTES.SIGN_IN;
+    const user = firebase.auth.currentUser;
+    getLog().then((res)=>{
+      var updates = {};
+      updates[`/users/${user.uid}/loggedin`] = false;
+      updates['/loggedinUser'] = res - 1;
+      firebase.db.ref().update(updates);
+      firebase.doSignOut();
+      window.location.href=ROUTES.SIGN_IN;
+    });
+    
   }}>
     Sign Out
   </button>
-);
+  );
+};
 
 export default withFirebase(SignOutButton);
