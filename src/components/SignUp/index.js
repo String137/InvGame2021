@@ -39,6 +39,7 @@ class SignUpFormBase extends Component {
             username,
             email,
             asset: assets.INITIAL_ASSET,
+            loggedin: false,
             reward: 0,
             invest: {
               company0: {

@@ -28,25 +28,44 @@ class SignInFormBase extends Component {
 
     this.state = { ...INITIAL_STATE };
   }
-
+  async getLoggedIn(user){
+    const snapshot = await this.props.firebase.db.ref(`/users/${user.uid}/loggedin/`);
+    const loggedin = snapshot.val();
+    return loggedin;     
+  }
+  async getLoggedinUser(){
+    const snapshot = await this.props.firebase.db.ref('/loggedinUser/');
+    return snapshot.val();
+  }
   onSubmit = event => {
     const { email, password } = this.state;
     this.props.firebase
     .doSignInWithEmailAndPassword(email, password)
     .then((user) => {
       if(user.user.emailVerified){
+        if(!this.getLoggedIn(user)){
         this.setState({...INITIAL_STATE});
-        if(user.user.email=="icists@icists.org"){
+        if(user.user.email==="icists@icists.org"){
           this.props.history.push(ROUTES.ADMIN);
         }
         else{
+          var updates = {};
+          const logus = this.getLoggedinUser();
+          updates[`/loggedinUser/`] = logus + 1;
+          updates[`/users/${user.uid}/loggedin`] = true;
+          this.props.firebase.db.ref().update(updates);
           this.props.history.push(ROUTES.HOME);
         }
+      }
+      else{
+        alert("이미 로그인함");
+      }
       }
       else if(user != null){
         this.props.firebase.auth.signOut();
         alert("verify your email");
       }
+    
     })
     .catch(error => {
       this.setState({ error });

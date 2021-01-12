@@ -65,7 +65,7 @@ const CompanyPage = ({curm, name, invDone, index, calc, firebase}) => {
          console.log(fb);
          const user = fb.auth.currentUser;
          const uid = user.uid;
-         var updates = {}
+         var updates = {};
 
          updates[`/users/${uid}/invest/company${index}/aftm`] = aftm;  
          fb.db.ref().update(updates);
@@ -81,11 +81,11 @@ const CompanyPage = ({curm, name, invDone, index, calc, firebase}) => {
             </div>
             <input type="number" min="0" class="input" onChange={handleChange} value={inputm}/>
             <div class = "inv">
-                <input type="radio" id={name+"inv"} name={name+"select"} onClick={()=>{setRadioNum(0)}}/>
+                <input type="radio" id={name+"inv"} name={name+"select"} onClick={()=>{setInputm("0");setRadioNum(0)}}/>
                 <label htmlFor={name+"inv"}>투자</label>
             </div>
             <div class = "with">
-                <input type="radio" id={name+"wd"} name={name+"select"}  onClick={()=>{setRadioNum(1)}}/>
+                <input type="radio" id={name+"wd"} name={name+"select"}  onClick={()=>{setInputm("0");setRadioNum(1)}}/>
                 <label htmlFor={name+"wd"}>철회</label>
             </div>
             <div class="aftinv">

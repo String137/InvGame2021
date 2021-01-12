@@ -29,10 +29,10 @@ const InvPageBase = (props) => {
     function getInput(data, index, radix){
         var list = inputs;
         var update = 0;
-        if(radix==0){   /* 투자 */
+        if(radix===0){   /* 투자 */
             update = data;
         }
-        else if(radix==1){  /* 철회 */
+        else if(radix===1){  /* 철회 */
             update = - data * (1 - assets.ROUND1_FEE_RATIO);
         }
         else{
