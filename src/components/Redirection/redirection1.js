@@ -14,6 +14,28 @@ const Redirection1Base = (props) => {
             <div class="no">No user</div>
         )
     }
+    async function setAsset(){
+        const snapshot = await fb.db.ref(`/users/${user.uid}/invest/input`).once('value');
+        const snapshot2 = await fb.db.ref(`/users/${user.uid}/asset`).once('value');
+        const input = snapshot.val();
+        const asset = snapshot2.val();
+        var updates = {};
+        updates[`/users/${user.uid}/asset`] = -input + asset;
+        updates[`/users/${user.uid}/invest/input`] = 0;
+        fb.db.ref().update(updates);
+    }
+    async function setCompany(){
+        const snapshot = await fb.db.ref(`/companies/`).once('value');
+        const stocks = Object.values(snapshot.val()).map(e=>e.stock);
+        const snapshot2 = await fb.db.ref(`/users/${user.uid}/invest/`).once('value');
+        const curms = Object.values(snapshot2.val()).map(e=>e.curm);
+        const aftms = Object.values(snapshot2.val()).map(e=>e.aftm);
+        var updates = {};
+        for(var index = 0; index < 8; index++){
+            updates[`/companies/${index}/stock`] = stocks[index] + aftms[index] - curms[index];
+        }
+        fb.db.ref().update(updates);
+    }
     async function getCurmsAndSet(){
         const snapshot = await fb.db.ref(`/users/${user.uid}/invest/`).once('value');
         const value_list = Object.values(snapshot.val()).map(e=>e.aftm);
@@ -34,7 +56,12 @@ const Redirection1Base = (props) => {
         }
         fb.db.ref().update(updates);
     }
-    getCurmsAndSet();
+    setAsset().then(()=>{
+        setCompany().then(()=>{
+            getCurmsAndSet();
+        }) 
+    })
+    
     
     
     return (

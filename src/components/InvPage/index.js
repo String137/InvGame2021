@@ -114,6 +114,9 @@ const InvPageBase = (props) => {
         //CompanyPage.aftm
         setInvDone(true);
         setInvDoneCheck(true);
+        var updates = {};
+        updates[`/users/${user.uid}/invest/input`]=inputs.reduce((a,b)=>a+b, 0);
+        fb.db.ref().update(updates);
     }
     
     console.log("wawawa",companyPages[0].props.children);
