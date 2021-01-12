@@ -29,12 +29,12 @@ class SignInFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
   async getLoggedIn(user){
-    const snapshot = await this.props.firebase.db.ref(`/users/${user.uid}/loggedin/`);
+    const snapshot = await this.props.firebase.db.ref(`/users/${user.uid}/loggedin`);
     const loggedin = snapshot.val();
     return loggedin;     
   }
   async getLoggedinUser(){
-    const snapshot = await this.props.firebase.db.ref('/loggedinUser/');
+    const snapshot = await this.props.firebase.db.ref('/loggedinUser');
     return snapshot.val();
   }
   onSubmit = event => {
