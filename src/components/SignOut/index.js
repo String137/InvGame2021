@@ -1,8 +1,13 @@
 import React from 'react';
 import { withFirebase } from '../Firebase';
 import './index.css';
-const SignOutButton = ({ firebase }) => (
-  <button class="sb" type="button" onClick={firebase.doSignOut}>
+import * as ROUTES from '../../constants/routes';
+
+const SignOutButton = ({ firebase, history }) => (
+  <button class="sb" type="button" onClick={function(){
+    firebase.doSignOut();
+    window.location.href=ROUTES.SIGN_IN;
+  }}>
     Sign Out
   </button>
 );

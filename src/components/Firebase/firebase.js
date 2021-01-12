@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const config = {
   apiKey: "AIzaSyDE-rkv3YppYCMJkdU6yVpFf0safqNBcPw",
@@ -25,7 +26,9 @@ class Firebase {
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
-  doSignOut = () => this.auth.signOut();
+  doSignOut = () => {
+    this.auth.signOut();
+  };
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
