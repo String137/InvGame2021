@@ -3,19 +3,45 @@
     justify-content: space-between;
     margin: 0;
     padding: 0;
-    height: 50px;
+    height: 60px;
     /* text-align: center; */
 }
-.au1, .au2, .au3, .au4, .au5{
+.au0, .au1, .au2, .au3, .au4, .au5{
     /* position: relative; */
     text-align: center;
-    background-color: gray;
-    border-right: solid lightgray;
-    width: 20%;
-    padding-top: 15px;
+    background-color: rgb(245, 245, 245);
+    /* border-right: solid lightgray; */
+    /* width: 10%; */
+    
+}
+.au0{
+    width: 50%;
+    font-size: 30px;
+    padding-top: 10px;
+    font-weight: 900;
+}
+.au1{
+    width: 10%;
+    /* padding-top: 18px; */
+}
+.au2{
+    width: 10%;
+    /* padding-top: 18px; */
+}
+.au3{
+    width: 10%;
+    /* padding-top: 18px; */
+}
+.au4{
+    width: 10%;
+    /* padding-top: 18px; */
+}
+.au5{
+    width: 10%;
+    /* padding-top: 18px; */
 }
 .au1:hover, .au2:hover, .au3:hover, .au4:hover, .au5:hover{
-    background-color: red;
+    background-color: rgb(226, 226, 226);
 }
 body{
     padding: 0;
@@ -24,4 +50,13 @@ body{
 .hr{
     /* position: relative; */
     /* top: 60px; */
+}
+.l1{
+    color: rgb(51, 51, 51);
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    display: block;
+    height: 60px;
+    padding-top: 17px;
 }

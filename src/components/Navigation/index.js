@@ -30,17 +30,20 @@ const Navigation = () => (
 
 const NavigationAuth = () => (
     <ul className="container">
+      <div className="au0">
+        GRAFFITI INVESTMENT GAME
+      </div>
       <div className="au1">
-        <Link to={ROUTES.LANDING}>Landing</Link>
+        <Link to={ROUTES.LANDING} class="l1">Landing</Link>
       </div>
       <div className="au2">
-        <Link to={ROUTES.HOME}>Home</Link>
+        <Link to={ROUTES.HOME} class="l1">Home</Link>
       </div>
       <div className="au3">
-        <Link to={ROUTES.ACCOUNT}>Account</Link>
+        <Link to={ROUTES.ACCOUNT} class="l1">Account</Link>
       </div>
       <div className="au4">
-        <Link to={ROUTES.GAME}>Game</Link>
+        <Link to={ROUTES.GAME} class="l1">Game</Link>
       </div>
       <div className="au5">
         <SignOutButton/>

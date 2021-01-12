@@ -1,4 +1,9 @@
 .sb{
     border: none;
-    background-color: gray;
+    background-color: transparent;
+    font-weight: 300;
+
+}
+.sb:hover{
+    font-weight: 500;
 }
