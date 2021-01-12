@@ -26,9 +26,19 @@ const InvPageBase = (props) => {
         props.history.push(ROUTES.SIGN_IN);
     }
     var uid = user.uid;
-    function getInput(data, index){
+    function getInput(data, index, radix){
         var list = inputs;
-        list[index]=data;
+        var update = 0;
+        if(radix==0){   /* 투자 */
+            update = data;
+        }
+        else if(radix==1){  /* 철회 */
+            update = - data * (1 - assets.ROUND1_FEE_RATIO);
+        }
+        else{
+            update = 0;
+        }
+        list[index]=update;
         setInputs(list);
         console.log(list);
         console.log(inputs.reduce((a, b) => a+b, 0));

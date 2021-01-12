@@ -45,8 +45,7 @@ const CompanyPage = ({curm, name, invDone, index, calc, firebase}) => {
     }
     useEffect(()=>{
         console.log(inputm);
-        
-        calc(parseInt(inputm), index);
+        calc(parseInt(inputm), index, radioNum);
     })
     switch (radioNum){
         case 0:
