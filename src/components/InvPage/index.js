@@ -18,7 +18,7 @@ const InvPageBase = (props) => {
     const [invDone, setInvDone] = useState(false);
     const [invDoneCheck, setInvDoneCheck] = useState(true);
     const [check, setCheck] = useState(false);
-    
+    const [rankedList, setRankedList] = useState([]);
 
     var fb = props.firebase;
     var user = fb.auth.currentUser;
@@ -78,7 +78,20 @@ const InvPageBase = (props) => {
             }
             return snapshot;
         }
-        
+        async function getRank(){
+            var updates = {};
+            //updates['/equal1']=false;
+            //updates['/round1submitted']=0;
+            const snapshot = await fb.db.ref('/companies/').once('value');
+            const objs = snapshot.val();
+            const companyRankList = objs.sort((a, b) => a["round1rank"] > b["round1rank"] ? 1 : -1);
+            return companyRankList.map(res=>res['index']);
+        }
+        getRank().then(res=>{
+            if(rankedList !== res){
+                setRankedList(res)
+            };
+        });
     
         getAsset();
         // setInputsum(inputs.reduce((a, b) => a+b, 0));
@@ -120,7 +133,7 @@ const InvPageBase = (props) => {
     }
     
     console.log("wawawa",companyPages[0].props.children);
-    
+    console.log(rankedList, "ranked");
     return (
         <>
         <div class="wrapper">
@@ -130,6 +143,7 @@ const InvPageBase = (props) => {
         <div>
             <button className="button" onClick={function(){setCheck(true);}}>투자 후 자산 확인하기</button>
             <button className="button" onClick={complete}>저장</button>
+            {rankedList.map(res=><div>{res}</div>)}
         </div>
         </>
         

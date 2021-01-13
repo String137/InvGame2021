@@ -46,8 +46,8 @@ const Redirection1Base = (props) => {
     }
     async function setRank(){
         var updates = {};
-        updates['/equal1']=false;
-        updates['/round1submitted']=0;
+        //updates['/equal1']=false;
+        //updates['/round1submitted']=0;
         const snapshot = await fb.db.ref('/companies/').once('value');
         const objs = snapshot.val();
         console.log(objs[0]["stock"]);
@@ -81,16 +81,18 @@ const Redirection1Base = (props) => {
     }
     setAsset().then(()=>{
         setCompany().then(()=>{
-            fb.db.ref('/equal1').onDataChange(
-                () => {
-
+            fb.db.ref('/equal1').once('value').then((snapshot)=>{
+                console.log(snapshot.val());
+                setRank().then(()=>{
+                    getCurmsAndSet();
                 }
-            )
-            setRank().then(()=>{
-                getCurmsAndSet();
+            );
+
             })
         }) 
     })
+
+
     
     
     
