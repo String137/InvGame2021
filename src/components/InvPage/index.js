@@ -13,7 +13,7 @@ const InvPageBase = (props) => {
     const [aftms, setAftms] = useState([]);
     const [names, setNames] = useState([]);
     const [asset, setAsset] = useState(0);
-    const [inputs, setInputs] = useState([0,0,0,0,0,0,0,0]);
+    const [inputs, setInputs] = useState([]);
     const [inputsum, setInputsum] = useState(0);
     const [invDone, setInvDone] = useState(false);
     const [invDoneCheck, setInvDoneCheck] = useState(true);
@@ -89,7 +89,7 @@ const InvPageBase = (props) => {
         }
         getRank().then(res=>{
             if(rankedList !== res){
-                setRankedList(res)
+                setRankedList(res);
             };
         });
     
@@ -119,9 +119,6 @@ const InvPageBase = (props) => {
     },[aftms, asset, curms, fb.db, inputs, invDone, invDoneCheck, names, uid, inputsum, check]);
     
     // setInputsum(inputs.reduce((a, b) => a+b, 0));
-    
-    const index = [0,1,2,3,4,5,6,7];
-    var companyPages = index.map(i => <div class={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} index={i}/></div>);
             
     function complete(){
         //CompanyPage.aftm
@@ -131,19 +128,16 @@ const InvPageBase = (props) => {
         updates[`/users/${user.uid}/invest/input`]=inputs.reduce((a,b)=>a+b, 0);
         fb.db.ref().update(updates);
     }
-    
-    console.log("wawawa",companyPages[0].props.children);
     console.log(rankedList, "ranked");
     return (
         <>
         <div class="wrapper">
             <h1 class="header">Game</h1>
-            {companyPages}
+            {rankedList.slice(0, props.count).map(i => <div class={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} index={i}/></div>)}
         </div>
         <div>
             <button className="button" onClick={function(){setCheck(true);}}>투자 후 자산 확인하기</button>
             <button className="button" onClick={complete}>저장</button>
-            {rankedList.map(res=><div>{res}</div>)}
         </div>
         </>
         

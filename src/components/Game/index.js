@@ -27,11 +27,11 @@ const GamepageBase = () => {
         case 0:
             return <Video1 />;
         case 1:
-            return <InvPage />;
+            return <InvPage count={8} />;
         case 2:
             return <Redirection1/>;
         case 3:
-            return <InvPage />;
+            return <InvPage count={6}/>;
         case 4:
             return <Video3 />;
         default:
