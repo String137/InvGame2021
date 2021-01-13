@@ -120,12 +120,24 @@ const InvPageBase = (props) => {
     
     // setInputsum(inputs.reduce((a, b) => a+b, 0));
             
-    function complete(){
+    async function complete(){
         //CompanyPage.aftm
         setInvDone(true);
         setInvDoneCheck(true);
+        var input = inputs.reduce((a,b)=>a+b, 0);
         var updates = {};
-        updates[`/users/${user.uid}/invest/input`]=inputs.reduce((a,b)=>a+b, 0);
+        if(asset>=input){
+            updates[`/users/${user.uid}/invest/input`]=input;
+        
+        }
+        else{
+            const snapshot = await fb.db.ref(`/users/${uid}/invest/`).once('value');
+            console.log(snapshot);
+            const curms = Object.values(snapshot.val()).map(e=>e.curm);
+            for(var i=0; i<8; i++){
+                updates[`/users/${uid}/invest/company${i}/aftm`]=curms[i];
+            }
+        }
         fb.db.ref().update(updates);
     }
     console.log(rankedList, "ranked");

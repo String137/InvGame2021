@@ -54,11 +54,9 @@ const CompanyPage = ({curm, name, invDone, index, calc, firebase}) => {
         case 1:
             aftm = parseInt(curm) - (inputm ? parseInt(inputm) :  0);
             break;
-        case 2:
+        default:
             aftm = parseInt(curm);
             break;
-        default:
-            aftm = 0;
     }
     if (invDone) {
          const fb =  firebase;
