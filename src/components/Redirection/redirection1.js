@@ -81,17 +81,26 @@ const Redirection1Base = (props) => {
     }
     setAsset().then(()=>{
         setCompany().then(()=>{
-            fb.db.ref('/equal1').once('value').then((snapshot)=>{
-                console.log(snapshot.val());
-                setRank().then(()=>{
-                    getCurmsAndSet();
-                }
-            );
+            
 
-            })
         }) 
     })
-
+    var check = false;
+    function catchEqual() {
+        if(check){
+            return;
+        }
+        fb.db.ref('/equal1').once('value').then((snapshot)=>{
+            console.log(snapshot.val());
+            if(snapshot.val()===true){
+                setRank().then(()=>{
+                    getCurmsAndSet();
+                    check = true;
+                });
+            }
+        });
+    }
+    setInterval(catchEqual,1000);
 
     
     
