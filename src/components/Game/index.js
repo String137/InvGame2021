@@ -17,9 +17,9 @@ const GamepageBase = () => {
     const [startTime, setStartTime] = useState(new Date().getTime());
     const [expired, setExpired] = useState(0);
     const [index, setIndex] = useState(0);
-    const time = [1000, 30000, 40000, 41000, 70000, 80000, 81000, 110000, 120000];
+    const time = [1000, 30000, 40000, 41000, 70000, 80000, 81000, 110000, 120000, 121000];
     useEffect(() => {
-        if(expired <=3 ){
+        if(expired <=9 ){
             console.log("useEffect is called");
             setTimeout(()=>{
                 setExpired(expired+1);

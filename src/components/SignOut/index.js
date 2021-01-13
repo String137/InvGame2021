@@ -15,7 +15,9 @@ const SignOutButton = ({ firebase, history }) => {
     getLog().then((res)=>{
       var updates = {};
       updates[`/users/${user.uid}/loggedin`] = false;
-      updates['/loggedinUser'] = res - 1;
+      if(user.email!=="icists@icists.org"){
+        updates['/loggedinUser'] = res - 1;
+      }
       firebase.db.ref().update(updates);
       firebase.doSignOut();
       window.location.href=ROUTES.SIGN_IN;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import Time from '../../constants/time'
 import { withFirebase } from '../Firebase';
+import login from './getLoggedin';
 
 class AdminPage extends Component {
   constructor(props) {
