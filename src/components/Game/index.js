@@ -7,14 +7,17 @@ import { Link, withRouter } from 'react-router-dom';
 import Video1 from '../Video/video1';
 import Video2 from '../Video/video2';
 import Video3 from '../Video/video3';
+import Final from '../Video/final';
 import InvPage from '../InvPage';
 import Redirection1 from '../Redirection/redirection1';
+import Redirection2 from '../Redirection/redirection2';
+import Redirection3 from '../Redirection/redirection3';
 
 const GamepageBase = () => {
     const [startTime, setStartTime] = useState(new Date().getTime());
     const [expired, setExpired] = useState(0);
     const [index, setIndex] = useState(0);
-    const time = [1000, 30000, 40000, 1000020];
+    const time = [1000, 30000, 40000, 41000, 70000, 80000, 81000, 110000, 120000];
     useEffect(() => {
         if(expired <=3 ){
             console.log("useEffect is called");
@@ -31,9 +34,19 @@ const GamepageBase = () => {
         case 2:
             return <Redirection1/>;
         case 3:
-            return <InvPage count={6}/>;
+            return <Video2/>;
         case 4:
+            return <InvPage count={6}/>;
+        case 5:
+            return <Redirection2/>;
+        case 6:
             return <Video3 />;
+        case 7:
+            return <InvPage count={4}/>;
+        case 8:
+            return <Redirection3/>;
+        case 9:
+            return <Final />;
         default:
             return <div>Game ended!!</div>;
     }
