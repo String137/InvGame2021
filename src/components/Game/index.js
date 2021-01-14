@@ -12,6 +12,7 @@ import InvPage from '../InvPage';
 import Redirection1 from '../Redirection/redirection1';
 import Redirection2 from '../Redirection/redirection2';
 import Redirection3 from '../Redirection/redirection3';
+import * as MONEY from '../../constants/money';
 
 const GamepageBase = () => {
     const [startTime, setStartTime] = useState(new Date().getTime());
@@ -30,19 +31,19 @@ const GamepageBase = () => {
         case 0:
             return <Video1 />;
         case 1:
-            return <InvPage count={8} />;
+            return <InvPage round={1} count={MONEY.ROUND1_TEAM} />;
         case 2:
             return <Redirection1/>;
         case 3:
             return <Video2/>;
         case 4:
-            return <InvPage count={6}/>;
+            return <InvPage round={2} count={MONEY.ROUND2_TEAM}/>;
         case 5:
             return <Redirection2/>;
         case 6:
             return <Video3 />;
         case 7:
-            return <InvPage count={4}/>;
+            return <InvPage round={3} count={MONEY.ROUND3_TEAM}/>;
         case 8:
             return <Redirection3/>;
         case 9:

@@ -8,7 +8,7 @@ import CompanyPage from './CompanyPage';
 import './index.css';
 
 
-const InvPageBase = (props) => {
+const InvPageBase = ({round,firebase,history,count}) => {
     const [curms, setCurms] = useState([]);
     const [aftms, setAftms] = useState([]);
     const [names, setNames] = useState([]);
@@ -20,10 +20,10 @@ const InvPageBase = (props) => {
     const [check, setCheck] = useState(false);
     const [rankedList, setRankedList] = useState([]);
 
-    var fb = props.firebase;
+    var fb = firebase;
     var user = fb.auth.currentUser;
     if(user===null){
-        props.history.push(ROUTES.SIGN_IN);
+        history.push(ROUTES.SIGN_IN);
     }
     var uid = user.uid;
     function getInput(data, index, radix){
@@ -84,7 +84,7 @@ const InvPageBase = (props) => {
             //updates['/round1submitted']=0;
             const snapshot = await fb.db.ref('/companies/').once('value');
             const objs = snapshot.val();
-            const companyRankList = objs.sort((a, b) => a["round1rank"] > b["round1rank"] ? 1 : -1);
+            const companyRankList = objs.sort((a, b) => a[`round${round}rank`] > b[`round${round}rank`] ? 1 : -1);
             return companyRankList.map(res=>res['index']);
         }
         getRank().then(res=>{
@@ -145,7 +145,7 @@ const InvPageBase = (props) => {
         <>
         <div class="wrapper">
             <h1 class="header">Game</h1>
-            {rankedList.slice(0, props.count).map(i => <div class={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i}/></div>)}
+            {rankedList.slice(0, count).map(i => <div class={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i}/></div>)}
         </div>
         <div>
             <button className="button" onClick={function(){setCheck(true);}}>투자 후 자산 확인하기</button>
