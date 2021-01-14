@@ -12,7 +12,7 @@ import { parse } from 'path';
 export var sum = 0;
 const CompanyPage = ({curm, name, invDone, index, calc, firebase, aftm}) => {
     //var aftm = 0;
-    curm = aftm;
+    // curm = aftm;
     const [inputm, setInputm] = useState("0");
     const [radioNum, setRadioNum] = useState(-1);
     const handleChange = (event) => {

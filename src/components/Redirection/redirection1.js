@@ -56,6 +56,9 @@ const Redirection1Base = (props) => {
         for(var i=0;i<objs.length;i++){
             updates[`/companies/${rank[i]["index"]}/round1rank`]=i+1;
         }
+        for(i=RATIOS.ROUND2_TEAM;i<RATIOS.ROUND1_TEAM;i++){
+            updates[`/companies/${rank[i]["index"]}/stock`] = -1;
+        }
         fb.db.ref().update(updates);
 
     }

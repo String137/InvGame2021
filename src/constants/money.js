@@ -7,3 +7,5 @@ export const ROUND1_FEE_RATIO = 0.05;
 export const ROUND2_FEE_RATIO = 0.05;
 export const ROUND3_FEE_RATIO = 0.05;
 export const FINAL_FEE_RATIO = 0.02;
+export const ROUND1_TEAM = 8;
+export const ROUND2_TEAM = 6;
