@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Router } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
@@ -53,7 +53,10 @@ const NavigationAuth = () => (
 const NavigationAdmin = () => (
   <ul>
     <li>
-      <Link to={ROUTES.ADMIN}>Admin</Link>
+      <Link to={ROUTES.ADMIN}>Users</Link>
+    </li>
+    <li>
+      <Link to={ROUTES.COMPANY}>Companies</Link>
     </li>
     <li>
       <SignOutButton/>

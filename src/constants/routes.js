@@ -7,3 +7,4 @@ export const ADMIN = '/admin';
 export const PASSWORD_FORGET = '/pw-forget';
 export const GAME = '/game';
 export const EMAIL_HAS_BEEN_SENT = '/emailsent';
+export const COMPANY = '/company';
