@@ -8,24 +8,24 @@ class AdminCompany extends React.Component {
 
         this.state = {
         loading: false,
-        users: [],
+        companies: [],
         };
     }
 
     componentDidMount() {
         this.setState({ loading: true });
 
-        this.props.firebase.users().on('value', snapshot => {
-        const usersObject = snapshot.val();
-        console.log("user", usersObject);
-        if(usersObject){
-        const usersList = Object.keys(usersObject).map(key => ({
-            ...usersObject[key],
-            uid: key,
+        this.props.firebase.db.ref('/companies').once('value').then(snapshot => {
+        const companiesObject = snapshot.val();
+        console.log("companies", companiesObject);
+        if(companiesObject){
+            const companiesList = Object.keys(companiesObject).map(key => ({
+            ...companiesObject[key],
+            index: key,
         }));
 
         this.setState({
-            users: usersList,
+            companies: companiesList,
             loading: false,
         });
         }
@@ -33,11 +33,13 @@ class AdminCompany extends React.Component {
     }
 
     componentWillUnmount() {
-        this.props.firebase.users().off();
+        this.setState({
+            loading: true,
+        });
     }
 
     render() {
-        const { users, loading } = this.state;
+        const { companies, loading } = this.state;
 
         return (
         <div>
@@ -45,25 +47,22 @@ class AdminCompany extends React.Component {
 
             {loading && <div>Loading ...</div>}
 
-            <CompanyList users={users} />
+            <CompanyList companies={companies} />
             <button onClick={function(){console.log("hi")}}>SET START TIME</button>
         </div>
         );
     }
 }
 
-const CompanyList = ({ users }) => (
+const CompanyList = ({ companies }) => (
 <ul>
-    {users.map(user => (
-    <li key={user.uid}>
+    {companies.map(company => (
+    <li key={company.index}>
         <span>
-        <strong>Username:</strong> {user.username} <br/>
+        <strong>Company name:</strong> {company.companyname} <br/>
         </span>
         <span>
-        <strong>E-Mail:</strong> {user.email} <br/>
-        </span>
-        <span>
-        <strong>ID:</strong> {user.uid} <br/>
+        <strong>Stock:</strong> {company.stock} <br/>
         </span>
     </li>
     ))}
