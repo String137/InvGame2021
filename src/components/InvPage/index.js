@@ -145,7 +145,7 @@ const InvPageBase = (props) => {
         <>
         <div class="wrapper">
             <h1 class="header">Game</h1>
-            {rankedList.slice(0, props.count).map(i => <div class={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} index={i}/></div>)}
+            {rankedList.slice(0, props.count).map(i => <div class={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i}/></div>)}
         </div>
         <div>
             <button className="button" onClick={function(){setCheck(true);}}>투자 후 자산 확인하기</button>
