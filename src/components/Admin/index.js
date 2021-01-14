@@ -18,7 +18,6 @@ class AdminPage extends Component {
 
     this.props.firebase.users().on('value', snapshot => {
       const usersObject = snapshot.val();
-      console.log(usersObject);
       if(usersObject){
       const usersList = Object.keys(usersObject).map(key => ({
         ...usersObject[key],
@@ -33,8 +32,12 @@ class AdminPage extends Component {
     });
   }
 
-  componentWillUnmount() {
+  componentWillUnmount({users}) {
     this.props.firebase.users().off();
+  }
+
+  resetInfo = async (users) => {
+    alert('reset!');
   }
 
   render() {
@@ -47,28 +50,31 @@ class AdminPage extends Component {
         {loading && <div>Loading ...</div>}
 
         <UserList users={users} />
-        <button onClick={function(){console.log("hi")}}>SET START TIME</button>
+        <button onClick={function(users){this.resetInfo(users)}}>RESET Users INFO</button>
       </div>
     );
   }
 }
 
-const UserList = ({ users }) => (
+const UserList = ({ users }) => {
+  return(
+  <>
   <ul>
     {users.map(user => (
       <li key={user.uid}>
-        <span>
-          <strong>Username:</strong> {user.username} <br/>
-        </span>
-        <span>
-          <strong>E-Mail:</strong> {user.email} <br/>
-        </span>
-        <span>
-          <strong>ID:</strong> {user.uid} <br/>
-        </span>
+        <div>
+          <strong>Username:</strong> {user.username} 
+        </div>
+        <div>
+          <strong>Asset:</strong>{user.asset}
+        </div>
+        <div>
+          <strong>Invest</strong><ol>{Object.values(user['invest']).map(company=><li>[curm: {company.curm}, aftm: {company.aftm}]</li>)}</ol>
+        </div>
       </li>
     ))}
   </ul>
-);
+  </>);
+};
 
 export default withFirebase(AdminPage);

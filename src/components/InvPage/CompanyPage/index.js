@@ -10,8 +10,9 @@ import { get } from 'http';
 import { type } from 'os';
 import { parse } from 'path';
 export var sum = 0;
-const CompanyPage = ({curm, name, invDone, index, calc, firebase}) => {
-    var aftm = 0;
+const CompanyPage = ({curm, name, invDone, index, calc, firebase, aftm}) => {
+    //var aftm = 0;
+    curm = aftm;
     const [inputm, setInputm] = useState("0");
     const [radioNum, setRadioNum] = useState(-1);
     const handleChange = (event) => {
