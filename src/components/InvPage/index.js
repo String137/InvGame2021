@@ -40,7 +40,6 @@ const InvPageBase = ({round,firebase,history,count}) => {
         }
         list[index]=update;
         setInputs(list);
-        console.log(list);
         console.log(inputs.reduce((a, b) => a+b, 0));
     }
     
@@ -107,7 +106,6 @@ const InvPageBase = ({round,firebase,history,count}) => {
             setInvDone(false);
         }
         if(check){
-            console.log("ihihhi");
             
             // setInputsum(inputs.reduce((a, b) => a+b, 0));
             // console.log(inputsum);
@@ -132,7 +130,6 @@ const InvPageBase = ({round,firebase,history,count}) => {
         }
         else{
             const snapshot = await fb.db.ref(`/users/${uid}/invest/`).once('value');
-            console.log(snapshot);
             const curms = Object.values(snapshot.val()).map(e=>e.curm);
             for(var i=0; i<8; i++){
                 updates[`/users/${uid}/invest/company${i}/aftm`]=curms[i];
@@ -140,7 +137,6 @@ const InvPageBase = ({round,firebase,history,count}) => {
         }
         fb.db.ref().update(updates);
     }
-    console.log(rankedList, "ranked");
     return (
         <>
         <div class="wrapper">

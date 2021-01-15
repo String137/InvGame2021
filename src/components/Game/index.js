@@ -13,15 +13,16 @@ import Redirection1 from '../Redirection/redirection1';
 import Redirection2 from '../Redirection/redirection2';
 import Redirection3 from '../Redirection/redirection3';
 import * as MONEY from '../../constants/money';
+import * as TIME from '../../constants/time';
 
-const GamepageBase = () => {
-    const [startTime, setStartTime] = useState(new Date().getTime());
+const GamepageBase = (props) => {
+    const [startTime, setStartTime] = useState(TIME.START_TIME);
     const [expired, setExpired] = useState(0);
     const [index, setIndex] = useState(0);
-    const time = [1000, 30000, 40000, 41000, 70000, 80000, 81000, 110000, 120000, 121000];
+    const time = [10000, 30000, 40000, 41000, 70000, 80000, 81000, 110000, 120000, 121000];
+
     useEffect(() => {
         if(expired <=9 ){
-            console.log("useEffect is called");
             setTimeout(()=>{
                 setExpired(expired+1);
             }, startTime + time[expired] - new Date().getTime());

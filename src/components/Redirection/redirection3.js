@@ -50,9 +50,7 @@ const Redirection3Base = (props) => {
         //updates['/round1submitted']=0;
         const snapshot = await fb.db.ref('/companies/').once('value');
         const objs = snapshot.val();
-        console.log(objs[0]["stock"]);
         const rank = objs.sort((a, b) => a["stock"] < b["stock"] ? 1 : -1);
-        console.log(rank);
         for(var i=0;i<objs.length;i++){
             updates[`/companies/${rank[i]["index"]}/round3rank`]=i+1;
         }
@@ -71,7 +69,6 @@ const Redirection3Base = (props) => {
         for(var index = 0; index < 8; index++){
             reward += parseInt(value_list[index]*RATIOS.ROUND3_REWARD_RATIO[rank_list[index]-1]);
         }
-        console.log("asafdsadfs",reward);
         updates[`/users/${user.uid}/asset`] = curAsset + reward;
         for(index = 0; index < 8; index++){
             updates[`/users/${user.uid}/invest/company${index}/curm`] = value_list[index];
@@ -91,7 +88,6 @@ const Redirection3Base = (props) => {
             return;
         }
         fb.db.ref('/equal3').once('value').then((snapshot)=>{
-            console.log(snapshot.val());
             if(snapshot.val()===true){
                 setRank().then(()=>{
                     getCurmsAndSet();

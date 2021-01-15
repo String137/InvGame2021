@@ -16,8 +16,6 @@ const CompanyPage = ({curm, name, invDone, index, calc, firebase, aftm}) => {
     const [inputm, setInputm] = useState("0");
     const [radioNum, setRadioNum] = useState(-1);
     const handleChange = (event) => {
-        console.log(event);
-        console.log("alfsdkjslkdjfalksfdjlakdj");
         const {target: {value}} = event;
         if(radioNum!==0&&radioNum!==1){
             alert("please check!");
@@ -42,10 +40,8 @@ const CompanyPage = ({curm, name, invDone, index, calc, firebase, aftm}) => {
         else{
             setInputm("0");
         }
-        console.log("why",inputm);
     }
     useEffect(()=>{
-        console.log(inputm);
         calc(parseInt(inputm), index, radioNum);
     })
     switch (radioNum){
@@ -61,7 +57,6 @@ const CompanyPage = ({curm, name, invDone, index, calc, firebase, aftm}) => {
     }
     if (invDone) {
          const fb =  firebase;
-         console.log(fb);
          const user = fb.auth.currentUser;
          const uid = user.uid;
          var updates = {};
