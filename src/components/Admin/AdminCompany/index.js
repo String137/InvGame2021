@@ -17,7 +17,6 @@ class AdminCompany extends React.Component {
 
         this.props.firebase.db.ref('/companies').once('value').then(snapshot => {
         const companiesObject = snapshot.val();
-        console.log("companies", companiesObject);
         if(companiesObject){
             const companiesList = Object.keys(companiesObject).map(key => ({
             ...companiesObject[key],
@@ -38,6 +37,49 @@ class AdminCompany extends React.Component {
         });
     }
 
+    resetInfo = () => {
+        console.log(this.state.companies);
+        this.state.companies.map(company => this.props.firebase.db.ref(`/companies/${company.index}`).update(
+            {
+                stock: 0,
+            }
+        ));
+
+        alert('reset!');
+        this.setState({ loading: true });
+    
+        this.props.firebase.db.ref('/users').once('value').then(snapshot => {
+          const usersObject = snapshot.val();
+          if(usersObject){
+          const usersList = Object.keys(usersObject).map(key => ({
+            ...usersObject[key],
+            uid: key,
+          }));
+    
+          this.setState({
+            users: usersList,
+            loading: false,
+          });
+        }
+        });
+        this.setState({ loading: true });
+
+        this.props.firebase.db.ref('/companies').once('value').then(snapshot => {
+        const companiesObject = snapshot.val();
+        if(companiesObject){
+            const companiesList = Object.keys(companiesObject).map(key => ({
+            ...companiesObject[key],
+            index: key,
+        }));
+
+        this.setState({
+            companies: companiesList,
+            loading: false,
+        });
+        }
+        });
+      }
+
     render() {
         const { companies, loading } = this.state;
 
@@ -48,7 +90,7 @@ class AdminCompany extends React.Component {
             {loading && <div>Loading ...</div>}
 
             <CompanyList companies={companies} />
-            <button onClick={function(){console.log("hi")}}>SET START TIME</button>
+            <button onClick={this.resetInfo}>SET START TIME</button>
         </div>
         );
     }

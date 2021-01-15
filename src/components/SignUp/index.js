@@ -74,6 +74,7 @@ class SignUpFormBase extends Component {
                 curm: 0,
                 aftm: 0,
               }
+              , input : 0
             }
           });
       })
