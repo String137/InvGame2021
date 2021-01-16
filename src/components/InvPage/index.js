@@ -96,7 +96,6 @@ const InvPageBase = ({round,firebase,history,count}) => {
         // setInputsum(inputs.reduce((a, b) => a+b, 0));
         
         if(invDoneCheck){
-            console.log("hi");
             getNames();
             getCurms();
             getAftms();
@@ -112,7 +111,6 @@ const InvPageBase = ({round,firebase,history,count}) => {
             alert(`니 자산: ${asset-inputs.reduce((a, b) => a+b, 0)}`);
             setCheck(false);
         }
-        console.log("lll", inputs);
         // alert(`니 자산: ${asset-inputsum}`);
     },[aftms, asset, curms, fb.db, inputs, invDone, invDoneCheck, names, uid, inputsum, check]);
     
@@ -139,10 +137,12 @@ const InvPageBase = ({round,firebase,history,count}) => {
     }
     return (
         <>
-        <div class="wrapper">
-            <h1 class="header">Game</h1>
+        <div className="wrapper">
+            <h1 className="header">Game</h1>
+            
             {rankedList.slice(0, count).map(i => <div class={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i}/></div>)}
         </div>
+        <h2>나의 자산 : {asset}</h2>
         <div>
             <button className="button" onClick={function(){setCheck(true);}}>투자 후 자산 확인하기</button>
             <button className="button" onClick={complete}>저장</button>

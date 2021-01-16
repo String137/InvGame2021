@@ -38,8 +38,8 @@ const App = () => (
       <Route exact path={ROUTES.COMPANY} component={AdminCompany} />
       <Route exact path={ROUTES.GAME} component={GamePage} />
       <Route exact path={ROUTES.EMAIL_HAS_BEEN_SENT} component={EmailSent} />
-      <footer><div class ="copyrightFooter"> N13-1, KAIST 291 DAEHAK-RO, YUSEONG-GU, DAEJEON, KOREA<br></br>
-Copyright @ 2021 ICISTS Div. Tech & Design</div></footer> 
+      {/* <footer><div class ="copyrightFooter"> N13-1, KAIST 291 DAEHAK-RO, YUSEONG-GU, DAEJEON, KOREA<br></br>
+Copyright @ 2021 ICISTS Div. Tech & Design</div></footer>  */}
     </div>
         </Router>
 
