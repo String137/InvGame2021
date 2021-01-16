@@ -6,7 +6,6 @@ const TimeSlot1 = ({leftTime}) => {
 
     useEffect(()=>{
         if(time >= 1000){
-            console.log(time);
             setTimeout(()=>{
                 setTime(prev=>prev-1000);
             }, 1000);
@@ -20,7 +19,6 @@ const TimeSlot2 = ({leftTime}) => {
 
     useEffect(()=>{
         if(time >= 1000){
-            console.log(time);
             setTimeout(()=>{
                 setTime(prev=>prev-1000);
             }, 1000);
@@ -34,7 +32,6 @@ const TimeSlot3 = ({leftTime}) => {
 
     useEffect(()=>{
         if(time >= 1000){
-            console.log(time);
             setTimeout(()=>{
                 setTime(prev=>prev-1000);
             }, 1000);
@@ -48,7 +45,6 @@ const TimeSlot4 = ({leftTime}) => {
 
     useEffect(()=>{
         if(time >= 1000){
-            console.log(time);
             setTimeout(()=>{
                 setTime(prev=>prev-1000);
             }, 1000);
@@ -62,7 +58,6 @@ const TimeSlot5 = ({leftTime}) => {
 
     useEffect(()=>{
         if(time >= 1000){
-            console.log(time);
             setTimeout(()=>{
                 setTime(prev=>prev-1000);
             }, 1000);
@@ -76,7 +71,6 @@ const TimeSlot6 = ({leftTime}) => {
 
     useEffect(()=>{
         if(time >= 1000){
-            console.log(time);
             setTimeout(()=>{
                 setTime(prev=>prev-1000);
             }, 1000);
@@ -90,7 +84,6 @@ const TimeSlot7 = ({leftTime}) => {
 
     useEffect(()=>{
         if(time >= 1000){
-            console.log(time);
             setTimeout(()=>{
                 setTime(prev=>prev-1000);
             }, 1000);

@@ -40,7 +40,6 @@ const InvPageBase = ({round,firebase,history,count}) => {
         }
         list[index]=update;
         setInputs(list);
-        console.log(inputs.reduce((a, b) => a+b, 0));
     }
     
     useEffect(()=>{
@@ -83,7 +82,7 @@ const InvPageBase = ({round,firebase,history,count}) => {
             //updates['/round1submitted']=0;
             const snapshot = await fb.db.ref('/companies/').once('value');
             const objs = snapshot.val();
-            const companyRankList = objs.sort((a, b) => a[`round${round}rank`] > b[`round${round}rank`] ? 1 : -1);
+            const companyRankList = objs.sort((a, b) => a[`stock`] < b[`stock`] ? 1 : -1);
             return companyRankList.map(res=>res['index']);
         }
         getRank().then(res=>{
@@ -116,15 +115,14 @@ const InvPageBase = ({round,firebase,history,count}) => {
     
     // setInputsum(inputs.reduce((a, b) => a+b, 0));
             
-    async function complete(){
+    async function complete({target: {checked}}){
         //CompanyPage.aftm
         setInvDone(true);
         setInvDoneCheck(true);
         var input = inputs.reduce((a,b)=>a+b, 0);
         var updates = {};
-        if(asset>=input){
+        if(asset>=input && checked){
             updates[`/users/${user.uid}/invest/input`]=input;
-        
         }
         else{
             const snapshot = await fb.db.ref(`/users/${uid}/invest/`).once('value');
@@ -145,7 +143,9 @@ const InvPageBase = ({round,firebase,history,count}) => {
         <h2>나의 자산 : {asset}</h2>
         <div>
             <button className="button" onClick={function(){setCheck(true);}}>투자 후 자산 확인하기</button>
-            <button className="button" onClick={complete}>저장</button>
+            <label>
+                <input type="checkbox" className="button" onClick={complete}/>투자
+            </label>
         </div>
         </>
         
