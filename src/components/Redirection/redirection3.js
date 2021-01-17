@@ -20,7 +20,7 @@ const Redirection3Base = (props) => {
         const input = snapshot.val();
         const asset = snapshot2.val();
         var updates = {};
-        updates[`/users/${user.uid}/asset`] = -input + asset;
+        updates[`/users/${user.uid}/asset`] = -input + asset + RATIOS.SALARY;
         updates[`/users/${user.uid}/invest/input`] = 0;
         fb.db.ref().update(updates);
     }
@@ -53,6 +53,9 @@ const Redirection3Base = (props) => {
         const rank = objs.sort((a, b) => a["stock"] < b["stock"] ? 1 : -1);
         for(var i=0;i<objs.length;i++){
             updates[`/companies/${rank[i]["index"]}/round3rank`]=i+1;
+        }
+        for(i=RATIOS.FINAL_TEAM;i<RATIOS.ROUND3_TEAM;i++){
+            updates[`/companies/${rank[i]["index"]}/stock`] = -1;
         }
         fb.db.ref().update(updates);
 

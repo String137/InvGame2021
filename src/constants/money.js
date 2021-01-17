@@ -10,3 +10,5 @@ export const FINAL_FEE_RATIO = 0.02;
 export const ROUND1_TEAM = 8;
 export const ROUND2_TEAM = 6;
 export const ROUND3_TEAM = 4;
+export const FINAL_TEAM = 2;
+export const SALARY = 100;

@@ -33,7 +33,7 @@ const InvPageBase = ({round,firebase,history,count}) => {
             update = data;
         }
         else if(radix===1){  /* 철회 */
-            update = - data * (1 - assets.ROUND1_FEE_RATIO);
+            update = - parseInt(data * (1 - assets.ROUND1_FEE_RATIO));
         }
         else{
             update = 0;
@@ -110,6 +110,9 @@ const InvPageBase = ({round,firebase,history,count}) => {
             alert(`니 자산: ${asset-inputs.reduce((a, b) => a+b, 0)}`);
             setCheck(false);
         }
+        if(inputs.reduce((a,b)=>a+b, 0) > asset){
+            document.querySelector(".invest_done").checked = false;
+        }
         // alert(`니 자산: ${asset-inputsum}`);
     },[aftms, asset, curms, fb.db, inputs, invDone, invDoneCheck, names, uid, inputsum, check]);
     
@@ -144,7 +147,7 @@ const InvPageBase = ({round,firebase,history,count}) => {
         <div>
             <button className="button" onClick={function(){setCheck(true);}}>투자 후 자산 확인하기</button>
             <label>
-                <input type="checkbox" className="button" onClick={complete}/>투자
+                <input type="checkbox" className="invest_done" onClick={complete}/>투자
             </label>
         </div>
         </>

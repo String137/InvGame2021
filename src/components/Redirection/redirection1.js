@@ -19,7 +19,7 @@ const Redirection1Base = (props) => {
         const input = snapshot.val();
         const asset = snapshot2.val();
         var updates = {};
-        updates[`/users/${user.uid}/asset`] = -input + asset;
+        updates[`/users/${user.uid}/asset`] = -input + asset + RATIOS.SALARY;
         updates[`/users/${user.uid}/invest/input`] = 0;
         fb.db.ref().update(updates);
     }
