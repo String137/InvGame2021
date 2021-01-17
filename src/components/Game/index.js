@@ -4,7 +4,7 @@ import { withAuthorization } from '../Session';
 import { SignUpForm } from '../SignUp';
 import { withFirebase } from "../Firebase";
 import { Link, withRouter } from 'react-router-dom';
-import Video1 from '../Video/video1';
+import Video1 from '../Video/Video1';
 import Video2 from '../Video/video2';
 import Video3 from '../Video/video3';
 import Final from '../Video/final';
@@ -20,7 +20,7 @@ const GamepageBase = (props) => {
     const [startTime, setStartTime] = useState(new Date().getTime());//useState(TIME.START_TIME);
     const [expired, setExpired] = useState(0);
     const [index, setIndex] = useState(0);
-    const time = [1000, 30000, 40000, 41000, 70000, 80000, 81000, 110000, 120000, 121000];
+    const time = [10000, 30000, 40000, 41000, 70000, 80000, 81000, 110000, 120000, 121000];
     useEffect(() => {
         if(expired <=9 ){
             setTimeout(()=>{
@@ -50,7 +50,7 @@ const GamepageBase = (props) => {
             </>;
         case 3:
             return <>
-                <Video2/>
+                <Video1/>
                 <TimeSlot3 leftTime={startTime + time[expired] - new Date().getTime()} />
             </>;
         case 4:
@@ -64,7 +64,7 @@ const GamepageBase = (props) => {
             </>;
         case 6:
             return <>
-                <Video3 />
+                <Video1 />
                 <TimeSlot5 leftTime={startTime + time[expired] - new Date().getTime()} />
             </>;
         case 7:

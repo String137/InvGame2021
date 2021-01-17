@@ -1,0 +1,37 @@
+.logo{
+    width: 100px;
+    height: 100px;
+    box-shadow: 2px 2px 2px gray;
+    border: none;
+    border-radius: 3px;
+  }
+  .logo:hover{
+    box-shadow: 5px 5px 5px gray;
+  }
+  .logo_container{
+    display: grid;
+    grid-template-rows: repeat(3, 150px);
+    grid-template-columns: repeat(3, 150px);
+    border: solid;
+    align-items: center;
+    justify-items: center;
+  }
+  .selectButton{
+    height: 50px;
+    background-color: white;
+    width: 50px;
+    border: solid red;
+    border-radius: 25px;
+    text-align: center;
+    transition: .5s;
+  }
+  .selectButton:hover{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    transition: .5s;
+    background-color: tomato;
+  }
+  input[type="checkbox"]{
+    display: none;
+  }
