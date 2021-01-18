@@ -17,10 +17,14 @@ const Redirection3Base = (props) => {
     async function setAsset(){
         const snapshot = await fb.db.ref(`/users/${user.uid}/invest/input`).once('value');
         const snapshot2 = await fb.db.ref(`/users/${user.uid}/asset`).once('value');
+        const snapshot3 = await fb.db.ref(`/equal3`).once('value');
         const input = snapshot.val();
         const asset = snapshot2.val();
+        const equal = snapshot3.val();
         var updates = {};
-        updates[`/users/${user.uid}/asset`] = -input + asset + RATIOS.SALARY;
+        if(equal === false){
+            updates[`/users/${user.uid}/asset`] = -input + asset + RATIOS.SALARY;
+        }
         updates[`/users/${user.uid}/invest/input`] = 0;
         fb.db.ref().update(updates);
     }

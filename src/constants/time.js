@@ -5,7 +5,7 @@ export const ROUND2_VIDEO = 25 * 60;
 export const ROUND2_INVEST = 10 * 60;
 export const ROUND3_VIDEO = 25 * 60;
 export const ROUND3_INVEST = 10 * 60;
-export const START_TIME = 1610790240000;
+export const START_TIME = 1610984250000;
 
 export const ACC_ROUND1_VIDEO_OFFSET = ROUND1_VIDEO;
 export const ACC_ROUND1_INVEST_OFFSET = ACC_ROUND1_VIDEO_OFFSET + ROUND1_INVEST;

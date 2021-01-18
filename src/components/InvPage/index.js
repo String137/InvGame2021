@@ -19,126 +19,147 @@ const InvPageBase = ({round,firebase,history,count}) => {
     const [invDoneCheck, setInvDoneCheck] = useState(true);
     const [check, setCheck] = useState(false);
     const [rankedList, setRankedList] = useState([]);
-
+    const [loaded, setLoaded] = useState(false);
     var fb = firebase;
-    var user = fb.auth.currentUser;
-    if(user===null){
-        history.push(ROUTES.SIGN_IN);
-    }
-    var uid = user.uid;
-    function getInput(data, index, radix){
-        var list = inputs;
-        var update = 0;
-        if(radix===0){   /* 투자 */
-            update = data;
-        }
-        else if(radix===1){  /* 철회 */
-            update = - parseInt(data * (1 - assets.ROUND1_FEE_RATIO));
+    
+    
+
+    
+    fb.auth.onAuthStateChanged((user)=>{
+        if(user){
+            setLoaded(true);
         }
         else{
-            update = 0;
+            setLoaded(false);
         }
-        list[index]=update;
-        setInputs(list);
-    }
-    
+    })
     useEffect(()=>{
         // document.addEventListener('keypress',function(){setInputsum(inputs.reduce((a, b) => a+b, 0))});
-    
-        async function getAsset(){
-            const snapshot = await fb.db.ref(`/users/${uid}/asset/`).once('value');
-            const asset = snapshot.val();
-            setAsset(asset);
-        }
+            if(fb.auth.currentUser){
+                var uid = fb.auth.currentUser.uid;
+
+                async function getAsset(){
+                    const snapshot = await fb.db.ref(`/users/${uid}/asset/`).once('value');
+                    const asset = snapshot.val();
+                    setAsset(asset);
+                }
+                
+                async function getNames(){
+                    const snapshot = await fb.db.ref(`/companies/`).once('value');
+                    const value_list = snapshot.val().map(e=>e.companyname);
+                    if(names !== value_list)
+                    {
+                        setNames(value_list);
+                    }
+                    return snapshot;
+                }
+                async function getCurms(){
+                    const snapshot = await fb.db.ref('/users/'+uid+`/invest/`).once('value');
+                    const value_list = Object.values(snapshot.val()).map(e=>e.curm);
+                    if(curms !== value_list){
+                        setCurms(value_list);
+                    }
+                    return snapshot;
+                }
+                async function getAftms(){
+                    const snapshot = await fb.db.ref('/users/'+uid+`/invest/`).once('value');
+                    const value_list = Object.values(snapshot.val()).map(e=>e.aftm);
+                    if(aftms !== value_list){
+                        setAftms(value_list);
+                    }
+                    return snapshot;
+                }
+                async function getRank(){
+                    var updates = {};
+                    //updates['/equal1']=false;
+                    //updates['/round1submitted']=0;
+                    const snapshot = await fb.db.ref('/companies/').once('value');
+                    const objs = snapshot.val();
+                    const companyRankList = objs.sort((a, b) => a[`stock`] < b[`stock`] ? 1 : -1);
+                    return companyRankList.map(res=>res['index']);
+                }
+
+                
+
+                getRank().then(res=>{
+                    if(rankedList !== res){
+                        setRankedList(res);
+                    };
+                });
+            
+                getAsset();
+                // setInputsum(inputs.reduce((a, b) => a+b, 0));
+                
+                if(invDoneCheck){
+                    getNames();
+                    getCurms();
+                    getAftms();
+                    setInvDoneCheck(false);
+                }
+                if(invDone){
+                    setInvDone(false);
+                }
+                if(check){
+                    
+                    // setInputsum(inputs.reduce((a, b) => a+b, 0));
+                    // console.log(inputsum);
+                    alert(`니 자산: ${asset-inputs.reduce((a, b) => a+b, 0)}`);
+                    setCheck(false);
+                }
+                if(inputs.reduce((a,b)=>a+b, 0) > asset){
+                    document.querySelector(".invest_done").checked = false;
+                }
+            }
+            else{
+                setLoaded(false);
+            }
         
-        async function getNames(){
-            const snapshot = await fb.db.ref(`/companies/`).once('value');
-            const value_list = snapshot.val().map(e=>e.companyname);
-            if(names !== value_list)
-            {
-                setNames(value_list);
-            }
-            return snapshot;
-        }
-        async function getCurms(){
-            const snapshot = await fb.db.ref('/users/'+uid+`/invest/`).once('value');
-            const value_list = Object.values(snapshot.val()).map(e=>e.curm);
-            if(curms !== value_list){
-                setCurms(value_list);
-            }
-            return snapshot;
-        }
-        async function getAftms(){
-            const snapshot = await fb.db.ref('/users/'+uid+`/invest/`).once('value');
-            const value_list = Object.values(snapshot.val()).map(e=>e.aftm);
-            if(aftms !== value_list){
-                setAftms(value_list);
-            }
-            return snapshot;
-        }
-        async function getRank(){
-            var updates = {};
-            //updates['/equal1']=false;
-            //updates['/round1submitted']=0;
-            const snapshot = await fb.db.ref('/companies/').once('value');
-            const objs = snapshot.val();
-            const companyRankList = objs.sort((a, b) => a[`stock`] < b[`stock`] ? 1 : -1);
-            return companyRankList.map(res=>res['index']);
-        }
-        getRank().then(res=>{
-            if(rankedList !== res){
-                setRankedList(res);
-            };
-        });
     
-        getAsset();
+        
+            
+            
+            // alert(`니 자산: ${asset-inputsum}`);
+        },[aftms, asset, curms, inputs, invDone, invDoneCheck, names, inputsum, check]);
+
         // setInputsum(inputs.reduce((a, b) => a+b, 0));
-        
-        if(invDoneCheck){
-            getNames();
-            getCurms();
-            getAftms();
-            setInvDoneCheck(false);
-        }
-        if(invDone){
-            setInvDone(false);
-        }
-        if(check){
-            
-            // setInputsum(inputs.reduce((a, b) => a+b, 0));
-            // console.log(inputsum);
-            alert(`니 자산: ${asset-inputs.reduce((a, b) => a+b, 0)}`);
-            setCheck(false);
-        }
-        if(inputs.reduce((a,b)=>a+b, 0) > asset){
-            document.querySelector(".invest_done").checked = false;
-        }
-        // alert(`니 자산: ${asset-inputsum}`);
-    },[aftms, asset, curms, fb.db, inputs, invDone, invDoneCheck, names, uid, inputsum, check]);
-    
-    // setInputsum(inputs.reduce((a, b) => a+b, 0));
-            
-    async function complete({target: {checked}}){
-        //CompanyPage.aftm
-        setInvDone(true);
-        setInvDoneCheck(true);
-        var input = inputs.reduce((a,b)=>a+b, 0);
-        var updates = {};
-        if(asset>=input && checked){
-            updates[`/users/${user.uid}/invest/input`]=input;
-        }
-        else{
-            const snapshot = await fb.db.ref(`/users/${uid}/invest/`).once('value');
-            const curms = Object.values(snapshot.val()).map(e=>e.curm);
-            for(var i=0; i<8; i++){
-                updates[`/users/${uid}/invest/company${i}/aftm`]=curms[i];
+        async function complete({target: {checked}}){
+            //CompanyPage.aftm
+            setInvDone(true);
+            setInvDoneCheck(true);
+            var input = inputs.reduce((a,b)=>a+b, 0);
+            var updates = {};
+            if(asset>=input && checked){
+                updates[`/users/${fb.auth.currentUser.uid}/invest/input`]=input;
             }
+            else{
+                const snapshot = await fb.db.ref(`/users/${fb.auth.currentUser.uid}/invest/`).once('value');
+                const curms = Object.values(snapshot.val()).map(e=>e.curm);
+                for(var i=0; i<8; i++){
+                    updates[`/users/${fb.auth.currentUser.uid}/invest/company${i}/aftm`]=curms[i];
+                }
+            }
+            fb.db.ref().update(updates);
+        }        
+
+        function getInput(data, index, radix){
+            var list = inputs;
+            var update = 0;
+            if(radix===0){   /* 투자 */
+                update = data;
+            }
+            else if(radix===1){  /* 철회 */
+                update = - parseInt(data * (1 - assets.ROUND1_FEE_RATIO));
+            }
+            else{
+                update = 0;
+            }
+            list[index]=update;
+            setInputs(list);
         }
-        fb.db.ref().update(updates);
-    }
+        
     return (
         <>
-        <div className="wrapper">
+        {!setLoaded ? "Loading..." : <><div className="wrapper">
             <h1 className="header">Game</h1>
             
             {rankedList.slice(0, count).map(i => <div class={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i}/></div>)}
@@ -149,12 +170,13 @@ const InvPageBase = ({round,firebase,history,count}) => {
             <label>
                 <input type="checkbox" className="invest_done" onClick={complete}/>투자
             </label>
-        </div>
+        </div></>}
+        
         </>
         
 
     );
-   
+
 }
 const InvPage = withRouter(withFirebase(InvPageBase));
 export default InvPage;

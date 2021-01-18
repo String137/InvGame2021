@@ -61,7 +61,7 @@ class SignInFormBase extends Component {
                   updates[`/loggedinUser/`] = logus + 1;
               updates[`/users/${user.user.uid}/loggedin`] = true;
               this.props.firebase.db.ref().update(updates);
-              this.props.history.push(ROUTES.HOME);
+              this.props.history.push(ROUTES.GAME);
                 }
               );
             }

@@ -15,18 +15,18 @@ import Redirection3 from '../Redirection/redirection3';
 import {TimeSlot1, TimeSlot2, TimeSlot3, TimeSlot4, TimeSlot5, TimeSlot6, TimeSlot7} from '../TimeSlot';
 import * as MONEY from '../../constants/money';
 import * as TIME from '../../constants/time';
+import Rank from '../Rank';
 
 const GamepageBase = (props) => {
-    const [startTime, setStartTime] = useState(new Date().getTime());//useState(TIME.START_TIME);
+    const [startTime, setStartTime] =  useState(TIME.START_TIME); //useState(new Date().getTime());
     const [expired, setExpired] = useState(0);
     const [index, setIndex] = useState(0);
-    const time = [10000, 30000, 40000, 41000, 70000, 80000, 81000, 110000, 120000, 121000];
+    const time = [20000, 80000, 90000, 110000, 170000, 180000, 200000, 260000, 270000, 300000];
     useEffect(() => {
         if(expired <=9 ){
             setTimeout(()=>{
                 setExpired(expired+1);
             }, startTime + time[expired] - new Date().getTime());
-            
         }
 
         
@@ -82,7 +82,10 @@ const GamepageBase = (props) => {
                 <TimeSlot7 leftTime={startTime + time[expired] - new Date().getTime()} />
             </>;
         default:
-            return <div>Game ended!!</div>;
+            return <div>
+                <div>Rank!</div>
+                <Rank />
+            </div>;
     }
 }
 
