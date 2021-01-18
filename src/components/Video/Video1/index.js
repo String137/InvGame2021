@@ -38,7 +38,7 @@ const Thumbnail = ({companyName}) => {
     <>
     <label className="logo" id={companyName}>
       {companyName}
-       <input type="checkbox" onClick={companySelected} />
+       <input type="checkbox" className="companyCheckbox" onClick={companySelected} />
     </label>
     </>);
   }

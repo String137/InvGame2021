@@ -32,6 +32,6 @@
     transition: .5s;
     background-color: tomato;
   }
-  input[type="checkbox"]{
+  .companyCheckbox{
     display: none;
   }
