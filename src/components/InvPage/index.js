@@ -119,7 +119,7 @@ const InvPageBase = ({round,firebase,history,count}) => {
             
             
             // alert(`니 자산: ${asset-inputsum}`);
-        },[aftms, asset, curms, inputs, invDone, invDoneCheck, names, inputsum, check]);
+        },[aftms, asset, curms, inputs, invDone, invDoneCheck, names, inputsum, check, loaded]);
 
         // setInputsum(inputs.reduce((a, b) => a+b, 0));
         async function complete({target: {checked}}){

@@ -82,13 +82,13 @@ const Redirection1Base = (props) => {
         }
         fb.db.ref().update(updates);
     }
+    var check = true;
     setAsset().then(()=>{
         setCompany().then(()=>{
-            
-
+            check = false;
         }) 
     })
-    var check = false;
+    
     function catchEqual() {
         if(check){
             return;
