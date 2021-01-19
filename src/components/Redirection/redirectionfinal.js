@@ -72,11 +72,11 @@ const Redirection1Base = (props) => {
         const curAsset = Object.values(snapshot3.val())[0];
         var updates = {}
         var reward = 0;
-        for(var index = 0; index < 8; index++){
+        for(var index = 0; index < 9; index++){
             reward += parseInt(value_list[index]*(1+RATIOS.FINAL_REWARD_RATIO[rank_list[index]-1]));
         }
         updates[`/users/${user.uid}/asset`] = curAsset + reward;
-        for(index = 0; index < 8; index++){
+        for(index = 0; index < 9; index++){
             updates[`/users/${user.uid}/invest/company${index}/curm`] = value_list[index];
             updates[`/users/${user.uid}/invest/company${index}/aftm`] = value_list[index];
         }

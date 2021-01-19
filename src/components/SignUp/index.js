@@ -73,6 +73,10 @@ class SignUpFormBase extends Component {
               company7: {
                 curm: 0,
                 aftm: 0,
+              },
+              company8: {
+                curm: 0,
+                aftm: 0,
               }
               , input : 0
             }

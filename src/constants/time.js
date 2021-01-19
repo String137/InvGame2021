@@ -1,14 +1,14 @@
 export const OT_TIME = 1 * 1000;
 export const ROUND1_VIDEO = 1 * 1000;
-export const ROUND1_INVEST = 100 * 60 * 1000;
-export const ROUND2_VIDEO = 1 * 60 * 1000;
-export const ROUND2_INVEST = 1 * 60 * 1000;
-export const ROUND3_VIDEO = 1 * 60 * 1000;
-export const ROUND3_INVEST = 1 * 60 * 1000;
-export const FINAL_VIDEO = 1 * 60 * 1000;
-export const FINAL_INVEST = 1 * 60 * 1000;
+export const ROUND1_INVEST = 0.5 * 60 * 1000;
+export const ROUND2_VIDEO = 0.5 * 60 * 1000;
+export const ROUND2_INVEST = 0.5 * 60 * 1000;
+export const ROUND3_VIDEO = 0.5 * 60 * 1000;
+export const ROUND3_INVEST = 0.5 * 60 * 1000;
+export const FINAL_VIDEO = 0.5 * 60 * 1000;
+export const FINAL_INVEST = 0.5 * 60 * 1000;
 export const FINAL_REDIRECTION = 10 * 1000;
-export const START_TIME = 1611065090000;
+export const START_TIME = 1611068969000;
 
 export const ACC_ROUND1_VIDEO_OFFSET = ROUND1_VIDEO;
 export const ACC_ROUND1_INVEST_OFFSET = ACC_ROUND1_VIDEO_OFFSET + ROUND1_INVEST;
