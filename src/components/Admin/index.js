@@ -39,12 +39,43 @@ class AdminPage extends Component {
       loading: true,
   });
   }
-
+  setequal1 = () => {
+    var updates = {};
+    updates['/equal1'] = true;
+    this.props.firebase.db.ref().update(updates);
+  }
+  setequal2 = () => {
+    var updates = {};
+    updates['/equal2'] = true;
+    this.props.firebase.db.ref().update(updates);
+  }
+  setequal3 = () => {
+    var updates = {};
+    updates['/equal3'] = true;
+    this.props.firebase.db.ref().update(updates);
+  }
+  setequalf = () => {
+    var updates = {};
+    updates['/equalf'] = true;
+    this.props.firebase.db.ref().update(updates);
+  }
   resetInfo = () => {
+    var updates = {};
+    updates['/equal1'] = false;
+    updates['/equal2'] = false;
+    updates['/equal3'] = false;
+    updates['/equalf'] = false;
+    updates['/round1submitted'] = 0;
+    updates['/round2submitted'] = 0;
+    updates['/round3submitted'] = 0;
+    updates['/finalsubmitted'] = 0;
+    
+    this.props.firebase.db.ref().update(updates)
     this.state.users.map(user => this.props.firebase.user(user.uid).update({
       asset: assets.INITIAL_ASSET,
       loggedin: false,
       reward: 0,
+      round1submit: false,
       invest: {
         company0: {
           curm: 0,
@@ -108,7 +139,10 @@ class AdminPage extends Component {
         <h1>Admin</h1>
 
         {loading && <div>Loading ...</div>}
-
+        <button onClick={this.setequal1}>Equal1</button>
+        <button onClick={this.setequal2}>Equal2</button>
+        <button onClick={this.setequal3}>Equal3</button>
+        <button onClick={this.setequalf}>Equalf</button>
         <UserList users={users} />
         <button onClick={this.resetInfo}>RESET Users INFO</button>
       </div>

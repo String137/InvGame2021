@@ -17,13 +17,13 @@ import GamePage from '../Game';
 import EmailSent from '../SignUp/emailsent';
 import './index.css';
 const App = () => {
-  window.addEventListener('beforeunload', (e)=>{
-    e.preventDefault();
-    var confirmationMessage = "hohoho";
-    console.log("ihfad");
-    e.returnValue = confirmationMessage; //Gecko + IE
-    return confirmationMessage; 
-  })
+  // window.addEventListener('beforeunload', (e)=>{
+  //   e.preventDefault();
+  //   var confirmationMessage = "hohoho";
+  //   console.log("ihfad");
+  //   e.returnValue = confirmationMessage; //Gecko + IE
+  //   return confirmationMessage; 
+  // })
   return(
   <Router>
     <div>

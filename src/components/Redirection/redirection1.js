@@ -42,9 +42,10 @@ const Redirection1Base = (props) => {
         const r1s = snapshot3.val();
         const log = snapshot4.val();
         updates['/round1submitted']=r1s+1;
-        if(r1s+1===log){
-            updates['/equal1'] = true;
-        }
+        updates[`/users/${user.uid}/round1submit`] = true;
+        // if(r1s+1===log){
+        //     updates['/equal1'] = true;
+        // }
         fb.db.ref().update(updates);
     }
     async function setRank(){
