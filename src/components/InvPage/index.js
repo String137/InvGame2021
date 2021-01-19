@@ -148,7 +148,13 @@ const InvPageBase = ({round,firebase,history,count}) => {
                 update = data;
             }
             else if(radix===1){  /* 철회 */
-                update = - parseInt(data * (1 - assets.ROUND1_FEE_RATIO));
+                if(round<4){
+                    update = - parseInt(data * (1 - assets.ROUND1_FEE_RATIO));
+                }
+                else{
+                    update = - parseInt(data * (1 - assets.FINAL_FEE_RATIO));
+                  
+                }
             }
             else{
                 update = 0;

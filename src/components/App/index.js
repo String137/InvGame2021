@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Navigation from '../Navigation';
@@ -16,13 +16,18 @@ import { withAuthentication } from '../Session';
 import GamePage from '../Game';
 import EmailSent from '../SignUp/emailsent';
 import './index.css';
-const App = () => (
-
+const App = () => {
+  window.addEventListener('beforeunload', (e)=>{
+    e.preventDefault();
+    var confirmationMessage = "hohoho";
+    console.log("ihfad");
+    e.returnValue = confirmationMessage; //Gecko + IE
+    return confirmationMessage; 
+  })
+  return(
   <Router>
     <div>
       <Navigation />
-
-      
 
       {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> */}
       <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
@@ -42,7 +47,7 @@ const App = () => (
 Copyright @ 2021 ICISTS Div. Tech & Design</div></footer>  */}
     </div>
         </Router>
-
-);
+  );
+}
 
 export default withAuthentication(App);
