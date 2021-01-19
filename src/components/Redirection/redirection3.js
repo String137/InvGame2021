@@ -74,7 +74,7 @@ const Redirection3Base = (props) => {
         var updates = {}
         var reward = 0;
         for(var index = 0; index < 9; index++){
-            reward += parseInt(value_list[index]*RATIOS.ROUND3_REWARD_RATIO[rank_list[index]-1]);
+            reward += parseInt(value_list[index]*(RATIOS.ROUND3_REWARD_RATIO[rank_list[index]-1]));
         }
         updates[`/users/${user.uid}/asset`] = curAsset + reward;
         for(index = 0; index < 9; index++){

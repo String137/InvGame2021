@@ -8,6 +8,9 @@ import './index.css';
  
 function isAdmin(user){
   console.log(user);
+  if(user===null){
+    return false;
+  }
   return user.email === "icists@icists.org";
   /* Admin 접속 권한 수정해야함  */
 }
@@ -20,7 +23,7 @@ const Navigation = () => (
           return <div>Verification Link Sent to Email</div>;
         }
         else{
-          return (authUser && authUser.emailVerified) ? (isAdmin(authUser) ? <NavigationAdmin/> : <NavigationAuth /> ) : <NavigationNonAuth />;
+          return (authUser && authUser.emailVerified || window.location.pathname==='/game') ? (isAdmin(authUser) ? <NavigationAdmin/> : <NavigationAuth /> ) : <NavigationNonAuth />;
         }
       }
       }

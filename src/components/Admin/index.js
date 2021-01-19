@@ -12,6 +12,7 @@ class AdminPage extends Component {
     this.state = {
       loading: false,
       users: [],
+      companies: [],
     };
   }
 
@@ -25,10 +26,21 @@ class AdminPage extends Component {
         ...usersObject[key],
         uid: key,
       }));
-
       this.setState({
         users: usersList,
         loading: false,
+      });
+    }
+    });
+    this.props.firebase.db.ref('/companies').once('value').then(snapshot => {
+      const cObject = snapshot.val();
+      if(cObject){
+      const companyList = Object.keys(cObject).map(key => ({
+        name: cObject[key].companyname,
+        rank: cObject[key].finalrank,
+      }));
+      this.setState({
+        companies: companyList,
       });
     }
     });
@@ -134,7 +146,24 @@ class AdminPage extends Component {
     }
     });
   }
-
+  getRankn(n) {
+    const { companies } = this.state;
+    
+    if(companies[8]!=null){
+    var a = 0;
+    // return companies[n];
+    for(var i=0;i<9;i++){
+      if(n===companies[i].rank){
+        a=i;
+      }
+    }
+    return companies[a].name;
+    // return "hmm";
+    }
+    else{
+      return "Wait...";
+    }
+  }
   render() {
     const { users, loading } = this.state;
 
@@ -147,6 +176,9 @@ class AdminPage extends Component {
         <button onClick={this.setequal2}>Equal2</button>
         <button onClick={this.setequal3}>Equal3</button>
         <button onClick={this.setequalf}>Equalf</button>
+        <h1>1st {this.getRankn(1)}</h1>
+        <h1>2nd {this.getRankn(2)}</h1>
+        <h1>3rd {this.getRankn(3)}</h1>
         <UserList users={users} />
         <button onClick={this.resetInfo}>RESET Users INFO</button>
       </div>
