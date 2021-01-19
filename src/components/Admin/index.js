@@ -41,7 +41,7 @@ class AdminPage extends Component {
   }
 
   resetInfo = () => {
-    this.state.users.slice(1).map(user => this.props.firebase.user(user.uid).update({
+    this.state.users.map(user => this.props.firebase.user(user.uid).update({
       asset: assets.INITIAL_ASSET,
       loggedin: false,
       reward: 0,
@@ -120,7 +120,7 @@ const UserList = ({ users }) => {
   return(
   <>
   <ul>
-    {users.slice(1).map(user => (
+    {users.map(user => (
       <li key={user.uid}>
         <div>
           <strong>Username:</strong> {user.username} 
