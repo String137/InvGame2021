@@ -17,6 +17,7 @@ import {TimeSlot1, TimeSlot2, TimeSlot3, TimeSlot4, TimeSlot5, TimeSlot6, TimeSl
 import * as MONEY from '../../constants/money';
 import * as TIME from '../../constants/time';
 import Rank from '../Rank';
+import './index.css';
 // import { useBeforeunload } from 'react-beforeunload';
 
 const GamepageBase = (props) => {
@@ -55,7 +56,7 @@ const GamepageBase = (props) => {
     switch (expired){
         case 0:
             return <>
-                <Video1 />
+                <iframe className="p5" src="https://editor.p5js.org/quantum0430/embed/-b1N-tDv0"/>
                 <TimeSlot1 leftTime={startTime + time[expired] - new Date().getTime()} />
             </>;
         case 1:
