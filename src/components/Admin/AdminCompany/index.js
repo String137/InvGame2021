@@ -42,6 +42,10 @@ class AdminCompany extends React.Component {
         this.state.companies.map(company => this.props.firebase.db.ref(`/companies/${company.index}`).update(
             {
                 stock: 0,
+                round1rank: company["index"] + 1,
+                round2rank: company["index"] + 1,
+                round3rank: company["index"] + 1,
+                finalrank: company["index"] + 1,
             }
         ));
 
