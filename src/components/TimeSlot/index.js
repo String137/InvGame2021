@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import './index.css';
 
 const TimeSlot1 = ({leftTime}) => {
     const [time, setTime] = useState(leftTime);
@@ -11,7 +12,7 @@ const TimeSlot1 = ({leftTime}) => {
             }, 1000);
         }
     }, [time]);
-    return <div>{parseInt(time/1000)}초 남음</div>
+    return <div className="time-left">{parseInt(time/60000)} : {parseInt(time/1000) - 60 * parseInt(time/60000)}</div>
 }
 
 const TimeSlot2 = ({leftTime}) => {
@@ -24,7 +25,7 @@ const TimeSlot2 = ({leftTime}) => {
             }, 1000);
         }
     }, [time]);
-    return <div>{parseInt(time/1000)}초 남음</div>
+    return <div className="time-left">{parseInt(time/60000)} : {parseInt(time/1000) - 60 * parseInt(time/60000)}</div>
 }
 
 const TimeSlot3 = ({leftTime}) => {
@@ -37,7 +38,7 @@ const TimeSlot3 = ({leftTime}) => {
             }, 1000);
         }
     }, [time]);
-    return <div>{parseInt(time/1000)}초 남음</div>
+    return <div className="time-left">{parseInt(time/60000)} : {parseInt(time/1000) - 60 * parseInt(time/60000)}</div>
 }
 
 const TimeSlot4 = ({leftTime}) => {
@@ -50,7 +51,7 @@ const TimeSlot4 = ({leftTime}) => {
             }, 1000);
         }
     }, [time]);
-    return <div>{parseInt(time/1000)}초 남음</div>
+    return <div className="time-left">{parseInt(time/60000)} : {parseInt(time/1000) - 60 * parseInt(time/60000)}</div>
 }
 
 const TimeSlot5 = ({leftTime}) => {
@@ -63,7 +64,7 @@ const TimeSlot5 = ({leftTime}) => {
             }, 1000);
         }
     }, [time]);
-    return <div>{parseInt(time/1000)}초 남음</div>
+    return <div className="time-left">{parseInt(time/60000)} : {parseInt(time/1000) - 60 * parseInt(time/60000)}</div>
 }
 
 const TimeSlot6 = ({leftTime}) => {
@@ -76,7 +77,7 @@ const TimeSlot6 = ({leftTime}) => {
             }, 1000);
         }
     }, [time]);
-    return <div>{parseInt(time/1000)}초 남음</div>
+    return <div className="time-left">{parseInt(time/60000)} : {parseInt(time/1000) - 60 * parseInt(time/60000)}</div>
 }
 
 const TimeSlot7 = ({leftTime}) => {
@@ -89,7 +90,7 @@ const TimeSlot7 = ({leftTime}) => {
             }, 1000);
         }
     }, [time]);
-    return <div>{parseInt(time/1000)}초 남음</div>
+    return <div className="time-left">{parseInt(time/60000)} : {parseInt(time/1000) - 60 * parseInt(time/60000)}</div>
 }
 const TimeSlot8 = ({leftTime}) => {
     const [time, setTime] = useState(leftTime);
@@ -101,7 +102,7 @@ const TimeSlot8 = ({leftTime}) => {
             }, 1000);
         }
     }, [time]);
-    return <div>{parseInt(time/1000)}초 남음</div>
+    return <div className="time-left">{parseInt(time/60000)} : {parseInt(time/1000) - 60 * parseInt(time/60000)}</div>
 }
 
 const TimeSlot9 = ({leftTime}) => {
@@ -114,7 +115,7 @@ const TimeSlot9 = ({leftTime}) => {
             }, 1000);
         }
     }, [time]);
-    return <div>{parseInt(time/1000)}초 남음</div>
+    return <div className="time-left">{parseInt(time/60000)} : {parseInt(time/1000) - 60 * parseInt(time/60000)}</div>
 }
 
 

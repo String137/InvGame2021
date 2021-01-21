@@ -10,7 +10,7 @@ const SignOutButton = ({ firebase, history }) => {
     return snapshot.val();
   }
   return(
-  <button class="sb" type="button" onClick={function(){
+  <button className="sb" type="button" onClick={function(){
     const user = firebase.auth.currentUser;
     getLog().then((res)=>{
       var updates = {};

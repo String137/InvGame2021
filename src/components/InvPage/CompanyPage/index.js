@@ -75,23 +75,26 @@ const CompanyPage = ({curm, name, invDone, index, calc, firebase, aftm}) => {
     }
     
     return(
-        <div class="wrapper">
-            <div class="company">
-                <Company class ="company" name = {name}/>
+        <div className="wrapper">
+            <div className="company">
+                <Company className="company" name = {name}/>
             </div>
-            <div class= "curinv">
-                <CurInv money = {curm} class = "curinv"/>
-            </div>
-            <input type="text" min="0" class="input" onChange={handleChange} value={inputm}/>
-            <div class = "inv">
+            <input type="text" min="0" className="input" onChange={handleChange} value={inputm}/>
+            <div className="curinv-text">Current Money</div>
+            <div className= "invest">
                 <input type="radio" id={name+"inv"} name={name+"select"} onClick={()=>{setInputm("0");setRadioNum(0)}}/>
                 <label htmlFor={name+"inv"}>투자</label>
             </div>
-            <div class = "with">
+            <div className="withdraw">
                 <input type="radio" id={name+"wd"} name={name+"select"}  onClick={()=>{setInputm("0");setRadioNum(1)}}/>
                 <label htmlFor={name+"wd"}>철회</label>
             </div>
-            <div class="aftinv">
+            <div className="curinv-text">Current Money</div>
+            <div className= "curinv">
+                <CurInv money = {curm} className= "curinv"/>
+            </div>
+            <div className="aftinv-text">After Investing</div>
+            <div className="aftinv">
                 <AfterInv money = {aftm}/>
             </div>
         </div>

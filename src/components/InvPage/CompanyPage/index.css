@@ -1,30 +1,40 @@
-/* .wrapper{
+.wrapper{
     display: grid;
-    grid-template-columns: 20px 100px 100px 100px 100px 100px 100px;
-    grid-gap: 10px;
+    justify-items: center;
+    justify-content: space-evenly;
+    align-items: center;
+    grid-template-columns: 100px 100px;
+    grid-auto-rows: 120px 30px 40px 60px 50px 50px;
+    grid-template-areas:
+    "company company"
+    "input input"
+    "invest widthdraw"
+    "curinv-text curinv"
+    "aftinv-text aftinv";
 }
-.company{
-    grid-column: 2;
-    color:darkorange;
+.company{ 
+    grid-area: company; 
 }
-.curinv{
-    grid-column: 3;
-    color: darkorchid;
+.input{ 
+    grid-area: input;  
+ }
+.curinv{ 
+    grid-area: curinv;  
 }
-.input{
-    grid-column: 4;
-    height: 20px;
-    color: darksalmon;
+.aftinv{ 
+    grid-area: aftinv;
+ }
+.invest{
+    grid-area: invest;
 }
-.inv{
-    grid-column: 5;
-    color:darkturquoise;
+.widthdraw{
+    grid-area: widthdraw;
 }
-.with{
-    grid-column: 6;
-    color: deeppink;
+.curinv-text{ 
+    text-align: center;
+    grid-area: curinv-text;  
 }
-.aftinv{
-    grid-column: 7;
-    color:indigo;
-} */
+.aftinv-text{ 
+    text-align: center;
+    grid-area: aftinv-text;
+ }

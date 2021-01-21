@@ -166,14 +166,22 @@ const InvPageBase = ({round,firebase,history,count}) => {
     return (
         <>
             <div className="inv-page-container">
-                <div className="left-header">
-                    Round 1
-                    <h2>나의 자산 : {asset}</h2>
-                    <div>
-                        <button className="button" onClick={function(){setCheck(true);}}>투자 후 자산 확인하기</button>
-                        <label>
-                            <input type="checkbox" className="invest_done" onClick={complete}/>투자
-                        </label>
+                <div className="left-header-container">
+                    <div className="left-header">
+                        Round {round}
+                        <h2>${asset}</h2>
+                        <div>
+                            <label>
+                                <div className="check-asset">투자 후 자산 확인하기</div>
+                                <button className="button" onClick={function(){setCheck(true);}}></button>
+                            </label> 
+                            <label>
+                                <div className="invest-done-container">
+                                    <input type="checkbox" className="invest-done" onClick={complete}/>
+                                    <div className="invest-done-text">투자</div>
+                                </div>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div className="inv-page">

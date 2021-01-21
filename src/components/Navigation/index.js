@@ -34,7 +34,7 @@ const Navigation = () => (
 const NavigationAuth = () => (
     <ul className="container">
       <div className="au0">
-        <Link className="game-navigation" to={ROUTES.GAME}>GRAFFITI INVESTMENT GAME</Link>
+        <Link className="game-navigation" to={ROUTES.GAME}>GRAFFITI 투자게임</Link>
       </div>
       {/* <div className="au1">
         <Link to={ROUTES.LANDING} class="l1">Landing</Link>

@@ -4,12 +4,13 @@
     margin: 0;
     padding: 0;
     height: 60px;
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(42, 43, 42);
     /* text-align: center; */
 }
 .au5{
-    /* position: relative; */
+    width: 30%;
     text-align: center;
+    /* position: relative; */
     /* background-color: rgb(245, 245, 245); */
     /* border-right: solid lightgray; */
     /* width: 10%; */
@@ -20,6 +21,7 @@
     font-size: 30px;
     padding-top: 10px;
     font-weight: 900;
+    padding-left: 20px;
 }
 /* .au1{
     width: 10%;
@@ -48,10 +50,6 @@ body{
     padding: 0;
     margin: 0;
 }
-.hr{
-    /* position: relative; */
-    /* top: 60px; */
-}
 .l1{
     color: rgb(51, 51, 51);
     font-size: 20px;
@@ -63,5 +61,5 @@ body{
 }
 a{
     text-decoration: none;
-    color: black;
+    color: rgb(48, 212, 254);
 }
