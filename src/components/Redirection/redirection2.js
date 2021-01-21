@@ -47,6 +47,8 @@ const Redirection2Base = (props) => {
             updates['/equal2'] = true;
         }
         fb.db.ref().update(updates);
+        checksetcompany = true;
+
     }
     async function setRank(){
         var updates = {};
@@ -84,11 +86,14 @@ const Redirection2Base = (props) => {
         fb.db.ref().update(updates);
     }
     var check = true;
-    setAsset().then(()=>{
-        setCompany().then(()=>{
-            check = false;
-        }) 
-    })
+    var checksetcompany = false;
+    if(!checksetcompany){
+        setAsset().then(()=>{
+            setCompany().then(()=>{
+                check = false;
+            }) 
+        })
+    }
     
     function catchEqual() {
         if(check){

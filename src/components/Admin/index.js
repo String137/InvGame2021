@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import login from './getLoggedin';
 import * as assets from '../../constants/money';
+import './index.css';
 
 class AdminPage extends Component {
   constructor(props) {
@@ -87,7 +88,8 @@ class AdminPage extends Component {
       asset: assets.INITIAL_ASSET,
       loggedin: false,
       reward: 0,
-      round1submit: false,
+      round1submitted: false,
+      round1getsubmit: false,
       invest: {
         company0: {
           curm: 0,
@@ -168,7 +170,7 @@ class AdminPage extends Component {
     const { users, loading } = this.state;
 
     return (
-      <div>
+      <div className="render">
         <h1>Admin</h1>
 
         {loading && <div>Loading ...</div>}
@@ -189,7 +191,7 @@ class AdminPage extends Component {
 const UserList = ({ users }) => {
   return(
   <>
-  <ul>
+  <ul className="ul">
     {users.map(user => (
       <li key={user.uid}>
         <div>

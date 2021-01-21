@@ -42,10 +42,10 @@ const Redirection1Base = (props) => {
         const r1s = snapshot3.val();
         const log = snapshot4.val();
         updates['/round1submitted']=r1s+1;
-        updates[`/users/${user.uid}/round1submit`] = true;
-        // if(r1s+1===log){
-        //     updates['/equal1'] = true;
-        // }
+        updates[`/users/${user.uid}/round1submitted`] = true;
+        if(r1s+1===log){
+            updates['/equal1'] = true;
+        }
         fb.db.ref().update(updates);
     }
     async function setRank(){
@@ -83,26 +83,32 @@ const Redirection1Base = (props) => {
         }
         fb.db.ref().update(updates);
     }
-    var check = true;
-    setAsset().then(()=>{
-        setCompany().then(()=>{
-            check = false;
-        }) 
-    })
-    
-    function catchEqual() {
-        if(check){
-            return;
-        }
-        fb.db.ref('/equal1').once('value').then((snapshot)=>{
-            if(snapshot.val()===true){
-                setRank().then(()=>{
-                    getCurmsAndSet();
-                    check = true;
-                });
+    async function catchsubmit() {
+        console.log(user);
+        
+        await fb.db.ref(`/users/${user.uid}/round1submitted`).once('value').then((snapshot) => {
+            if(snapshot.val()===false){
+                setAsset().then(()=>{
+                    setCompany().then(()=>{
+                    }) 
+                })
             }
-        });
+        })
     }
+    async function catchEqual() {
+       const snapshottrue = await fb.db.ref('/equal1/').once('value');
+       const snapshotget = await fb.db.ref(`/users/${user.uid}/round1getsubmit/`).once('value');
+    //    console.log("hihi",snapshottrue.val());
+       if(snapshottrue.val()===true&&snapshotget.val()===false){
+           var updates = {};
+           updates[`/users/${user.uid}/round1getsubmit`]=true;
+           fb.db.ref().update(updates);
+        setRank().then(()=>{
+            getCurmsAndSet();
+        });
+       }
+     }
+    setInterval(catchsubmit,1000);
     setInterval(catchEqual,1000);
 
     

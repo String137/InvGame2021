@@ -16,7 +16,7 @@ const Redirection1Base = (props) => {
     async function setAsset(){
         const snapshot = await fb.db.ref(`/users/${user.uid}/invest/input`).once('value');
         const snapshot2 = await fb.db.ref(`/users/${user.uid}/asset`).once('value');
-        const snapshot3 = await fb.db.ref(`/equal1`).once('value');
+        const snapshot3 = await fb.db.ref(`/equalf`).once('value');
         const input = snapshot.val();
         const asset = snapshot2.val();
         const equal = snapshot3.val();
@@ -93,7 +93,7 @@ const Redirection1Base = (props) => {
         if(check){
             return;
         }
-        fb.db.ref('/equal1').once('value').then((snapshot)=>{
+        fb.db.ref('/equalf').once('value').then((snapshot)=>{
             if(snapshot.val()===true){
                 setRank().then(()=>{
                     getCurmsAndSet();

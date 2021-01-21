@@ -1,6 +1,6 @@
 import React from 'react';
 import { withFirebase } from '../../Firebase';
-
+import './index.css';
 
 class AdminCompany extends React.Component {
     constructor(props) {
@@ -42,10 +42,10 @@ class AdminCompany extends React.Component {
         this.state.companies.map(company => this.props.firebase.db.ref(`/companies/${company.index}`).update(
             {
                 stock: 0,
-                round1rank: company["index"] + 1,
-                round2rank: company["index"] + 1,
-                round3rank: company["index"] + 1,
-                finalrank: company["index"] + 1,
+                round1rank: parseInt(company["index"]) + 1,
+                round2rank: parseInt(company["index"]) + 1,
+                round3rank: parseInt(company["index"]) + 1,
+                finalrank: parseInt(company["index"]) + 1,
             }
         ));
 
@@ -88,7 +88,7 @@ class AdminCompany extends React.Component {
         const { companies, loading } = this.state;
 
         return (
-        <div>
+        <div className="render">
             <h1>Admin</h1>
 
             {loading && <div>Loading ...</div>}
@@ -101,7 +101,7 @@ class AdminCompany extends React.Component {
 }
 
 const CompanyList = ({ companies }) => (
-<ul>
+<ul className="cp">
     {companies.map(company => (
     <li key={company.index}>
         <span>
