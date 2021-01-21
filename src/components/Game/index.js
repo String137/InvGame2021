@@ -22,7 +22,7 @@ import './index.css';
 
 const GamepageBase = (props) => {
     const [startTime, setStartTime] =  useState(TIME.START_TIME); //useState(new Date().getTime());
-    const [expired, setExpired] = useState(0);
+    const [expired, setExpired] = useState(2);
     const [index, setIndex] = useState(0);
     const time = [
         TIME.ACC_ROUND1_VIDEO_OFFSET,
@@ -36,7 +36,7 @@ const GamepageBase = (props) => {
         TIME.ACC_FINAL_REDIRECTION_OFFSET
     ];
     useEffect(() => {
-        if(expired <= 0){
+        if(expired <= 1){
             setTimeout(()=>{
                 setExpired(expired+1);
             }, startTime + time[expired] - new Date().getTime());
@@ -57,7 +57,7 @@ const GamepageBase = (props) => {
         case 0:
             return <>
                 <TimeSlot1 leftTime={startTime + time[expired] - new Date().getTime()} />
-                <InvPage round={1} count={MONEY.ROUND1_TEAM} />
+                {/* <InvPage round={1} count={MONEY.ROUND1_TEAM} /> */}
                 {/*<iframe className="p5" src="https://editor.p5js.org/quantum0430/embed/-b1N-tDv0"/>*/}
                 
             </>;
@@ -70,7 +70,7 @@ const GamepageBase = (props) => {
             </>; 
         case 2:
             return <>
-                <TimeSlot3 leftTime={startTime + time[expired] - new Date().getTime()} />
+                {/* <TimeSlot3 leftTime={startTime + time[expired] - new Date().getTime()} /> */}
                 <Redirection1/>
                 
             </>;
@@ -82,7 +82,7 @@ const GamepageBase = (props) => {
             </>;
         case 4:
             return <>
-                <TimeSlot5 leftTime={startTime + time[expired] - new Date().getTime()} />
+                {/* <TimeSlot5 leftTime={startTime + time[expired] - new Date().getTime()} /> */}
                 <Redirection2/>
                 
             </>;
@@ -94,7 +94,7 @@ const GamepageBase = (props) => {
             </>;
         case 6:
             return <>
-                <TimeSlot7 leftTime={startTime + time[expired] - new Date().getTime()} />
+                {/* <TimeSlot7 leftTime={startTime + time[expired] - new Date().getTime()} /> */}
                 <Redirection3/>
                 
             </>;
@@ -106,7 +106,7 @@ const GamepageBase = (props) => {
             </>;
         case 8:
             return <>
-                <TimeSlot9 leftTime={startTime + time[expired] - new Date().getTime()} />
+                {/* <TimeSlot9 leftTime={startTime + time[expired] - new Date().getTime()} /> */}
                 <RedirectionF />
                 
             </>;

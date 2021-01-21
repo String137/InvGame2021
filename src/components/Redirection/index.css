@@ -1,20 +1,70 @@
-.wait{
-    /* position: absolute; */
-    margin: 0 0;
-    /* left: 600px;
-    top: 200px; */
-    font-size: 50px;
-    /* left: 50%; */
-    /* top: 50%; */
-    /* transform: translate(-50%,-50%); */
+.loading-container{
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+    width: 500px;
+    height: 200px;
+    text-align: center;
+    top: 300px;
 }
-.no{
-    /* position: absolute; */
-    margin: 0 0;
-    /* left: 600px;
-    top: 200px; */
-    font-size: 10px;
-    /* left: 50%; */
-    /* top: 50%; */
-    /* transform: translate(-50%,-50%);  */
+.wait1, .wait2, .wait3, .wait4, .wait5, .wait6, .wait7, .wait8, .wait9, .wait10{
+    margin: 10px auto;
+    width: 10px;
+    height: 10px;
+    font-size: 50px;
+    background-color: rgb(48, 212, 254);
+    color: rgb(48, 212, 254);
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.wait1{
+    animation-duration: 1s;
+}
+.wait2{
+    animation-duration: 1.5s;
+}
+.wait3{
+    animation-duration: 2s;
+}
+.wait4{
+    animation-duration: 1.5s;
+}
+.wait5{
+    animation-duration: 1s;
+}
+.wait6{
+    animation-duration: 1.5s;
+}
+.wait7{
+    animation-duration: 2s;
+}
+.wait8{
+    animation-duration: 1.5s;
+}
+.wait9{
+    animation-duration: 1s;
+}
+.wait10{
+    animation-duration: 1.5s;
+}
+
+
+@keyframes slidein {
+    from {
+      height: 20px;
+    }
+  
+    to {
+      height: 100px;
+      background-color: rgb(95, 72, 240);
+    }
+}
+.wait-text{
+    margin: 0 auto;
+    width: 500px;
+    height: 200px;
+    text-align: center;
+    color:rgb(48, 212, 254);
 }
