@@ -1,46 +1,44 @@
-.wrapper{
+/* .wrapper{
     display: grid;
     grid-template-rows: 80px 20px 20px 20px 20px 20px 20px 20px 20px 20px;
+} */
+.comp0, .comp1, .comp2, .comp3, .comp4, .comp5, .comp6, .comp7, .comp8{
+    border: none;
+    width: 250px;
+    border-radius: 20px;
+    height: 350px;
+    margin: 20px;
+    background-color: rgb(236, 236, 242);
+    box-shadow: 5px 5px 20px lightgrey;
 }
-.comp0{
-    grid-row: 2;
-    /* grid-column: 1; */
-}
-.comp1{
-    grid-row: 3;
-    /* grid-column: 2; */
-}
-.comp2{
-    grid-row: 4;
-    /* grid-column: 3; */
-}
-.comp3{
-    grid-row: 5;
-}
-.comp4{
-    grid-row: 6;
-}
-.comp5{
-    grid-row: 7;
-}
-.comp6{
-    grid-row: 8;
-}
-.comp7{
-    grid-row: 9;
-}
-.comp8{
-    grid-row: 10;
-}
-.header{
-    /* position: relative; */
-    /* top:60px; */
-    /* left: 30px; */
+
+/* .header{
     grid-row: 1;
 }
 .button{
-    /* position: relative; */
-    /* top: 700px; */
-    /* left: 700px; */
     font-size: 50px;
+} */
+
+
+.inv-page-container{
+    display: flex;
+}
+.inv-page{
+    margin: 20px;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    background-color: white;
+    width: 70%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+.left-header{
+    width: 30%;
+    color: white;
+}
+.header{
+    display: block;
+    width: 100%;
 }

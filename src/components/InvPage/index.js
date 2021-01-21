@@ -165,19 +165,22 @@ const InvPageBase = ({round,firebase,history,count}) => {
         
     return (
         <>
-        {!setLoaded ? "Loading..." : <><div className="wrapper">
-            <h1 className="header">Game</h1>
-            
-            {rankedList.slice(0, count).map(i => <div class={`comp${rankedList[i]}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i}/></div>)}
-        </div>
-        <h2>나의 자산 : {asset}</h2>
-        <div>
-            <button className="button" onClick={function(){setCheck(true);}}>투자 후 자산 확인하기</button>
-            <label>
-                <input type="checkbox" className="invest_done" onClick={complete}/>투자
-            </label>
-        </div></>}
-        
+            <div className="inv-page-container">
+                <div className="left-header">
+                    Round 1
+                    <h2>나의 자산 : {asset}</h2>
+                    <div>
+                        <button className="button" onClick={function(){setCheck(true);}}>투자 후 자산 확인하기</button>
+                        <label>
+                            <input type="checkbox" className="invest_done" onClick={complete}/>투자
+                        </label>
+                    </div>
+                </div>
+                <div className="inv-page">
+                    {!setLoaded ? <div>"Loading..."</div> : <>
+                        {rankedList.slice(0, count).map(i => <div class={`comp${rankedList[i]}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i}/></div>)}</>}
+                </div>
+            </div>
         </>
         
 
