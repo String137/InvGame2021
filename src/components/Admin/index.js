@@ -90,6 +90,12 @@ class AdminPage extends Component {
       reward: 0,
       round1submitted: false,
       round1getsubmit: false,
+      round2submitted: false,
+      round2getsubmit: false,
+      round3submitted: false,
+      round3getsubmit: false,
+      finalsubmitted: false,
+      finalgetsubmit: false,
       invest: {
         company0: {
           curm: 0,
