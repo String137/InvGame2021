@@ -4,6 +4,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as assets from '../../constants/money';
+import './index.css';
+
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
@@ -162,9 +164,9 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpLink = () => (
-  <p>
-    <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-  </p>
+  <label className="route-to-signup">
+    <Link className="link-to-signup" to={ROUTES.SIGN_UP}>Sign Up</Link>
+  </label>
 );
 
 const SignUpForm = withRouter(withFirebase(SignUpFormBase));

@@ -18,8 +18,8 @@ const SignInPage = () => (
       <div className="signin-form">
         <hr />
         <SignInForm />
-        <SignUpLink />
       </div>
+      <SignUpLink />
     </div>
   </div>
 );

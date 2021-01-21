@@ -1,0 +1,19 @@
+.route-to-signup{
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+.link-to-signup{
+    display: block;
+    width: 50%;
+    margin: 10px auto;
+    background-color: rgb(95, 72, 240);
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 5px;
+}
