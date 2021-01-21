@@ -24,7 +24,7 @@
     display: flex;
 }
 .inv-page{
-    margin: 20px;
+    margin: 70px 20px 20px 20px;
     padding: 30px;
     border-radius: 20px;
     display: flex;
@@ -42,7 +42,7 @@
 .left-header{
     position: fixed;
     left: 8%;
-    top: 30%;
+    top: 20%;
     text-align: center;
     font-size: 40px;
 }
@@ -59,7 +59,7 @@
     padding: 17px;
     border: none;
     border-radius: 5px;
-    margin: 60px auto;
+    margin: 40px auto;
 }
 .invest-done{
     display: none;    

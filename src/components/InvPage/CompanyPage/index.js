@@ -76,11 +76,13 @@ const CompanyPage = ({curm, name, invDone, index, calc, firebase, aftm}) => {
     
     return(
         <div className="wrapper">
+            <div className="company-logo">
+
+            </div>
             <div className="company">
                 <Company className="company" name = {name}/>
             </div>
             <input type="text" min="0" className="input" onChange={handleChange} value={inputm}/>
-            <div className="curinv-text">Current Money</div>
             <div className= "invest">
                 <input type="radio" id={name+"inv"} name={name+"select"} onClick={()=>{setInputm("0");setRadioNum(0)}}/>
                 <label htmlFor={name+"inv"}>투자</label>
@@ -89,11 +91,11 @@ const CompanyPage = ({curm, name, invDone, index, calc, firebase, aftm}) => {
                 <input type="radio" id={name+"wd"} name={name+"select"}  onClick={()=>{setInputm("0");setRadioNum(1)}}/>
                 <label htmlFor={name+"wd"}>철회</label>
             </div>
-            <div className="curinv-text">Current Money</div>
+            <div className="curinv-text">curm</div>
             <div className= "curinv">
                 <CurInv money = {curm} className= "curinv"/>
             </div>
-            <div className="aftinv-text">After Investing</div>
+            <div className="aftinv-text">aftm</div>
             <div className="aftinv">
                 <AfterInv money = {aftm}/>
             </div>

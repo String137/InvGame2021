@@ -3,19 +3,32 @@
     justify-items: center;
     justify-content: space-evenly;
     align-items: center;
+    align-content: space-evenly;
     grid-template-columns: 100px 100px;
-    grid-auto-rows: 120px 30px 40px 60px 50px 50px;
-    grid-template-areas:
+    grid-auto-rows: 100px 30px 30px 50px 50px 50px;
+    margin: 30px;
+    grid-template-areas: 
+    "company-logo company-logo"
     "company company"
     "input input"
     "invest widthdraw"
     "curinv-text curinv"
     "aftinv-text aftinv";
 }
+.company-logo{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: white;
+    grid-area: company-logo;
+}
 .company{ 
     grid-area: company; 
 }
 .input{ 
+    height: 20px;
+    border-radius: 5px;
+    border: none;
     grid-area: input;  
  }
 .curinv{ 
