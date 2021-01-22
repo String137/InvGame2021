@@ -43,13 +43,13 @@ class SignUpFormBase extends Component {
             asset: assets.INITIAL_ASSET,
             loggedin: false,
             reward: 0,
-            round1submitted: false,
+            round1submitted: 0,
             round1getsubmit: false,
-            round2submitted: false,
+            round2submitted: 0,
             round2getsubmit: false,
-            round3submitted: false,
+            round3submitted: 0,
             round3getsubmit: false,
-            finalsubmitted: false,
+            finalsubmitted: 0,
             finalgetsubmit: false,
             invest: {
               company0: {

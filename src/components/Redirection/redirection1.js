@@ -25,6 +25,7 @@ const Redirection1Base = (props) => {
             updates[`/users/${user.uid}/asset`] = -input + asset + RATIOS.SALARY;
         }
         updates[`/users/${user.uid}/invest/input`] = 0;
+        updates[`/users/${user.uid}/round1submitted`] = 1;
         fb.db.ref().update(updates);
     }
     async function setCompany(){
@@ -34,7 +35,7 @@ const Redirection1Base = (props) => {
         const curms = Object.values(snapshot2.val()).map(e=>e.curm);
         const aftms = Object.values(snapshot2.val()).map(e=>e.aftm);
         var updates = {};
-        for(var index = 0; index < 8; index++){
+        for(var index = 0; index < 9; index++){
             updates[`/companies/${index}/stock`] = stocks[index] + aftms[index] - curms[index];
         }
         const snapshot3 = await fb.db.ref('/round1submitted').once('value');
@@ -42,7 +43,7 @@ const Redirection1Base = (props) => {
         const r1s = snapshot3.val();
         const log = snapshot4.val();
         updates['/round1submitted']=r1s+1;
-        updates[`/users/${user.uid}/round1submitted`] = true;
+        updates[`/users/${user.uid}/round1submitted`] = 2;
         if(r1s+1===log){
             updates['/equal1'] = true;
         }
@@ -50,8 +51,6 @@ const Redirection1Base = (props) => {
     }
     async function setRank(){
         var updates = {};
-        //updates['/equal1']=false;
-        //updates['/round1submitted']=0;
         const snapshot = await fb.db.ref('/companies/').once('value');
         const objs = snapshot.val();
         const rank = objs.sort((a, b) => a["stock"] < b["stock"] ? 1 : -1);
@@ -87,7 +86,7 @@ const Redirection1Base = (props) => {
         console.log(user);
         
         await fb.db.ref(`/users/${user.uid}/round1submitted`).once('value').then((snapshot) => {
-            if(snapshot.val()===false){
+            if(snapshot.val()===0){
                 setAsset().then(()=>{
                     setCompany().then(()=>{
                     }) 
@@ -98,8 +97,9 @@ const Redirection1Base = (props) => {
     async function catchEqual() {
        const snapshottrue = await fb.db.ref('/equal1/').once('value');
        const snapshotget = await fb.db.ref(`/users/${user.uid}/round1getsubmit/`).once('value');
+       const snapshotmit = await fb.db.ref(`/users/${user.uid}/round1submitted/`).once('value');
     //    console.log("hihi",snapshottrue.val());
-       if(snapshottrue.val()===true&&snapshotget.val()===false){
+       if(snapshottrue.val()===true&&snapshotget.val()===false&&snapshotmit.val()===2){
            var updates = {};
            updates[`/users/${user.uid}/round1getsubmit`]=true;
            fb.db.ref().update(updates);

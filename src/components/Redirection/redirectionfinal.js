@@ -5,7 +5,7 @@ import { withFirebase } from '../Firebase';
 import './index.css';
 
 
-const Redirection1Base = (props) => {
+const RedirectionFBase = (props) => {
     const fb = props.firebase;
     const user = fb.auth.currentUser;
     if(!user){
@@ -25,6 +25,8 @@ const Redirection1Base = (props) => {
             updates[`/users/${user.uid}/asset`] = -input + asset;
         }
         updates[`/users/${user.uid}/invest/input`] = 0;
+        updates[`/users/${user.uid}/finalsubmitted`] = 1;
+        
         fb.db.ref().update(updates);
     }
     async function setCompany(){
@@ -34,7 +36,7 @@ const Redirection1Base = (props) => {
         const curms = Object.values(snapshot2.val()).map(e=>e.curm);
         const aftms = Object.values(snapshot2.val()).map(e=>e.aftm);
         var updates = {};
-        for(var index = 0; index < 8; index++){
+        for(var index = 0; index < 9; index++){
             updates[`/companies/${index}/stock`] = stocks[index] + aftms[index] - curms[index];
         }
         const snapshot3 = await fb.db.ref('/finalsubmitted').once('value');
@@ -42,6 +44,7 @@ const Redirection1Base = (props) => {
         const r1s = snapshot3.val();
         const log = snapshot4.val();
         updates['/finalsubmitted']=r1s+1;
+        updates[`/users/${user.uid}/finalsubmitted`] = 2;
         if(r1s+1===log){
             updates['/equalf'] = true;
         }
@@ -49,17 +52,13 @@ const Redirection1Base = (props) => {
     }
     async function setRank(){
         var updates = {};
-        //updates['/equal1']=false;
-        //updates['/round1submitted']=0;
         const snapshot = await fb.db.ref('/companies/').once('value');
         const objs = snapshot.val();
         const rank = objs.sort((a, b) => a["stock"] < b["stock"] ? 1 : -1);
         for(var i=0;i<objs.length;i++){
             updates[`/companies/${rank[i]["index"]}/finalrank`]=i+1;
         }
-        for(i=RATIOS.FINAL_TEAM;i<RATIOS.ROUND3_TEAM;i++){
-            updates[`/companies/${rank[i]["index"]}/stock`] = -1;
-        }
+        
         fb.db.ref().update(updates);
 
     }
@@ -82,26 +81,34 @@ const Redirection1Base = (props) => {
         }
         fb.db.ref().update(updates);
     }
-    var check = true;
-    setAsset().then(()=>{
-        setCompany().then(()=>{
-            check = false;
-        }) 
-    })
-    
-    function catchEqual() {
-        if(check){
-            return;
-        }
-        fb.db.ref('/equalf').once('value').then((snapshot)=>{
-            if(snapshot.val()===true){
-                setRank().then(()=>{
-                    getCurmsAndSet();
-                    check = true;
-                });
+    async function catchsubmit() {
+        console.log(user);
+        
+        await fb.db.ref(`/users/${user.uid}/finalsubmitted`).once('value').then((snapshot) => {
+            if(snapshot.val()===0){
+                setAsset().then(()=>{
+                    setCompany().then(()=>{
+                    }) 
+                })
             }
-        });
+        })
     }
+    async function catchEqual() {
+       const snapshottrue = await fb.db.ref('/equalf/').once('value');
+       const snapshotget = await fb.db.ref(`/users/${user.uid}/finalgetsubmit/`).once('value');
+       const snapshotmit = await fb.db.ref(`/users/${user.uid}/finalsubmitted/`).once('value');
+    
+    //    console.log("hihi",snapshottrue.val());
+       if(snapshottrue.val()===true&&snapshotget.val()===false&&snapshotmit.val()===2){
+           var updates = {};
+           updates[`/users/${user.uid}/finalgetsubmit`]=true;
+           fb.db.ref().update(updates);
+        setRank().then(()=>{
+            getCurmsAndSet();
+        });
+       }
+     }
+    setInterval(catchsubmit, 1000);
     setInterval(catchEqual,1000);
 
     
@@ -127,5 +134,5 @@ const Redirection1Base = (props) => {
     );
 }
 
-const Redirection1 = withRouter(withFirebase(Redirection1Base));
-export default Redirection1;
+const RedirectionF = withRouter(withFirebase(RedirectionFBase));
+export default RedirectionF;

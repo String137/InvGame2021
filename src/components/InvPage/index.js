@@ -134,7 +134,7 @@ const InvPageBase = ({round,firebase,history,count}) => {
             else{
                 const snapshot = await fb.db.ref(`/users/${fb.auth.currentUser.uid}/invest/`).once('value');
                 const curms = Object.values(snapshot.val()).map(e=>e.curm);
-                for(var i=0; i<8; i++){
+                for(var i=0; i<9; i++){
                     updates[`/users/${fb.auth.currentUser.uid}/invest/company${i}/aftm`]=curms[i];
                 }
             }
