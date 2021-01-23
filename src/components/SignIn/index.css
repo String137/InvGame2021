@@ -34,11 +34,11 @@ hr{
     position: relative;
     width: 30%;
     border: none;
-    left: 68%;
+    left: 70%;
     top: 18%;
     margin: 0;
     padding: 0;
-    border: 5px solid rgb(48, 212, 254) 
+    border-top: 10px solid rgb(48, 212, 254) 
 }
 p{
     color: white;

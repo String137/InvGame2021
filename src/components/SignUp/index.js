@@ -7,10 +7,16 @@ import * as assets from '../../constants/money';
 import './index.css';
 
 const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm />
-  </div>
+  <>
+    <div className="signup-title">
+      <h1>SignUp</h1>
+      <br />
+      <Link to="/">뒤로 가기</Link>
+    </div>
+    <div className="signup-container">
+      <SignUpForm />
+    </div>
+  </>
 );
 
 const INITIAL_STATE = {
@@ -129,8 +135,9 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <div>
-      <form onSubmit={this.onSubmit1}>
+      <>
+      <form className="signup-form" onSubmit={this.onSubmit1}>
+        <p>Name</p>
         <input
           className="signup-username"
           name="username"
@@ -139,6 +146,7 @@ class SignUpFormBase extends Component {
           type="text"
           placeholder="Full Name"
         />
+        <p>Email</p>
         <input
           className="signup-email"
           name="email"
@@ -147,6 +155,7 @@ class SignUpFormBase extends Component {
           type="text"
           placeholder="Email Address"
         />
+        <p>Password</p>
         <input
           className="signup-password-one"
           name="passwordOne"
@@ -155,6 +164,7 @@ class SignUpFormBase extends Component {
           type="password"
           placeholder="Password"
         />
+        <p>Password Confimation</p>
         <input
           className="signup-password-two"
           name="passwordTwo"
@@ -164,13 +174,13 @@ class SignUpFormBase extends Component {
           placeholder="Confirm Password"
         />
         <button className="email-send" disabled={isInvalid} type="submit">
-          Send
+          Send Verification Link to Email
         </button>
 
         {error && <p>{error.message}</p>}
       </form>
       
-      </div>
+      </>
     );
   }
 }

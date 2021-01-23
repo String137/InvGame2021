@@ -20,7 +20,7 @@ const Navigation = () => (
       {authUser => {
         console.log("authUser", authUser);
         if(window.location.pathname==="/emailsent"){
-          return <div>Verification Link Sent to Email</div>;
+          return <div></div>;
         }
         else{
           return (authUser && authUser.emailVerified || window.location.pathname==='/game') ? (isAdmin(authUser) ? <NavigationAdmin/> : <NavigationAuth /> ) : <NavigationNonAuth />;

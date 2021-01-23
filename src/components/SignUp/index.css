@@ -9,11 +9,73 @@
 .link-to-signup{
     display: block;
     width: 50%;
-    margin: 10px auto;
+    margin: 50px auto;
     background-color: rgb(95, 72, 240);
     color: white;
     text-align: center;
     font-size: 12px;
     padding: 10px;
+    border-radius: 5px;
+}
+.signup-title{
+    padding: 30px;
+    color: rgb(48, 212, 254);
+}
+.signup-container{
+    width: 440px;
+    margin: 100px auto;
+    background-color:rgba(42, 43, 42, 0.95);
+    border-radius: 24px;
+    padding: 30px;
+}
+.signup-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.signup-username, .signup-email, .signup-password-one, .signup-password-two, .email-send{
+    display: block;
+    width: 220px;
+}
+.signup-username, .signup-email, .signup-password-one, .signup-password-two{
+    height: 24px;
+    border-radius: 5px;
+    border: 3px grey;
+}
+.signup-container p{
+    font-size: 10px;
+    width: 220px;
+    color: white;
+    display: block;
+}
+.email-send{
+    width: 50%;
+    background-color: rgb(95, 72, 240);
+    border: none;
+    color: white;
+    height: 30px;
+    margin-top: 30px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.email-send:disabled{
+    background-color: grey;
+}
+.verficationsent-container{
+    width: 440px;
+    margin: 300px auto;
+    color: rgb(48, 212, 254);
+}
+.verification-link-sent-text{
+    text-align: center;
+}
+.go-to-signin{
+    display: block;
+    width: 220px;
+    margin: 30px auto;
+    background-color: rgb(95, 72, 240);
+    border: none;
+    color: white;
+    height: 30px;
     border-radius: 5px;
 }
