@@ -132,6 +132,7 @@ class SignUpFormBase extends Component {
       <div>
       <form onSubmit={this.onSubmit1}>
         <input
+          className="signup-username"
           name="username"
           value={username}
           onChange={this.onChange}
@@ -139,6 +140,7 @@ class SignUpFormBase extends Component {
           placeholder="Full Name"
         />
         <input
+          className="signup-email"
           name="email"
           value={email}
           onChange={this.onChange}
@@ -146,6 +148,7 @@ class SignUpFormBase extends Component {
           placeholder="Email Address"
         />
         <input
+          className="signup-password-one"
           name="passwordOne"
           value={passwordOne}
           onChange={this.onChange}
@@ -153,13 +156,14 @@ class SignUpFormBase extends Component {
           placeholder="Password"
         />
         <input
+          className="signup-password-two"
           name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
           type="password"
           placeholder="Confirm Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <button className="email-send" disabled={isInvalid} type="submit">
           Send
         </button>
 
