@@ -186,7 +186,7 @@ const InvPageBase = ({round,firebase,history,count}) => {
                 </div>
                 <div className="inv-page">
                     {!setLoaded ? <div>"Loading..."</div> : <>
-                        {rankedList.slice(0, count).map(i => <div class={`comp${rankedList[i]}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i}/></div>)}</>}
+                        {rankedList.slice(0, count).map(i => <div className={`comp${rankedList[i]}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i}/></div>)}</>}
                 </div>
             </div>
         </>

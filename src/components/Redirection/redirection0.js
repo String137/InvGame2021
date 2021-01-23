@@ -9,7 +9,7 @@ const Redirection0Base = (props) => {
     const user = fb.auth.currentUser;
     if(!user){
         return (
-            <div class="no">No user</div>
+            <div className="no">No user</div>
         )
     }
     return (

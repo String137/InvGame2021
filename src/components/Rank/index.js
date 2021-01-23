@@ -27,7 +27,7 @@ const RankBase = ({firebase}) => {
     }
     getRank();
     getCompany();
-    console.log("Rank", userList);
+    // console.log("Rank", userList);
     return (
         <div>
             <ol>{userList.map(res=><li>{res["username"]}: ${res["asset"]}</li>)}</ol>

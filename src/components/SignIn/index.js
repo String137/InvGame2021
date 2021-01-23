@@ -39,10 +39,10 @@ class SignInFormBase extends Component {
   }
   async getLoggedIn(user){
     const snapshot = await this.props.firebase.db.ref(`/users/${user.uid}/loggedin`).once('value');
-    console.log(user);
-    console.log("help..",snapshot);
+    // console.log(user);
+    // console.log("help..",snapshot);
     const loggedin = snapshot.val();
-    console.log("loglog",loggedin);
+    // console.log("loglog",loggedin);
     return loggedin;     
   }
   async getLoggedinUser(){
@@ -57,14 +57,14 @@ class SignInFormBase extends Component {
       if(user.user.emailVerified){
         this.getLoggedIn(user.user).then((res) => {
           if(res===false){
-            console.log("this",this);
+            // console.log("this",this);
             this.setState({...INITIAL_STATE});
             if(user.user.email==="icists@icists.org"){
               this.props.history.push(ROUTES.ADMIN);
             }
             else{
               var updates = {};
-              console.log("hey");
+              // console.log("hey");
               this.getLoggedinUser().then(
                 (logus) => {
                   updates[`/loggedinUser/`] = logus + 1;

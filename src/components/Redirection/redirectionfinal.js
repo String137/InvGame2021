@@ -10,7 +10,7 @@ const RedirectionFBase = (props) => {
     const user = fb.auth.currentUser;
     if(!user){
         return (
-            <div class="no">No user</div>
+            <div className="no">No user</div>
         )
     }
     async function setAsset(){
@@ -26,7 +26,6 @@ const RedirectionFBase = (props) => {
         }
         updates[`/users/${user.uid}/invest/input`] = 0;
         updates[`/users/${user.uid}/finalsubmitted`] = 1;
-        
         fb.db.ref().update(updates);
     }
     async function setCompany(){
@@ -39,15 +38,7 @@ const RedirectionFBase = (props) => {
         for(var index = 0; index < 9; index++){
             updates[`/companies/${index}/stock`] = stocks[index] + aftms[index] - curms[index];
         }
-        const snapshot3 = await fb.db.ref('/finalsubmitted').once('value');
-        const snapshot4 = await fb.db.ref('/loggedinUser').once('value');
-        const r1s = snapshot3.val();
-        const log = snapshot4.val();
-        updates['/finalsubmitted']=r1s+1;
         updates[`/users/${user.uid}/finalsubmitted`] = 2;
-        if(r1s+1===log){
-            updates['/equalf'] = true;
-        }
         fb.db.ref().update(updates);
     }
     async function setRank(){
@@ -82,7 +73,7 @@ const RedirectionFBase = (props) => {
         fb.db.ref().update(updates);
     }
     async function catchsubmit() {
-        console.log(user);
+        console.log("catchsubmit!");
         
         await fb.db.ref(`/users/${user.uid}/finalsubmitted`).once('value').then((snapshot) => {
             if(snapshot.val()===0){
@@ -90,29 +81,60 @@ const RedirectionFBase = (props) => {
                     setCompany().then(()=>{
                     }) 
                 })
-            }
+                clearInterval(cs);
+            }  
         })
     }
     async function catchEqual() {
+        console.log("catchequal!");
        const snapshottrue = await fb.db.ref('/equalf/').once('value');
        const snapshotget = await fb.db.ref(`/users/${user.uid}/finalgetsubmit/`).once('value');
        const snapshotmit = await fb.db.ref(`/users/${user.uid}/finalsubmitted/`).once('value');
-    
     //    console.log("hihi",snapshottrue.val());
-       if(snapshottrue.val()===true&&snapshotget.val()===false&&snapshotmit.val()===2){
+       if(snapshottrue.val()===true&&snapshotget.val()===false&&(snapshotmit.val()===2||snapshotmit.val()===3)){
            var updates = {};
            updates[`/users/${user.uid}/finalgetsubmit`]=true;
            fb.db.ref().update(updates);
         setRank().then(()=>{
             getCurmsAndSet();
         });
+        clearInterval(ce);
        }
      }
-    setInterval(catchsubmit, 1000);
-    setInterval(catchEqual,1000);
-
-    
-    
+     async function updatesubmit(){
+         console.log("updatesubmit!");
+         const snapshot = await fb.db.ref(`/users/${user.uid}/finalsubmitted/`).once('value');
+         const snapshotuse = await fb.db.ref(`/using/`).once('value');
+         if(snapshot.val()!==2){
+            return;
+         }
+         if(snapshotuse.val()===true){
+            return;
+         }
+         else{
+            fb.db.ref('/').update({using : true});
+            const snap = await fb.db.ref('/finalsubmitted').once('value');
+            fb.db.ref('/').update({finalsubmitted : snap.val()+ 1});
+            fb.db.ref(`/users/${user.uid}`).update({finalsubmitted : 3});
+            fb.db.ref('/').update({using : false});
+            clearInterval(us);
+        }
+     }
+     async function setequal(){
+         console.log("setequal!");
+        const snapshot = await fb.db.ref('/finalsubmitted/').once('value');
+        const snapshot2 = await fb.db.ref('/loggedinUser/').once('value');
+        if(snapshot.val()===snapshot2.val()){
+            fb.db.ref('/').update({equalf:true});
+            console.log("clear");
+            clearInterval(se);
+        }
+     }
+    var cs = setInterval(catchsubmit,1000);
+    var ce = setInterval(catchEqual,1000);
+    var us = setInterval(updatesubmit,1000);
+    var se = setInterval(setequal,1000);
+  
     
     return (
         <>

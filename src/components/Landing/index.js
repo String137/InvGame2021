@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 const Landing = () => (
-  <div class="land">
+  <div className="land">
     <h1>Landing</h1>
   </div>
 );

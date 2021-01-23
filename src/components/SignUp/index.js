@@ -36,7 +36,7 @@ class SignUpFormBase extends Component {
 
   onSubmit1 = event => {
     const { username, email, passwordOne } = this.state;
-    console.log("sign in!!",this);
+    // console.log("sign in!!",this);
     this.props.firebase
     .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -105,7 +105,7 @@ class SignUpFormBase extends Component {
         user.sendEmailVerification().then(function() {
           window.location.href=ROUTES.EMAIL_HAS_BEEN_SENT;
         }).catch(function(error) {
-          console.log(error);
+          // console.log(error);
         });
       })
       .catch(error => {

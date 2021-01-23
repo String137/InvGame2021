@@ -38,7 +38,7 @@ class AdminCompany extends React.Component {
     }
 
     resetInfo = () => {
-        console.log(this.state.companies);
+        // console.log(this.state.companies);
         this.state.companies.map(company => this.props.firebase.db.ref(`/companies/${company.index}`).update(
             {
                 stock: 0,

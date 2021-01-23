@@ -7,7 +7,7 @@ import { AuthUserContext } from '../Session';
 import './index.css';
  
 function isAdmin(user){
-  console.log(user);
+  // console.log(user);
   if(user===null){
     return false;
   }
@@ -18,7 +18,7 @@ const Navigation = () => (
   <div>
     <AuthUserContext.Consumer>
       {authUser => {
-        console.log("authUser", authUser);
+        // console.log("authUser", authUser);
         if(window.location.pathname==="/emailsent"){
           return <div></div>;
         }

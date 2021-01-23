@@ -10,7 +10,7 @@ const Redirection1Base = (props) => {
     const user = fb.auth.currentUser;
     if(!user){
         return (
-            <div class="no">No user</div>
+            <div className="no">No user</div>
         )
     }
     async function setAsset(){
@@ -40,8 +40,6 @@ const Redirection1Base = (props) => {
             updates[`/companies/${index}/stock`] = stocks[index] + aftms[index] - curms[index];
         }
         
-        const snapshot4 = await fb.db.ref('/loggedinUser').once('value');
-        const log = snapshot4.val();
         updates[`/users/${user.uid}/round1submitted`] = 2;
         fb.db.ref().update(updates);
     }
