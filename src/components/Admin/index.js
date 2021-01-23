@@ -82,6 +82,7 @@ class AdminPage extends Component {
     updates['/round2submitted'] = 0;
     updates['/round3submitted'] = 0;
     updates['/finalsubmitted'] = 0;
+    updates['/using'] = false;
     
     this.props.firebase.db.ref().update(updates)
     this.state.users.map(user => this.props.firebase.user(user.uid).update({
