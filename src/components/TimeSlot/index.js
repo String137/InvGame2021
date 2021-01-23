@@ -2,6 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './index.css';
 
+function two(num) {
+    if(num<10){
+        return "0"+num;
+    }
+    else{
+        return num;
+    }
+}
 const TimeSlot1 = ({leftTime}) => {
     const [time, setTime] = useState(leftTime);
 
@@ -12,7 +20,7 @@ const TimeSlot1 = ({leftTime}) => {
             }, 1000);
         }
     }, [time]);
-    return <div className="time-left">{parseInt(time/60000)} : {parseInt(time/1000) - 60 * parseInt(time/60000)}</div>
+    return <div className="time-left">{parseInt(time/60000)} : {two(parseInt(time/1000) - 60 * parseInt(time/60000))}</div>
 }
 
 const TimeSlot2 = ({leftTime}) => {
