@@ -1,14 +1,14 @@
 import React from 'react';
 
-const AfterInv = ({money}) => {
-    if(!isNaN(money)){
+const AfterInv = ({ money }) => {
+    if (!isNaN(money)) {
         return (
             <div>
                 {money}
             </div>
         );
     }
-    else{
+    else {
         return (
             <div>
                 Loading...

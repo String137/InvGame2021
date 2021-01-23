@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Input = () => {
-    return(
+    return (
         <>
-            <input type="number"/>
+            <input type="number" />
         </>
     );
 }

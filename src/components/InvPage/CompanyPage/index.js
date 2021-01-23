@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Company from './Company';
 import AfterInv from './AfterInv';
 import CurInv from './CurInv';
@@ -10,94 +10,94 @@ import { get } from 'http';
 import { type } from 'os';
 import { parse } from 'path';
 export var sum = 0;
-const CompanyPage = ({curm, name, invDone, index, calc, firebase, aftm}) => {
+const CompanyPage = ({ curm, name, invDone, index, calc, firebase, aftm }) => {
     //var aftm = 0;
     // curm = aftm;
     const [inputm, setInputm] = useState("0");
     const [radioNum, setRadioNum] = useState(-1);
     const handleChange = (event) => {
-        const {target: {value}} = event;
+        const { target: { value } } = event;
         // console.log("val",value);
         // console.log("parse",parseInt(value));
-        if(radioNum!==0&&radioNum!==1){
+        if (radioNum !== 0 && radioNum !== 1) {
             alert("please check!");
             setInputm("0");
         }
-        else if(!isNaN(parseInt(value))){
+        else if (!isNaN(parseInt(value))) {
             // console.log("value",value);
             // var parsed = value.replace(/[.]$/,'');
             // console.log("parsed",parsed);
             var parsed = value;
-            parsed = parsed.replace(/^0+(?=\d)/, '').replace(/[^0-9]/,'');
-            
+            parsed = parsed.replace(/^0+(?=\d)/, '').replace(/[^0-9]/, '');
+
             // console.log("hhkhj");
-            if(radioNum===1){
-                
-                if(parseInt(parsed)>curm){
+            if (radioNum === 1) {
+
+                if (parseInt(parsed) > curm) {
                     alert("hey!");
-                    setInputm(prev=>prev);
+                    setInputm(prev => prev);
                 }
-                else{
+                else {
                     setInputm(parsed);
                 }
             }
-            else{
+            else {
                 setInputm(parsed);
             }
         }
-        else{
+        else {
             // console.log("asdfasfasfasf");
             setInputm("0");
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         calc(parseInt(inputm), index, radioNum);
     })
-    switch (radioNum){
+    switch (radioNum) {
         case 0:
-            aftm = parseInt(curm) + (inputm ? parseInt(inputm) :  0);
+            aftm = parseInt(curm) + (inputm ? parseInt(inputm) : 0);
             break;
         case 1:
-            aftm = parseInt(curm) - (inputm ? parseInt(inputm) :  0);
+            aftm = parseInt(curm) - (inputm ? parseInt(inputm) : 0);
             break;
         default:
             aftm = parseInt(curm);
             break;
     }
     if (invDone) {
-         const fb =  firebase;
-         const user = fb.auth.currentUser;
-         const uid = user.uid;
-         var updates = {};
+        const fb = firebase;
+        const user = fb.auth.currentUser;
+        const uid = user.uid;
+        var updates = {};
 
-         updates[`/users/${uid}/invest/company${index}/aftm`] = aftm;  
-         fb.db.ref().update(updates);
+        updates[`/users/${uid}/invest/company${index}/aftm`] = aftm;
+        fb.db.ref().update(updates);
     }
-    
-    return(
+
+    return (
         <div className="wrapper">
             <div className="company-logo">
 
             </div>
             <div className="company">
-                <Company className="company" name = {name}/>
+                <Company className="company" name={name} />
             </div>
-            <input type="text" min="0" className="input" onChange={handleChange} value={inputm}/>
-            <div className= "invest">
-                <input type="radio" id={name+"inv"} name={name+"select"} onClick={()=>{setInputm("0");setRadioNum(0)}}/>
-                <label htmlFor={name+"inv"}>투자</label>
+            <input type="text" min="0" className="input" onChange={handleChange} value={inputm} />
+            <div className="invest">
+                <input type="radio" id={name + "inv"} name={name + "select"} onClick={() => { setInputm("0"); setRadioNum(0) }} />
+                <label htmlFor={name + "inv"}>투자</label>
             </div>
             <div className="withdraw">
-                <input type="radio" id={name+"wd"} name={name+"select"}  onClick={()=>{setInputm("0");setRadioNum(1)}}/>
-                <label htmlFor={name+"wd"}>철회</label>
+                <input type="radio" id={name + "wd"} name={name + "select"} onClick={() => { setInputm("0"); setRadioNum(1) }} />
+                <label htmlFor={name + "wd"}>철회</label>
             </div>
             <div className="curinv-text">curm</div>
-            <div className= "curinv">
-                <CurInv money = {curm} className= "curinv"/>
+            <div className="curinv">
+                <CurInv money={curm} className="curinv" />
             </div>
             <div className="aftinv-text">aftm</div>
             <div className="aftinv">
-                <AfterInv money = {aftm}/>
+                <AfterInv money={aftm} />
             </div>
         </div>
     );

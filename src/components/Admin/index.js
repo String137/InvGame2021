@@ -22,35 +22,35 @@ class AdminPage extends Component {
 
     this.props.firebase.db.ref('/users').once('value').then(snapshot => {
       const usersObject = snapshot.val();
-      if(usersObject){
-      const usersList = Object.keys(usersObject).map(key => ({
-        ...usersObject[key],
-        uid: key,
-      }));
-      this.setState({
-        users: usersList,
-        loading: false,
-      });
-    }
+      if (usersObject) {
+        const usersList = Object.keys(usersObject).map(key => ({
+          ...usersObject[key],
+          uid: key,
+        }));
+        this.setState({
+          users: usersList,
+          loading: false,
+        });
+      }
     });
     this.props.firebase.db.ref('/companies').once('value').then(snapshot => {
       const cObject = snapshot.val();
-      if(cObject){
-      const companyList = Object.keys(cObject).map(key => ({
-        name: cObject[key].companyname,
-        rank: cObject[key].finalrank,
-      }));
-      this.setState({
-        companies: companyList,
-      });
-    }
+      if (cObject) {
+        const companyList = Object.keys(cObject).map(key => ({
+          name: cObject[key].companyname,
+          rank: cObject[key].finalrank,
+        }));
+        this.setState({
+          companies: companyList,
+        });
+      }
     });
   }
 
   componentWillUnmount() {
     this.setState({
       loading: true,
-  });
+    });
   }
   setequal1 = () => {
     var updates = {};
@@ -83,7 +83,7 @@ class AdminPage extends Component {
     updates['/round3submitted'] = 0;
     updates['/finalsubmitted'] = 0;
     updates['/using'] = false;
-    
+
     this.props.firebase.db.ref().update(updates)
     this.state.users.map(user => this.props.firebase.user(user.uid).update({
       asset: assets.INITIAL_ASSET,
@@ -134,7 +134,7 @@ class AdminPage extends Component {
           curm: 0,
           aftm: 0,
         }
-        , input : 0,
+        , input: 0,
       }
     }));
     alert('reset!');
@@ -142,34 +142,34 @@ class AdminPage extends Component {
 
     this.props.firebase.db.ref('/users').once('value').then(snapshot => {
       const usersObject = snapshot.val();
-      if(usersObject){
-      const usersList = Object.keys(usersObject).map(key => ({
-        ...usersObject[key],
-        uid: key,
-      }));
+      if (usersObject) {
+        const usersList = Object.keys(usersObject).map(key => ({
+          ...usersObject[key],
+          uid: key,
+        }));
 
-      this.setState({
-        users: usersList,
-        loading: false,
-      });
-    }
+        this.setState({
+          users: usersList,
+          loading: false,
+        });
+      }
     });
   }
   getRankn(n) {
     const { companies } = this.state;
-    
-    if(companies[8]!=null){
-    var a = 0;
-    // return companies[n];
-    for(var i=0;i<9;i++){
-      if(n===companies[i].rank){
-        a=i;
+
+    if (companies[8] != null) {
+      var a = 0;
+      // return companies[n];
+      for (var i = 0; i < 9; i++) {
+        if (n === companies[i].rank) {
+          a = i;
+        }
       }
+      return companies[a].name;
+      // return "hmm";
     }
-    return companies[a].name;
-    // return "hmm";
-    }
-    else{
+    else {
       return "Wait...";
     }
   }
@@ -196,28 +196,28 @@ class AdminPage extends Component {
 }
 
 const UserList = ({ users }) => {
-  return(
-  <>
-  <ul className="ul">
-    {users.map(user => (
-      <li key={user.uid}>
-        <div>
-          <strong>Username:</strong> {user.username} 
-        </div>
-        <div>
-          <strong>Asset:</strong>{user.asset}
-        </div>
-        <div>
-          <strong>Invest</strong><ol>{Object.values(user['invest']).slice(0,-1).map(company=><li>[curm: {company.curm}, aftm: {company.aftm}]</li>)}<li>Input : {user['invest']['input']}</li></ol>
-        </div>
-        <div>
-          <strong>LoggedIn:</strong>{user.loggedin.toString()}
-        </div>
-        <br />
-      </li>
-    ))}
-  </ul>
-  </>);
+  return (
+    <>
+      <ul className="ul">
+        {users.map(user => (
+          <li key={user.uid}>
+            <div>
+              <strong>Username:</strong> {user.username}
+            </div>
+            <div>
+              <strong>Asset:</strong>{user.asset}
+            </div>
+            <div>
+              <strong>Invest</strong><ol>{Object.values(user['invest']).slice(0, -1).map(company => <li>[curm: {company.curm}, aftm: {company.aftm}]</li>)}<li>Input : {user['invest']['input']}</li></ol>
+            </div>
+            <div>
+              <strong>LoggedIn:</strong>{user.loggedin.toString()}
+            </div>
+            <br />
+          </li>
+        ))}
+      </ul>
+    </>);
 };
 
 export default withFirebase(AdminPage);

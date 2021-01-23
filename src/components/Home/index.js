@@ -24,7 +24,7 @@ class HomePage extends React.Component {
         asset: usersObject.asset,
       });
     });
-    
+
   }
 
   render() {
@@ -33,16 +33,16 @@ class HomePage extends React.Component {
     if (this.props.firebase.auth.currentUser != null) {
       this.props.firebase.user(this.props.firebase.auth.currentUser.uid).child("messages").child("front").on('value', snapshot => {
         this.props.firebase.user(this.props.firebase.auth.currentUser.uid).child("messages").transaction(snapshot => {
-          if(snapshot==null){
+          if (snapshot == null) {
             return snapshot;
           }
-          if(snapshot.queue==undefined)
+          if (snapshot.queue == undefined)
             return snapshot;
-          while(snapshot.front<snapshot.queue.length-1){
-            
+          while (snapshot.front < snapshot.queue.length - 1) {
+
             snapshot.front++;
             alert(snapshot.queue[snapshot.front]);
-          
+
           }
           return snapshot;
 
@@ -50,14 +50,14 @@ class HomePage extends React.Component {
         )
       });
     }
-    
+
     return (
       <div>
         <h1 className="homepage">Home Page</h1>
         <h1 className="homemoney">{username} 님의 ⭐️잔고⭐️ ${asset}</h1>
       </div>
     );
-    
+
   }
 
 }

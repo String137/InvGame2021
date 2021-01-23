@@ -8,6 +8,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 const Video2 = () => {
     return <div>Video2</div>
-} 
+}
 
 export default Video2;

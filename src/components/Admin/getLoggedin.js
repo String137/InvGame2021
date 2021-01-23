@@ -5,16 +5,16 @@ import { withFirebase } from '../Firebase';
 const getLoggedin = (user) => {
     var login = null;
     const fb = this.props.firebase;
-    async function getlogin(){
+    async function getlogin() {
         const snapshot = await fb.db.ref(`/users/${user.uid}/loggedin`).once('value');
         login = snapshot.val();
     }
     getlogin();
 
-    if(login===null){
+    if (login === null) {
         return <h1>"Loading..."</h1>;
     }
-    else{
+    else {
         return <h1>{login}</h1>;
     }
 }

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-const Company = ({name}) => {
-    if(name){
-    return (
-    <div>
-        {name}
-    </div>
-    );
+const Company = ({ name }) => {
+    if (name) {
+        return (
+            <div>
+                {name}
+            </div>
+        );
     }
-    else{
+    else {
         return (
             <div>
                 Loading...

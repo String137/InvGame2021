@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-const CurInv = ({money}) => {
-    if(money!=null){
+const CurInv = ({ money }) => {
+    if (money != null) {
         return (
             <div>
                 {money}
             </div>
         );
     }
-    else{
+    else {
         return (
             <div>
                 Loading...

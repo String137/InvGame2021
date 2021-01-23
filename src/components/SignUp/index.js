@@ -38,7 +38,7 @@ class SignUpFormBase extends Component {
     const { username, email, passwordOne } = this.state;
     // console.log("sign in!!",this);
     this.props.firebase
-    .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in your Firebase realtime database
         return this.props.firebase
@@ -94,7 +94,7 @@ class SignUpFormBase extends Component {
                 curm: 0,
                 aftm: 0,
               }
-              , input : 0
+              , input: 0
             }
           });
       })
@@ -102,19 +102,19 @@ class SignUpFormBase extends Component {
         this.setState({ ...INITIAL_STATE });
         //this.props.history.push(ROUTES.EMAIL_HAS_BEEN_SENT);
         let user = this.props.firebase.auth.currentUser;
-        user.sendEmailVerification().then(function() {
-          window.location.href=ROUTES.EMAIL_HAS_BEEN_SENT;
-        }).catch(function(error) {
+        user.sendEmailVerification().then(function () {
+          window.location.href = ROUTES.EMAIL_HAS_BEEN_SENT;
+        }).catch(function (error) {
           // console.log(error);
         });
       })
       .catch(error => {
         this.setState({ error });
       });
-    
+
     event.preventDefault();
   };
-  
+
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -136,50 +136,50 @@ class SignUpFormBase extends Component {
 
     return (
       <>
-      <form className="signup-form" onSubmit={this.onSubmit1}>
-        <p>Name</p>
-        <input
-          className="signup-username"
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <p>Email</p>
-        <input
-          className="signup-email"
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <p>Password</p>
-        <input
-          className="signup-password-one"
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <p>Password Confimation</p>
-        <input
-          className="signup-password-two"
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button className="email-send" disabled={isInvalid} type="submit">
-          Send Verification Link to Email
+        <form className="signup-form" onSubmit={this.onSubmit1}>
+          <p>Name</p>
+          <input
+            className="signup-username"
+            name="username"
+            value={username}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Full Name"
+          />
+          <p>Email</p>
+          <input
+            className="signup-email"
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+          />
+          <p>Password</p>
+          <input
+            className="signup-password-one"
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+          />
+          <p>Password Confimation</p>
+          <input
+            className="signup-password-two"
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Confirm Password"
+          />
+          <button className="email-send" disabled={isInvalid} type="submit">
+            Send Verification Link to Email
         </button>
 
-        {error && <p>{error.message}</p>}
-      </form>
-      
+          {error && <p>{error.message}</p>}
+        </form>
+
       </>
     );
   }

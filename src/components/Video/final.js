@@ -8,6 +8,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 const Final = () => {
     return <div>Watch Final Videos</div>
-} 
+}
 
 export default Final;

@@ -24,28 +24,28 @@ const App = () => {
   //   e.returnValue = confirmationMessage; //Gecko + IE
   //   return confirmationMessage; 
   // })
-  return(
-  <Router>
-    <div>
-      <Navigation />
-      {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> */}
-      <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
-      <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
-      <Route
-        exact
-        path={ROUTES.PASSWORD_FORGET}
-        component={PasswordForgetPage}
-      />
-      {/* <Route exact path={ROUTES.HOME} component={HomePage} /> */}
-      {/* <Route exact path={ROUTES.ACCOUNT} component={AccountPage} /> */}
-      <Route exact path={ROUTES.ADMIN} component={AdminPage} />
-      <Route exact path={ROUTES.COMPANY} component={AdminCompany} />
-      <Route exact path={ROUTES.GAME} component={GamePage} />
-      <Route exact path={ROUTES.EMAIL_HAS_BEEN_SENT} component={EmailSent} />
-      {/* <footer><div class ="copyrightFooter"> N13-1, KAIST 291 DAEHAK-RO, YUSEONG-GU, DAEJEON, KOREA<br></br>
+  return (
+    <Router>
+      <div>
+        <Navigation />
+        {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> */}
+        <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
+        <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
+        <Route
+          exact
+          path={ROUTES.PASSWORD_FORGET}
+          component={PasswordForgetPage}
+        />
+        {/* <Route exact path={ROUTES.HOME} component={HomePage} /> */}
+        {/* <Route exact path={ROUTES.ACCOUNT} component={AccountPage} /> */}
+        <Route exact path={ROUTES.ADMIN} component={AdminPage} />
+        <Route exact path={ROUTES.COMPANY} component={AdminCompany} />
+        <Route exact path={ROUTES.GAME} component={GamePage} />
+        <Route exact path={ROUTES.EMAIL_HAS_BEEN_SENT} component={EmailSent} />
+        {/* <footer><div class ="copyrightFooter"> N13-1, KAIST 291 DAEHAK-RO, YUSEONG-GU, DAEJEON, KOREA<br></br>
 Copyright @ 2021 ICISTS Div. Tech & Design</div></footer>  */}
-    </div>
-        </Router>
+      </div>
+    </Router>
   );
 }
 

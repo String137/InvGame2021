@@ -5,10 +5,10 @@ import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
 import './index.css';
- 
-function isAdmin(user){
+
+function isAdmin(user) {
   // console.log(user);
-  if(user===null){
+  if (user === null) {
     return false;
   }
   return user.email === "icists@icists.org";
@@ -19,24 +19,24 @@ const Navigation = () => (
     <AuthUserContext.Consumer>
       {authUser => {
         // console.log("authUser", authUser);
-        if(window.location.pathname==="/emailsent"){
+        if (window.location.pathname === "/emailsent") {
           return <div></div>;
         }
-        else{
-          return (authUser && authUser.emailVerified || window.location.pathname==='/game') ? (isAdmin(authUser) ? <NavigationAdmin/> : <NavigationAuth /> ) : <NavigationNonAuth />;
+        else {
+          return (authUser && authUser.emailVerified || window.location.pathname === '/game') ? (isAdmin(authUser) ? <NavigationAdmin /> : <NavigationAuth />) : <NavigationNonAuth />;
         }
       }
       }
     </AuthUserContext.Consumer>
- </div>
+  </div>
 );
 
 const NavigationAuth = () => (
-    <ul className="container">
-      <div className="au0">
-        <Link className="game-navigation" to={ROUTES.GAME}>GRAFFITI 투자게임</Link>
-      </div>
-      {/* <div className="au1">
+  <ul className="container">
+    <div className="au0">
+      <Link className="game-navigation" to={ROUTES.GAME}>GRAFFITI 투자게임</Link>
+    </div>
+    {/* <div className="au1">
         <Link to={ROUTES.LANDING} class="l1">Landing</Link>
       </div>
       <div className="au2">
@@ -48,10 +48,10 @@ const NavigationAuth = () => (
       <div className="au4">
         <Link to={ROUTES.GAME} class="l1">Game</Link>
       </div> */}
-      <div className="au5">
-        <SignOutButton/>
-      </div>
-    </ul>
+    <div className="au5">
+      <SignOutButton />
+    </div>
+  </ul>
 );
 const NavigationAdmin = () => (
   <ul>
@@ -62,12 +62,12 @@ const NavigationAdmin = () => (
       <Link to={ROUTES.COMPANY}>Companies</Link>
     </li>
     <li>
-      <SignOutButton/>
+      <SignOutButton />
     </li>
   </ul>
 );
 const NavigationNonAuth = () => (
-    <></>
+  <></>
 );
- 
+
 export default Navigation;
