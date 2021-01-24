@@ -110,7 +110,7 @@ const RedirectionFBase = (props) => {
         }
         else {
             // fb.db.ref('/').update({ using: true });
-            var snap = await fb.db.ref('/finalsubmitted').once('value');
+            var snap = await fb.db.ref('/finalsubmitted');
             snap.transaction(function(param) {
                 return param + 1;
             })

@@ -114,7 +114,7 @@ const Redirection3Base = (props) => {
         }
         else {
             // fb.db.ref('/').update({ using: true });
-            var snap = await fb.db.ref('/round3submitted').once('value');
+            var snap = await fb.db.ref('/round3submitted');
             snap.transaction(function(param){
                 return param + 1;
             })

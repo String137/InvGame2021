@@ -21,9 +21,6 @@ const InvPageBase = ({ round, firebase, count }) => {
     const [loaded, setLoaded] = useState(false);
     var fb = firebase;
 
-
-
-
     fb.auth.onAuthStateChanged((user) => {
         if (user) {
             setLoaded(true);
@@ -98,11 +95,11 @@ const InvPageBase = ({ round, firebase, count }) => {
 
                 // setInputsum(inputs.reduce((a, b) => a+b, 0));
                 // console.log(inputsum);
-                alert(`니 자산: ${asset - inputs.reduce((a, b) => a + b, 0)}`);
+                alert(`남은 자산: ${asset - inputs.reduce((a, b) => a + b, 0)}원`);
                 setCheck(false);
             }
             if (inputs.reduce((a, b) => a + b, 0) > asset) {
-                document.querySelector(".invest_done").checked = false;
+                document.querySelector(".invest-done").checked = false;
             }
         }
         else {
@@ -157,14 +154,35 @@ const InvPageBase = ({ round, firebase, count }) => {
         list[index] = update;
         setInputs(list);
     }
-
+    function three(num) {
+        if (num < 10) {
+            return "00" + num;
+        }
+        else if (num < 100) {
+            return "0" + num;
+        }
+        else return num;
+    }
+    function putcommas(num) {
+        var res = "";
+        while (num > 0) {
+            if(num>=1000){
+                res = "," + three(num%1000) + res;
+            }
+            else{
+                res = num%1000 + res;
+            }
+            num=parseInt(num/1000);
+        }
+        return res;
+    }
     return (
         <>
             <div className="inv-page-container">
                 <div className="left-header-container">
                     <div className="left-header">
                         Round {round}
-                        <h2>${asset}</h2>
+                        <h2 className="myasset">{putcommas(asset)}원</h2>
                         <div>
                             <label>
                                 <div className="check-asset">투자 후 자산 확인하기</div>

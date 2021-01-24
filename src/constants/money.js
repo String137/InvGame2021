@@ -1,4 +1,4 @@
-export const INITIAL_ASSET = 1000;
+export const INITIAL_ASSET = 10000000;
 export const ROUND1_REWARD_RATIO = [0.20, 0.18, 0.16, 0.12, 0.10, 0.06, 0.04, 0.02, 0.00];
 export const ROUND2_REWARD_RATIO = [0.20, 0.16, 0.12, 0.08, 0.04, 0.00, 0.00, 0.00, 0.00];
 export const ROUND3_REWARD_RATIO = [0.20, 0.16, 0.12, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00];
@@ -11,4 +11,4 @@ export const ROUND1_TEAM = 9;
 export const ROUND2_TEAM = 9;
 export const ROUND3_TEAM = 5;
 export const FINAL_TEAM = 3;
-export const SALARY = 500;
+export const SALARY = 5000000;

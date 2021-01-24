@@ -43,7 +43,7 @@ const RankBase = ({ firebase }) => {
                     참가자 순위
                 </div>
                 <div className="final-user-rank">
-                    {userList.slice(0,10).map(res => <div>{res["username"]}: ${res["asset"]}</div>)}
+                    {userList.slice(0,10).map(res => <div>{res["username"]}: {res["asset"]}원</div>)}
                 </div>
                 <div className="final-rank-header">
                     스타트업 순위

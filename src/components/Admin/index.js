@@ -192,7 +192,28 @@ class AdminPage extends Component {
     );
   }
 }
-
+function three(num) {
+  if (num < 10) {
+      return "00" + num;
+  }
+  else if (num < 100) {
+      return "0" + num;
+  }
+  else return num;
+}
+function putcommas(num) {
+  var res = "";
+  while (num > 0) {
+      if(num>=1000){
+          res = "," + three(num%1000) + res;
+      }
+      else{
+          res = num%1000 + res;
+      }
+      num=parseInt(num/1000);
+  }
+  return res;
+}
 const UserList = ({ users }) => {
   return (
     <>
@@ -203,7 +224,7 @@ const UserList = ({ users }) => {
               <strong>Username:</strong> {user.username}
             </div>
             <div>
-              <strong>Asset:</strong>{user.asset}
+              <strong>Asset:</strong>{putcommas(user.asset)}원
             </div>
             <div>
               <strong>Invest</strong><ol>{Object.values(user['invest']).slice(0, -1).map(company => <li>[curm: {company.curm}, aftm: {company.aftm}]</li>)}<li>Input : {user['invest']['input']}</li></ol>

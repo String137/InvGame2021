@@ -18,7 +18,9 @@
 .button{
     font-size: 50px;
 } */
-
+.myasset{
+    font-size: 40px;
+}
 
 .inv-page-container{
     display: flex;

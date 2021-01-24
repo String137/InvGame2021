@@ -8,7 +8,7 @@ import Redirection1 from '../Redirection/redirection1';
 import Redirection2 from '../Redirection/redirection2';
 import Redirection3 from '../Redirection/redirection3';
 import RedirectionF from '../Redirection/redirectionfinal';
-import { TimeSlot1, TimeSlot2, TimeSlot3, TimeSlot4, TimeSlot5, TimeSlot6, TimeSlot7, TimeSlot8, TimeSlot9 } from '../TimeSlot';
+import { TimeSlot1, TimeSlot2, TimeSlot3, TimeSlot4, TimeSlot5, TimeSlot6, TimeSlot7, TimeSlot8, TimeSlot9, TimeSlot10 } from '../TimeSlot';
 import * as MONEY from '../../constants/money';
 import * as TIME from '../../constants/time';
 import Rank from '../Rank';
@@ -73,31 +73,31 @@ const GamepageBase = () => {
             </>;
         case 5:
             return <>
-                <TimeSlot5 leftTime={startTime + time[expired] - new Date().getTime()} />
+                <TimeSlot6 leftTime={startTime + time[expired] - new Date().getTime()} />
                 <Redirection2 />
 
             </>;
         case 6:
             return <>
-                <TimeSlot6 leftTime={startTime + time[expired] - new Date().getTime()} />
+                <TimeSlot7 leftTime={startTime + time[expired] - new Date().getTime()} />
                 <InvPage round={3} count={MONEY.ROUND3_TEAM} />
 
             </>;
         case 7:
             return <>
-                <TimeSlot7 leftTime={startTime + time[expired] - new Date().getTime()} />
+                <TimeSlot8 leftTime={startTime + time[expired] - new Date().getTime()} />
                 <Redirection3 />
 
             </>;
         case 8:
             return <>
-                <TimeSlot8 leftTime={startTime + time[expired] - new Date().getTime()} />
+                <TimeSlot9 leftTime={startTime + time[expired] - new Date().getTime()} />
                 <InvPage round={4} count={MONEY.FINAL_TEAM} />
 
             </>;
         case 9:
             return <>
-                <TimeSlot9 leftTime={startTime + time[expired] - new Date().getTime()} />
+                <TimeSlot10 leftTime={startTime + time[expired] - new Date().getTime()} />
                 <RedirectionF />
 
             </>;

@@ -125,5 +125,17 @@ const TimeSlot9 = ({ leftTime }) => {
     return <div className="time-left">{parseInt(time / 60000)} : {two(parseInt(time / 1000) - 60 * parseInt(time / 60000))}</div>
 }
 
+const TimeSlot10 = ({ leftTime }) => {
+    const [time, setTime] = useState(leftTime);
 
-export { TimeSlot1, TimeSlot2, TimeSlot3, TimeSlot4, TimeSlot5, TimeSlot6, TimeSlot7, TimeSlot8, TimeSlot9 };
+    useEffect(() => {
+        if (time >= 1000) {
+            setTimeout(() => {
+                setTime(prev => prev - 1000);
+            }, 1000);
+        }
+    }, [time]);
+    return <div className="time-left">{parseInt(time / 60000)} : {two(parseInt(time / 1000) - 60 * parseInt(time / 60000))}</div>
+}
+
+export { TimeSlot1, TimeSlot2, TimeSlot3, TimeSlot4, TimeSlot5, TimeSlot6, TimeSlot7, TimeSlot8, TimeSlot9, TimeSlot10 };
