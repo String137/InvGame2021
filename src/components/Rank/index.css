@@ -1,0 +1,58 @@
+.final-rank-page-container{
+    display: flex;
+}
+.final-rank-container{
+    font-size: 20px;
+    font-weight: 500;
+    margin: 70px 20px 20px 20px;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    background-color: white;
+    width: 70%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+.final-rank-header{
+    width: 100%;
+    height: 38px;
+    font-size: 20px;
+    font-weight: 700;
+    padding-top: 12px;
+    text-align: center;
+    background-color: rgb(244, 244, 248);
+    border-radius: 20px;
+    margin: 20px;
+}
+.final-user-rank, .final-company-rank{
+    width: 100%;
+    text-align: center;
+    line-height: 30px;
+}
+.final-rank-text{
+    width: 100%;
+    font-size: 30px;
+}
+hr{
+    position: relative;
+    width: 100%;
+    border: none;
+    margin-top: 20px;
+    padding: 0;
+    border-top: 1px solid lightgrey; 
+}
+.rank-left-header-container{
+    
+    width: 30%;
+    min-width: 250px;
+    color: rgb(48, 212, 254);
+}
+.rank-left-header-text{
+    position: fixed;
+    left: 7%;
+    top: 50%;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 700;
+}

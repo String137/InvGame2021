@@ -103,7 +103,6 @@ const GamepageBase = () => {
             </>;
         default:
             return <div>
-                <div>Rank!</div>
                 <Rank />
             </div>;
     }

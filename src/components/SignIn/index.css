@@ -30,7 +30,7 @@ h1{
     flex-wrap: wrap;
     justify-content: center;
 }
-hr{
+.signin-form hr{
     position: relative;
     width: 30%;
     border: none;
