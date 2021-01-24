@@ -1,13 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import * as assets from '../../constants/money';
-import { withAuthorization } from '../Session';
-import { SignUpForm } from '../SignUp';
 import { withFirebase } from "../Firebase";
-import { Link, withRouter } from 'react-router-dom';
-import Video1 from '../Video/Video1';
-import Video2 from '../Video/video2';
-import Video3 from '../Video/video3';
-import Final from '../Video/final';
+import { withRouter } from 'react-router-dom';
 import InvPage from '../InvPage';
 import Redirection0 from '../Redirection/redirection0';
 import Redirection1 from '../Redirection/redirection1';
@@ -21,10 +15,9 @@ import Rank from '../Rank';
 import './index.css';
 // import { useBeforeunload } from 'react-beforeunload';
 
-const GamepageBase = (props) => {
-    const [startTime, setStartTime] = useState(TIME.START_TIME); //useState(new Date().getTime());
+const GamepageBase = () => {
+    const [startTime] = useState(TIME.START_TIME);
     const [expired, setExpired] = useState(0);
-    const [index, setIndex] = useState(0);
     const time = [
         0,
         TIME.ACC_ROUND1_VIDEO_OFFSET,
@@ -45,16 +38,8 @@ const GamepageBase = (props) => {
         }
 
 
-    }, [expired]);
-    // useBeforeunload(() => "You'll lose your data!");
-    //     window.addEventListener("beforeunload", (ev) => 
-    // { 
-    //     ev.preventDefault();
-    //     alert("hey");
-    //     const fb = props.firebase;
-    //     console.log(fb.auth.currentUser);
-    //     return ev.returnValue = 'Are you sure you want to close?';
-    // });
+    }, [expired, startTime, time]);
+   
     switch (expired) {
         case 0:
             return <>

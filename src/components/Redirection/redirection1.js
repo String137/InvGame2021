@@ -72,7 +72,7 @@ const Redirection1Base = (props) => {
         updates[`/users/${user.uid}/asset`] = curAsset + reward;
         for (index = 0; index < 9; index++) {
             updates[`/users/${user.uid}/invest/company${index}/curm`] = value_list[index];
-            updates[`/users/${user.uid}/invest/company${index}/aftm`] = value_list[index];
+            // updates[`/users/${user.uid}/invest/company${index}/aftm`] = value_list[index];
         }
         fb.db.ref().update(updates);
     }
@@ -108,19 +108,19 @@ const Redirection1Base = (props) => {
     async function updatesubmit() {
         console.log("updatesubmit!");
         const snapshot = await fb.db.ref(`/users/${user.uid}/round1submitted/`).once('value');
-        const snapshotuse = await fb.db.ref(`/using/`).once('value');
+        // const snapshotuse = await fb.db.ref(`/using/`).once('value');
         if (snapshot.val() !== 2) {
             return;
-        }
-        if (snapshotuse.val() === true) {
-            return;
-        }
+        }  
         else {
-            fb.db.ref('/').update({ using: true });
-            const snap = await fb.db.ref('/round1submitted').once('value');
-            fb.db.ref('/').update({ round1submitted: snap.val() + 1 });
+            // fb.db.ref('/').update({ using: true });
+            var snap = await fb.db.ref('/round1submitted');
+            snap.transaction(function(param){
+                return param + 1;
+            });
+            
             fb.db.ref(`/users/${user.uid}`).update({ round1submitted: 3 });
-            fb.db.ref('/').update({ using: false });
+            // fb.db.ref('/').update({ using: false });
             clearInterval(us);
         }
     }

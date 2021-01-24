@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
 import * as assets from '../../constants/money';
 import CompanyPage from './CompanyPage';
 import './index.css';
 
 
-const InvPageBase = ({ round, firebase, history, count }) => {
+const InvPageBase = ({ round, firebase, count }) => {
     const [curms, setCurms] = useState([]);
     const [aftms, setAftms] = useState([]);
     const [names, setNames] = useState([]);
     const [asset, setAsset] = useState(0);
     const [inputs, setInputs] = useState([]);
-    const [inputsum, setInputsum] = useState(0);
+    const [inputsum] = useState(0);
     const [invDone, setInvDone] = useState(false);
     const [invDoneCheck, setInvDoneCheck] = useState(true);
     const [check, setCheck] = useState(false);
@@ -69,7 +68,6 @@ const InvPageBase = ({ round, firebase, history, count }) => {
                 return snapshot;
             }
             async function getRank() {
-                var updates = {};
                 //updates['/equal1']=false;
                 //updates['/round1submitted']=0;
                 const snapshot = await fb.db.ref('/companies/').once('value');
@@ -77,8 +75,6 @@ const InvPageBase = ({ round, firebase, history, count }) => {
                 const companyRankList = objs.sort((a, b) => a[`stock`] < b[`stock`] ? 1 : -1);
                 return companyRankList.map(res => res['index']);
             }
-
-
 
             getRank().then(res => {
                 if (rankedList !== res) {
@@ -118,7 +114,7 @@ const InvPageBase = ({ round, firebase, history, count }) => {
 
 
         // alert(`니 자산: ${asset-inputsum}`);
-    }, [aftms, asset, curms, inputs, invDone, invDoneCheck, names, inputsum, check, loaded]);
+    }, [aftms, asset, curms, inputs, invDone, invDoneCheck, names, inputsum, check, loaded, fb.auth.currentUser, fb.db, rankedList]);
 
     // setInputsum(inputs.reduce((a, b) => a+b, 0));
     async function complete({ target: { checked } }) {

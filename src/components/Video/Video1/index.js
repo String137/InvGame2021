@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import * as assets from '../../../constants/money';
-import { withAuthorization } from '../../Session';
-import { SignUpForm } from '../../SignUp';
-import Images1 from '../../Images';
-import { withFirebase } from "../../Firebase";
-import { Link, withRouter } from 'react-router-dom';
 import './index.css';
 
-///////
 
 const Thumbnail = ({ companyName }) => {
   const [selected, setSelected] = useState(false);
@@ -33,7 +26,7 @@ const Thumbnail = ({ companyName }) => {
 
   useEffect(() => {
     document.getElementById(companyName).style.backgroundColor = color;
-  }, [selected]);
+  }, [color, companyName, selected]);
   return (
     <>
       <label className="logo" id={companyName}>

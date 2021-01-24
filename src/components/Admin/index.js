@@ -1,8 +1,6 @@
-import { user } from 'firebase-functions/lib/providers/auth';
 import React, { Component } from 'react';
 // import Time from '../../constants/time'
 import { withFirebase } from '../Firebase';
-import login from './getLoggedin';
 import * as assets from '../../constants/money';
 import './index.css';
 

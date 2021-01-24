@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, Router } from 'react-router-dom';
-import { withFirebase } from '../Firebase';
+import { Link } from 'react-router-dom';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
@@ -23,7 +22,7 @@ const Navigation = () => (
           return <div></div>;
         }
         else {
-          return (authUser && authUser.emailVerified || window.location.pathname === '/game') ? (isAdmin(authUser) ? <NavigationAdmin /> : <NavigationAuth />) : <NavigationNonAuth />;
+          return ((authUser && authUser.emailVerified) || window.location.pathname === '/game') ? (isAdmin(authUser) ? <NavigationAdmin /> : <NavigationAuth />) : <NavigationNonAuth />;
         }
       }
       }

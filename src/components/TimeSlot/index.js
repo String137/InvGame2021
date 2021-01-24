@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
 import './index.css';
 
 function two(num) {

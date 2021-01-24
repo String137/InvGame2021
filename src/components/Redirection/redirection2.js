@@ -108,19 +108,18 @@ const Redirection2Base = (props) => {
     async function updatesubmit() {
         console.log("updatesubmit!");
         const snapshot = await fb.db.ref(`/users/${user.uid}/round2submitted/`).once('value');
-        const snapshotuse = await fb.db.ref(`/using/`).once('value');
+        // const snapshotuse = await fb.db.ref(`/using/`).once('value');
         if (snapshot.val() !== 2) {
             return;
         }
-        if (snapshotuse.val() === true) {
-            return;
-        }
         else {
-            fb.db.ref('/').update({ using: true });
-            const snap = await fb.db.ref('/round2submitted').once('value');
-            fb.db.ref('/').update({ round2submitted: snap.val() + 1 });
+            // fb.db.ref('/').update({ using: true });
+            var snap = await fb.db.ref('/round2submitted');
+            snap.transaction(function(param){
+                return param + 1;
+            });
             fb.db.ref(`/users/${user.uid}`).update({ round2submitted: 3 });
-            fb.db.ref('/').update({ using: false });
+            // fb.db.ref('/').update({ using: false });
             clearInterval(us);
         }
     }

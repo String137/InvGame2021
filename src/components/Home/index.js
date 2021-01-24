@@ -1,7 +1,6 @@
 import React from 'react';
 import * as assets from '../../constants/money';
 import { withAuthorization } from '../Session';
-import firebase from '../Firebase/firebase'
 import './index.css';
 
 
@@ -31,12 +30,12 @@ class HomePage extends React.Component {
     const { username, asset } = this.state;
 
     if (this.props.firebase.auth.currentUser != null) {
-      this.props.firebase.user(this.props.firebase.auth.currentUser.uid).child("messages").child("front").on('value', snapshot => {
+      this.props.firebase.user(this.props.firebase.auth.currentUser.uid).child("messages").child("front").on('value', () => {
         this.props.firebase.user(this.props.firebase.auth.currentUser.uid).child("messages").transaction(snapshot => {
           if (snapshot == null) {
             return snapshot;
           }
-          if (snapshot.queue == undefined)
+          if (snapshot.queue === undefined)
             return snapshot;
           while (snapshot.front < snapshot.queue.length - 1) {
 

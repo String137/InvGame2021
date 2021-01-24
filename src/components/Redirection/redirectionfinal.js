@@ -104,19 +104,18 @@ const RedirectionFBase = (props) => {
     async function updatesubmit() {
         console.log("updatesubmit!");
         const snapshot = await fb.db.ref(`/users/${user.uid}/finalsubmitted/`).once('value');
-        const snapshotuse = await fb.db.ref(`/using/`).once('value');
+        // const snapshotuse = await fb.db.ref(`/using/`).once('value');
         if (snapshot.val() !== 2) {
             return;
         }
-        if (snapshotuse.val() === true) {
-            return;
-        }
         else {
-            fb.db.ref('/').update({ using: true });
-            const snap = await fb.db.ref('/finalsubmitted').once('value');
-            fb.db.ref('/').update({ finalsubmitted: snap.val() + 1 });
+            // fb.db.ref('/').update({ using: true });
+            var snap = await fb.db.ref('/finalsubmitted').once('value');
+            snap.transaction(function(param) {
+                return param + 1;
+            })
             fb.db.ref(`/users/${user.uid}`).update({ finalsubmitted: 3 });
-            fb.db.ref('/').update({ using: false });
+            // fb.db.ref('/').update({ using: false });
             clearInterval(us);
         }
     }
