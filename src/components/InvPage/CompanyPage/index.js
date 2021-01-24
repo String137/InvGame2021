@@ -63,7 +63,7 @@ const CompanyPage = ({ curm, name, invDone, index, calc, firebase, aftm }) => {
         updates[`/users/${uid}/invest/company${index}/aftm`] = aftm;
         fb.db.ref().update(updates);
     }
-
+   
     return (
         <div className="wrapper">
             <div className="company-logo">

@@ -203,6 +203,9 @@ function three(num) {
 }
 function putcommas(num) {
   var res = "";
+  if(num===0){
+    return 0;
+}
   while (num > 0) {
       if(num>=1000){
           res = "," + three(num%1000) + res;

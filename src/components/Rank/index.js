@@ -28,6 +28,28 @@ const RankBase = ({ firebase }) => {
     }
     getRank();
     getCompany();
+    function three(num) {
+        if (num < 10) {
+            return "00" + num;
+        }
+        else if (num < 100) {
+            return "0" + num;
+        }
+        else return num;
+    }
+    function putcommas(num) {
+        var res = "";
+        while (num > 0) {
+            if(num>=1000){
+                res = "," + three(num%1000) + res;
+            }
+            else{
+                res = num%1000 + res;
+            }
+            num=parseInt(num/1000);
+        }
+        return res;
+    }
     // console.log("Rank", userList);
     return (
         <div className="final-rank-page-container">
@@ -43,7 +65,7 @@ const RankBase = ({ firebase }) => {
                     참가자 순위
                 </div>
                 <div className="final-user-rank">
-                    {userList.slice(0,10).map(res => <div>{res["username"]}: {res["asset"]}원</div>)}
+                    {userList.slice(0,10).map(res => <div>{res["username"]}: {putcommas(res["asset"])}원</div>)}
                 </div>
                 <div className="final-rank-header">
                     스타트업 순위

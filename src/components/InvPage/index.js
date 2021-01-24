@@ -165,6 +165,9 @@ const InvPageBase = ({ round, firebase, count }) => {
     }
     function putcommas(num) {
         var res = "";
+        if(num===0){
+            return 0;
+        }
         while (num > 0) {
             if(num>=1000){
                 res = "," + three(num%1000) + res;
@@ -176,6 +179,31 @@ const InvPageBase = ({ round, firebase, count }) => {
         }
         return res;
     }
+    function shuffle(arr) {
+        const arr9 = [4,2,1,0,3,6,8,7,5];
+        const arr5 = [1,4,0,3,2];
+        const arr3 = [1,0,2];
+        const arrs = [];
+        // console.log(arr.size);
+        if(arr.length===9){
+            for(let i=0;i<9;i++){
+                arrs.push(arr[arr9[i]]);
+            }
+        }
+        if(arr.length===5){
+            for(let i=0;i<5;i++){
+                arrs.push(arr[arr5[i]]);
+            }
+        }
+        if(arr.length===3){
+            for(let i=0;i<3;i++){
+                arrs.push(arr[arr3[i]]);
+            }
+        }
+        // console.log(arr,arr[arr9[2]],arrs);
+        return arrs;
+    }
+    //shuffle(0,5);
     return (
         <>
             <div className="inv-page-container">
@@ -199,7 +227,7 @@ const InvPageBase = ({ round, firebase, count }) => {
                 </div>
                 <div className="inv-page">
                     {!setLoaded ? <div>"Loading..."</div> : <>
-                        {rankedList.slice(0, count).map(i => <div className={`comp${rankedList[i]}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i} /></div>)}</>}
+                        {shuffle(rankedList.slice(0, count)).map(i => <div className={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i} /></div>)}</>}
                 </div>
             </div>
         </>
