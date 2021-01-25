@@ -14,8 +14,8 @@ const InvPageBase = ({ round, firebase, count }) => {
     const [asset, setAsset] = useState(0);
     const [inputs, setInputs] = useState([]);
     const [inputsum] = useState(0);
-    const [invDone, setInvDone] = useState(false);
-    const [invDoneCheck, setInvDoneCheck] = useState(true);
+    const [invDone, setInvDone] = useState(true);
+    const [invDoneCheck, setInvDoneCheck] = useState(false);
     const [check, setCheck] = useState(false);
     const [rankedList, setRankedList] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -84,11 +84,11 @@ const InvPageBase = ({ round, firebase, count }) => {
                 getNames();
                 getCurms();
                 getAftms();
-                setInvDoneCheck(false);
-            }
-            if (invDone) {
                 setInvDone(false);
             }
+            // if (invDone) {
+            //     setInvDone(false);
+            // }
             if (check) {
 
                 // setInputsum(inputs.reduce((a, b) => a+b, 0));
@@ -114,8 +114,8 @@ const InvPageBase = ({ round, firebase, count }) => {
     // setInputsum(inputs.reduce((a, b) => a+b, 0));
     async function complete({ target: { checked } }) {
         //CompanyPage.aftm
-        setInvDone(true);
-        setInvDoneCheck(true);
+        // setInvDone(true);
+        setInvDoneCheck(res=>!res);
         var input = inputs.reduce((a, b) => a + b, 0);
         var updates = {};
         if (asset >= input && checked) {
@@ -225,7 +225,7 @@ const InvPageBase = ({ round, firebase, count }) => {
                 </div>
                 <div className="inv-page">
                     {!setLoaded ? <div>"Loading..."</div> : <>
-                        {shuffle(rankedList.slice(0, count)).map(i => <div className={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i} /></div>)}</>}
+                        {shuffle(rankedList.slice(0, count)).map(i => <div className={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDoneCheck} aftm={aftms[i]} index={i} /></div>)}</>}
                 </div>
             </div>
         </>
