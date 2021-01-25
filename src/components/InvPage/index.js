@@ -14,8 +14,8 @@ const InvPageBase = ({ round, firebase, count }) => {
     const [asset, setAsset] = useState(0);
     const [inputs, setInputs] = useState([]);
     const [inputsum] = useState(0);
-    const [invDone, setInvDone] = useState(true);
-    const [invDoneCheck, setInvDoneCheck] = useState(false);
+    const [invDone, setInvDone] = useState(false);
+    const [invDoneCheck, setInvDoneCheck] = useState(true);
     const [check, setCheck] = useState(false);
     const [rankedList, setRankedList] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -84,11 +84,8 @@ const InvPageBase = ({ round, firebase, count }) => {
                 getNames();
                 getCurms();
                 getAftms();
-                setInvDone(false);
+                setInvDoneCheck(false);
             }
-            // if (invDone) {
-            //     setInvDone(false);
-            // }
             if (check) {
 
                 // setInputsum(inputs.reduce((a, b) => a+b, 0));
@@ -109,17 +106,19 @@ const InvPageBase = ({ round, firebase, count }) => {
 
 
         // alert(`니 자산: ${asset-inputsum}`);
-    }, [aftms, asset, curms, inputs, invDone, invDoneCheck, names, inputsum, check, loaded, fb.auth.currentUser, fb.db, rankedList]);
+    }, [aftms, asset, curms, inputs, invDoneCheck, names, inputsum, check, loaded]);
 
     // setInputsum(inputs.reduce((a, b) => a+b, 0));
     async function complete({ target: { checked } }) {
         //CompanyPage.aftm
-        // setInvDone(true);
-        setInvDoneCheck(res=>!res);
+        setInvDone(res=>!res);
+        setInvDoneCheck(true);
+        
         var input = inputs.reduce((a, b) => a + b, 0);
         var updates = {};
         if (asset >= input && checked) {
             updates[`/users/${fb.auth.currentUser.uid}/invest/input`] = input;
+            document.querySelectorAll("input").forEach(res=>res.disabled = true);
         }
         else {
             const snapshot = await fb.db.ref(`/users/${fb.auth.currentUser.uid}/invest/`).once('value');
@@ -129,6 +128,7 @@ const InvPageBase = ({ round, firebase, count }) => {
             }
         }
         fb.db.ref().update(updates);
+        
     }
 
     function getInput(data, index, radix) {
@@ -217,7 +217,7 @@ const InvPageBase = ({ round, firebase, count }) => {
                             <label>
                                 <div className="invest-done-container">
                                     <input type="checkbox" className="invest-done" onClick={complete} />
-                                    <div className="invest-done-text">투자</div>
+                                    <div className="invest-done-text">확정</div>
                                 </div>
                             </label>
                         </div>
@@ -225,7 +225,7 @@ const InvPageBase = ({ round, firebase, count }) => {
                 </div>
                 <div className="inv-page">
                     {!setLoaded ? <div>"Loading..."</div> : <>
-                        {shuffle(rankedList.slice(0, count)).map(i => <div className={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDoneCheck} aftm={aftms[i]} index={i} /></div>)}</>}
+                        {shuffle(rankedList.slice(0, count)).map(i => <div className={`comp${i}`}><CompanyPage key={i} calc={getInput} name={names[i]} curm={curms[i]} invDone={invDone} aftm={aftms[i]} index={i} /></div>)}</>}
                 </div>
             </div>
         </>

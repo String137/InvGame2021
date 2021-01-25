@@ -19,7 +19,7 @@
     font-size: 50px;
 } */
 .myasset{
-    font-size: 40px;
+    font-size: 35px;
 }
 
 .inv-page-container{
@@ -37,13 +37,17 @@
     align-content: space-between;
 }
 .left-header-container{
+    min-width: 300px;
     width: 30%;
-    min-width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     color: rgb(48, 212, 254);
 }
 .left-header{
     position: fixed;
-    left: 8%;
+    width: 250px;
+    margin: 0 auto;
     top: 20%;
     text-align: center;
     font-size: 40px;

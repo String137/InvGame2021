@@ -17,7 +17,7 @@ import './index.css';
 
 const GamepageBase = () => {
     const [startTime] = useState(TIME.START_TIME);
-    const [expired, setExpired] = useState(0);
+    const [expired, setExpired] = useState(2);
     const time = [
         0,
         TIME.ACC_ROUND1_VIDEO_OFFSET,
@@ -31,7 +31,7 @@ const GamepageBase = () => {
         TIME.ACC_FINAL_REDIRECTION_OFFSET
     ];
     useEffect(() => {
-        if (expired <= 9) {
+        if (expired <= 1) {
             setTimeout(() => {
                 setExpired(expired + 1);
             }, startTime + time[expired] - new Date().getTime());

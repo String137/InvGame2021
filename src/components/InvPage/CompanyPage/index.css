@@ -11,7 +11,7 @@
     "company-logo company-logo"
     "company company"
     "input input"
-    "invest widthdraw"
+    "invest-withdraw invest-withdraw"
     "curinv-text curinv"
     "aftinv-text aftinv";
 }
@@ -37,11 +37,14 @@
 .aftinv{ 
     grid-area: aftinv;
  }
-.invest{
-    grid-area: invest;
-}
-.widthdraw{
-    grid-area: widthdraw;
+.invest-withdraw{
+    grid-area: invest-withdraw;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(48, 212, 254);
+    padding: 8px 1px 12px 1px;
+    border-radius: 30px;
+    width: 40%;
 }
 .curinv-text{ 
     text-align: center;
@@ -50,4 +53,24 @@
 .aftinv-text{ 
     text-align: center;
     grid-area: aftinv-text;
+ }
+ .invest-radio, .withdraw-radio{
+    display: none;
+ }
+ .invest-radio:checked~.invest-text, .withdraw-radio:checked~.withdraw-text{
+    color: black;
+    width: 50px;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: white;
+    text-align: center;
+    transition: 0.3s;
+ }
+ .invest-text, .withdraw-text{
+    font-size: 10px;
+    color: white;
+    width: 50px;
+    padding: 10px;
+    border-radius: 30px;
+    text-align: center;
  }

@@ -9,7 +9,7 @@ const CompanyPage = ({ curm, name, invDone, index, calc, firebase, aftm }) => {
     //var aftm = 0;
     // curm = aftm;
     const [inputm, setInputm] = useState("0");
-    const [radioNum, setRadioNum] = useState(-1);
+    const [radioNum, setRadioNum] = useState(0);
     const handleChange = (event) => {
         const { target: { value } } = event;
         
@@ -73,13 +73,15 @@ const CompanyPage = ({ curm, name, invDone, index, calc, firebase, aftm }) => {
                 <Company className="company" name={name} />
             </div>
             <input type="text" min="0" className="input" onChange={handleChange} value={inputm} />
-            <div className="invest">
-                <input type="radio" id={name + "inv"} name={name + "select"} onClick={() => { setInputm("0"); setRadioNum(0) }} />
-                <label htmlFor={name + "inv"}>투자</label>
-            </div>
-            <div className="withdraw">
-                <input type="radio" id={name + "wd"} name={name + "select"} onClick={() => { setInputm("0"); setRadioNum(1) }} />
-                <label htmlFor={name + "wd"}>철회</label>
+            <div className="invest-withdraw">
+                <div className="invest">
+                    <input className="invest-radio" type="radio" id={name + "inv"} name={name + "select"} onClick={() => { setInputm("0"); setRadioNum(0) }} checked={radioNum===0}/>
+                    <label className="invest-text" htmlFor={name + "inv"}>투자</label>
+                </div>
+                <div className="withdraw">
+                    <input className="withdraw-radio" type="radio" id={name + "wd"} name={name + "select"} onClick={() => { setInputm("0"); setRadioNum(1) }} checked={radioNum===1}/>
+                    <label className="withdraw-text" htmlFor={name + "wd"}>철회</label>
+                </div>
             </div>
             <div className="curinv-text">curm</div>
             <div className="curinv">
