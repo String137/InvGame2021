@@ -1,6 +1,7 @@
 .ul{
-    background-color: coral;
+    background-color: none;
 }
 .render{
-    background-color: coral;
+    background-color: none;
+    color: rgb(48, 212, 254);
 }
