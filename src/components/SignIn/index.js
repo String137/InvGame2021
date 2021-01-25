@@ -76,6 +76,7 @@ class SignInFormBase extends Component {
             }
             else {
               alert("이미 로그인함");
+              this.props.firebase.doSignOut();
             }
           });
 

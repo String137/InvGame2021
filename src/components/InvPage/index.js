@@ -65,8 +65,6 @@ const InvPageBase = ({ round, firebase, count }) => {
                 return snapshot;
             }
             async function getRank() {
-                //updates['/equal1']=false;
-                //updates['/round1submitted']=0;
                 const snapshot = await fb.db.ref('/companies/').once('value');
                 const objs = snapshot.val();
                 const companyRankList = objs.sort((a, b) => a[`stock`] < b[`stock`] ? 1 : -1);
