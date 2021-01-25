@@ -9,16 +9,18 @@ class AdminPage extends Component {
 
     this.state = {
       loading: false,
+      user: null,
       users: [],
       companies: [],
       curList: [],
       round: 0,
     };
   }
-
+  
   componentDidMount() {
     this.setState({ loading: true });
-
+    this.setState({user:this.props.firebase.auth.currentUser});
+    // console.log(this.state.user);
     this.props.firebase.db.ref('/users').once('value').then(snapshot => {
       const usersObject = snapshot.val();
       if (usersObject) {
@@ -59,6 +61,10 @@ class AdminPage extends Component {
     // this.getWinner().then(()=>{
     //   this.setState({rank1load: true});
     // });
+    if(this.state.user!==this.props.firebase.auth.currentUser){
+      this.setState({user:this.props.firebase.auth.currentUser});
+      // console.log(this.state.user);
+    }
   }
   setequal1 = () => {
     var updates = {};
@@ -213,7 +219,7 @@ class AdminPage extends Component {
         clearInterval(this.aa);
       }
     }
-    console.log(round);
+    // console.log(round);
     // clearInterval(this.aa);
   }
   getWinner = async () => {
@@ -296,6 +302,12 @@ class AdminPage extends Component {
   render() {
     const { users, loading } = this.state;
     // this.setRound();
+    if(this.state.user===null){
+      return <div className="nouser">No user</div>;
+    }
+    else if(this.state.user.email!=="icists@icists.org"){
+      return <div className="noauth">No auth</div>;
+    }
     return (
       <div className="render">
         <h1>Admin</h1>
@@ -317,7 +329,7 @@ class AdminPage extends Component {
             copyText = copyText + document.getElementById('passlist').children[i].innerHTML;
             copyText = copyText + "\n";
           }
-          console.log(copyText);
+          // console.log(copyText);
           const temp = document.createElement('textarea');
           temp.value = copyText;
           document.body.appendChild(temp);
