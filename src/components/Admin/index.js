@@ -12,6 +12,8 @@ class AdminPage extends Component {
       loading: false,
       users: [],
       companies: [],
+      curList: [],
+      round: 0,
     };
   }
 
@@ -43,6 +45,9 @@ class AdminPage extends Component {
         });
       }
     });
+    // this.getWinner().then(()=>{
+    //   this.setState({rank1load:false});
+    // });
   }
 
   componentWillUnmount() {
@@ -50,6 +55,13 @@ class AdminPage extends Component {
       loading: true,
     });
   }
+  componentDidUpdate(){
+    // if(this.rank1load===false){
+    // this.getWinner().then(()=>{
+    //   this.setState({rank1load: true});
+    // });
+  }
+  
   setequal1 = () => {
     var updates = {};
     updates['/equal1'] = true;
@@ -80,7 +92,7 @@ class AdminPage extends Component {
     updates['/round2submitted'] = 0;
     updates['/round3submitted'] = 0;
     updates['/finalsubmitted'] = 0;
-    updates['/using'] = false;
+    updates['/finRound'] = 0;
 
     this.props.firebase.db.ref().update(updates)
     this.state.users.map(user => this.props.firebase.user(user.uid).update({
@@ -171,9 +183,121 @@ class AdminPage extends Component {
       return "Wait...";
     }
   }
+
+  setRound = async () => {
+    const snapshot = await this.props.firebase.db.ref('/finRound').once('value');
+    var round = snapshot.val();
+    if (round === 0) {
+      const snap = await this.props.firebase.db.ref('equal1').once('value');
+      if (snap.val() === true) {
+        this.props.firebase.db.ref('/').update({ finRound: 1 });
+        // clearInterval(this.aa);
+      }
+    }
+    if (round === 1) {
+      const snap = await this.props.firebase.db.ref('equal2').once('value');
+      if (snap.val() === true) {
+        this.props.firebase.db.ref('/').update({ finRound: 2 });
+        // clearInterval(this.aa);
+      }
+    }
+    if (round === 2) {
+      const snap = await this.props.firebase.db.ref('equal3').once('value');
+      if (snap.val() === true) {
+        this.props.firebase.db.ref('/').update({ finRound: 3 });
+        // clearInterval(this.aa);
+      }
+    }
+    if (round === 3) {
+      const snap = await this.props.firebase.db.ref('equalf').once('value');
+      if (snap.val() === true) {
+        this.props.firebase.db.ref('/').update({ finRound: 4 });
+        clearInterval(this.aa);
+      }
+    }
+    console.log(round);
+    // clearInterval(this.aa);
+  }
+  getWinner = async () => {
+    // return "1";
+    const snapshot = await this.props.firebase.db.ref('/finRound').once('value');
+    const round = snapshot.val();
+    // this.setState({rank1load: true});
+    // console.log("hey",this.state.curList);
+    if (round === 0) {
+      return 1;
+    }
+    else if (round === 1) {
+      // console.log("hihhi");
+      const snap = await this.props.firebase.db.ref('/companies/').once('value');
+      const list = snap.val().map(e=>({rank: e.round1rank, index: e.index, name: e.companyname}));
+      // console.log(list.map(e=>e));
+      list.sort(function(a, b){
+        if (a.rank > b.rank) {
+          return 1;
+        }
+        else{
+          return -1;
+        }
+      });
+      this.setState({curList: list});
+      this.setState({round: 1});
+      return list;
+    }
+    else if (round === 2) {
+      const snap = await this.props.firebase.db.ref('/companies/').once('value');
+      const list = snap.val().map(e=>({rank: e.round2rank, index: e.index, name: e.companyname}));
+      list.sort(function(a, b){
+        if (a.rank > b.rank) {
+          return 1;
+        }
+        else{
+          return -1;
+        }
+      });
+      this.setState({curList: list});
+      this.setState({round: 2});
+      return list;
+    }
+    else if (round === 3) {
+      const snap = await this.props.firebase.db.ref('/companies/').once('value');
+      const list = snap.val().map(e=>({rank: e.round3rank, index: e.index, name: e.companyname}));
+      list.sort(function(a, b){
+        if (a.rank > b.rank) {
+          return 1;
+        }
+        else{
+          return -1;
+        }
+      });
+      this.setState({curList: list.slice(0,5)});
+      this.setState({round: 3});
+      return list;
+    }
+    else if (round === 4) {
+      const snap = await this.props.firebase.db.ref('/companies/').once('value');
+      const list = snap.val().map(e=>({rank: e.finalrank, index: e.index, name: e.companyname}));
+      list.sort(function(a, b){
+        if (a.rank > b.rank) {
+          return 1;
+        }
+        else{
+          return -1;
+        }
+      });
+      this.setState({curList: list.slice(0,3)});
+      this.setState({round: 4});
+      return list;
+    }
+
+  }
+
+  aa = setInterval(this.setRound, 1000);
+  bb = setInterval(this.getWinner, 1000);
+
   render() {
     const { users, loading } = this.state;
-
+    // this.setRound();
     return (
       <div className="render">
         <h1>Admin</h1>
@@ -186,34 +310,37 @@ class AdminPage extends Component {
         <h1>1st {this.getRankn(1)}</h1>
         <h1>2nd {this.getRankn(2)}</h1>
         <h1>3rd {this.getRankn(3)}</h1>
-        <UserList users={users} />
+        
+        Round {this.state.round} {this.state.curList.map(e=><div>{e.rank}. {e.name}</div>)}
         <button onClick={this.resetInfo}>RESET Users INFO</button>
+        <UserList users={users} />
       </div>
     );
   }
 }
+
 function three(num) {
   if (num < 10) {
-      return "00" + num;
+    return "00" + num;
   }
   else if (num < 100) {
-      return "0" + num;
+    return "0" + num;
   }
   else return num;
 }
 function putcommas(num) {
   var res = "";
-  if(num===0){
+  if (num === 0) {
     return 0;
-}
+  }
   while (num > 0) {
-      if(num>=1000){
-          res = "," + three(num%1000) + res;
-      }
-      else{
-          res = num%1000 + res;
-      }
-      num=parseInt(num/1000);
+    if (num >= 1000) {
+      res = "," + three(num % 1000) + res;
+    }
+    else {
+      res = num % 1000 + res;
+    }
+    num = parseInt(num / 1000);
   }
   return res;
 }
