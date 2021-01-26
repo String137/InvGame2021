@@ -25,6 +25,7 @@ const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
   error: null,
+  radio: 0,
 };
 
 class SignUpFormBase extends Component {
@@ -57,6 +58,7 @@ class SignUpFormBase extends Component {
             round3getsubmit: false,
             finalsubmitted: 0,
             finalgetsubmit: false,
+            online: this.state.radio === 1,
             invest: {
               company0: {
                 curm: 0,
@@ -132,7 +134,8 @@ class SignUpFormBase extends Component {
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
-      username === '';
+      username === '' ||
+      this.state.radio === 0;
 
     return (
       <>
@@ -173,6 +176,10 @@ class SignUpFormBase extends Component {
             type="password"
             placeholder="Confirm Password"
           />
+          <input className="online-radio" type="radio" id="online" onClick={() => { this.setState({ radio: 1 }) }} checked={this.state.radio === 1} />
+          <label className="online-text" htmlFor="online">온라인</label>
+          <input className="blend-radio" type="radio" id="blend" onClick={() => { this.setState({ radio: 2 }) }} checked={this.state.radio === 2} />
+          <label className="blend-text" htmlFor="blend">블렌딩</label>
           <button className="email-send" disabled={isInvalid} type="submit">
             Send Verification Link to Email
         </button>

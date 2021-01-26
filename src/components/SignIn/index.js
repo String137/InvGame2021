@@ -55,6 +55,7 @@ class SignInFormBase extends Component {
       .then((user) => {
         if (user.user.emailVerified) {
           this.getLoggedIn(user.user).then((res) => {
+            console.log("logged in?");
             if (res === false) {
               // console.log("this",this);
               this.setState({ ...INITIAL_STATE });
@@ -75,8 +76,9 @@ class SignInFormBase extends Component {
               }
             }
             else {
+              console.log("이미..");
               alert("이미 로그인함");
-              this.props.firebase.db.ref(`/users/${user.uid}/`).update({loggedin:false});
+              this.props.firebase.db.ref(`/users/${user.uid}`).update({loggedin:false});
               console.log("hihi");
               this.props.firebase.doSignOut();
               console.log("hell");
