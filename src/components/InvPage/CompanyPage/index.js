@@ -83,11 +83,11 @@ const CompanyPage = ({ curm, name, invDone, index, calc, firebase, aftm }) => {
                     <label className="withdraw-text" htmlFor={name + "wd"}>철회</label>
                 </div>
             </div>
-            <div className="curinv-text">curm</div>
+            <div className="curinv-text">현재 금액</div>
             <div className="curinv">
                 <CurInv money={curm} className="curinv" />
             </div>
-            <div className="aftinv-text">aftm</div>
+            <div className="aftinv-text">적용 후 금액</div>
             <div className="aftinv">
                 <AfterInv money={aftm} />
             </div>

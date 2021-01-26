@@ -1,4 +1,10 @@
-.style{
+.back{
     z-index: -1;
-    
+    /* opacity: 33%; */
+}
+.body{
+    z-index: -1;
+}
+.style{
+    z-index: -1000;
 }

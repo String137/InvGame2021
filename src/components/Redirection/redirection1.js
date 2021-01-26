@@ -58,6 +58,7 @@ const Redirection1Base = (props) => {
 
     }
     async function getCurmsAndSet() {
+        console.log("getcurmset");
         const snapshot = await fb.db.ref(`/users/${user.uid}/invest/`).once('value');
         const value_list = Object.values(snapshot.val()).map(e => e.aftm);
         const snapshot2 = await fb.db.ref('/companies/').once('value');

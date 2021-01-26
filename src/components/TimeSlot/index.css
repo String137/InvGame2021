@@ -8,4 +8,5 @@
     color: rgb(48, 212, 254);
     font-weight: 600;
     position: fixed;
+    z-index: 20;
 }

@@ -1,5 +1,5 @@
 export const INITIAL_ASSET = 10000000;
-export const ROUND1_REWARD_RATIO = [0.20, 0.18, 0.16, 0.12, 0.10, 0.06, 0.04, 0.02, 0.00];
+export const ROUND1_REWARD_RATIO = [0.20, 0.20, 0.20, 0.10, 0.10, 0.10, 0.05, 0.05, 0.05];
 export const ROUND2_REWARD_RATIO = [0.20, 0.16, 0.12, 0.08, 0.04, 0.00, 0.00, 0.00, 0.00];
 export const ROUND3_REWARD_RATIO = [0.20, 0.16, 0.12, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00];
 export const FINAL_REWARD_RATIO = [0.10, 0.00, -0.10, -1, -1, -1, -1, -1, -1];

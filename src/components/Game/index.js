@@ -17,7 +17,7 @@ import './index.css';
 
 const GamepageBase = () => {
     const [startTime] = useState(TIME.START_TIME);
-    const [expired, setExpired] = useState(2);
+    const [expired, setExpired] = useState(0);
     const time = [
         0,
         TIME.ACC_ROUND1_VIDEO_OFFSET,
@@ -31,7 +31,7 @@ const GamepageBase = () => {
         TIME.ACC_FINAL_REDIRECTION_OFFSET
     ];
     useEffect(() => {
-        if (expired <= 1) {
+        if (expired <= 9) {
             setTimeout(() => {
                 setExpired(expired + 1);
             }, startTime + time[expired] - new Date().getTime());
@@ -42,11 +42,12 @@ const GamepageBase = () => {
    
     switch (expired) {
         case 0:
-            return <>
+            return <div className="p5container">
                 <TimeSlot1 leftTime={startTime + time[expired] - new Date().getTime()} />
                 {/* <InvPage round={1} count={MONEY.ROUND1_TEAM} /> */}
-                <iframe className="p5" src="https://editor.p5js.org/quantum0430/embed/-b1N-tDv0" />
-            </>;
+                <iframe className="p5" src="https://editor.p5js.org/quantum0430/embed/-b1N-tDv0"/>
+                
+            </div>;
         case 1:
             return <>
                 <TimeSlot2 leftTime={startTime + time[expired] - new Date().getTime()} />

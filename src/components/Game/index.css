@@ -1,5 +1,12 @@
 .p5{
+    position: relative;
+    z-index: 0;
     width: 1920px;
     height:1080px;
-    z-index: 10;
+    
+    /* opacity: 0.33; */
+}
+.p5container{
+    position: relative;
+    z-index: 0;
 }
