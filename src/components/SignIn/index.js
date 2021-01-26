@@ -76,12 +76,13 @@ class SignInFormBase extends Component {
               }
             }
             else {
-              console.log("이미..");
+              // console.log("이미..");
               alert("이미 로그인함");
-              this.props.firebase.db.ref(`/users/${user.uid}`).update({loggedin:false});
-              console.log("hihi");
-              this.props.firebase.doSignOut();
-              console.log("hell");
+              // console.log(user.user.uid);
+              // this.props.firebase.db.ref(`/users/${user.user.uid}`).update({loggedin:false});
+              // console.log("hihi");
+              // this.props.firebase.doSignOut();
+              // console.log("hell");
             }
           });
 
