@@ -6,6 +6,7 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import './index.css'
 
+
 const SignInPage = () => (
   <div className="signin-container">
     <div className="graffiti-investmentgame">
@@ -44,10 +45,6 @@ class SignInFormBase extends Component {
     // console.log("loglog",loggedin);
     return loggedin;
   }
-  async getLoggedinUser() {
-    const snapshot = await this.props.firebase.db.ref('/loggedinUser').once('value');
-    return snapshot.val();
-  }
   onSubmit = event => {
     const { email, password } = this.state;
     this.props.firebase
@@ -63,26 +60,21 @@ class SignInFormBase extends Component {
                 this.props.history.push(ROUTES.ADMIN);
               }
               else {
-                var updates = {};
+                // var updates = {};
                 // console.log("hey");
-                this.getLoggedinUser().then(
-                  (logus) => {
-                    updates[`/loggedinUser/`] = logus + 1;
-                    updates[`/users/${user.user.uid}/loggedin`] = true;
-                    this.props.firebase.db.ref().update(updates);
-                    this.props.history.push(ROUTES.GAME);
-                  }
-                );
+                console.log("ㅗㅗㅗㅗ", this.props);
+                this.props.firebase.db.ref('/loggedinUser').transaction(function (param) {
+                  return param + 1;
+                });
+                this.props.firebase.db.ref(`/users/${user.user.uid}`).update({ loggedin: true });
+                this.props.history.push(ROUTES.GAME);
+
               }
             }
             else {
               // console.log("이미..");
               alert("이미 로그인함");
-              // console.log(user.user.uid);
-              // this.props.firebase.db.ref(`/users/${user.user.uid}`).update({loggedin:false});
-              // console.log("hihi");
-              // this.props.firebase.doSignOut();
-              // console.log("hell");
+
             }
           });
 

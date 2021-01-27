@@ -8,8 +8,14 @@ export const ROUND3_INVEST = 2 * 60 * 1000;
 export const FINAL_VIDEO = 1 * 60 * 1000;
 export const FINAL_INVEST = 2 * 60 * 1000;
 export const FINAL_REDIRECTION = 1 * 60 * 1000;
+const YEAR = 2021;
+const MONTH = 1;
+const DATE = 27;
+const HOUR = 23;
+const MIN = 55;
+const SEC = 0;
 
-export const START_TIME = new Date('January 27, 2021 20:30:00').getTime();
+export const START_TIME = 1000*(1611673200+HOUR*3600+MIN*60);
 
 export const ACC_ROUND1_VIDEO_OFFSET = ROUND1_VIDEO;
 export const ACC_ROUND1_INVEST_OFFSET = ACC_ROUND1_VIDEO_OFFSET + ROUND1_INVEST;
