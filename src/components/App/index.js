@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Navigation from '../Navigation';
@@ -14,7 +14,7 @@ import { withAuthentication } from '../Session';
 import GamePage from '../Game';
 import EmailSent from '../SignUp/emailsent';
 import './index.css';
-const App = () => {
+const App = (props) => {
   // window.addEventListener('beforeunload', (e)=>{
   //   e.preventDefault();
   //   var confirmationMessage = "hohoho";
@@ -22,6 +22,13 @@ const App = () => {
   //   e.returnValue = confirmationMessage; //Gecko + IE
   //   return confirmationMessage; 
   // })
+  
+  
+  // console.log(user);
+  
+  // if (user === null) {
+  //   return <div>hewiwiwiwiwi</div>
+  // }
   return (
     <Router>
       <div>

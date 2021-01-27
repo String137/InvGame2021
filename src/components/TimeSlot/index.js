@@ -1,6 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
+import * as TIME from '../../constants/time';
 
+const times = [
+    0,
+    TIME.ACC_ROUND1_VIDEO_OFFSET,
+    TIME.ACC_ROUND1_INVEST_OFFSET,
+    TIME.ACC_ROUND2_VIDEO_OFFSET,
+    TIME.ACC_ROUND2_INVEST_OFFSET,
+    TIME.ACC_ROUND3_VIDEO_OFFSET,
+    TIME.ACC_ROUND3_INVEST_OFFSET,
+    TIME.ACC_FINAL_VIDEO_OFFSET,
+    TIME.ACC_FINAL_INVEST_OFFSET,
+    TIME.ACC_FINAL_REDIRECTION_OFFSET
+];
 function two(num) {
     if (num < 10) {
         return "0" + num;
@@ -15,7 +28,7 @@ const TimeSlot1 = ({ leftTime }) => {
     useEffect(() => {
         if (time >= 1000) {
             setTimeout(() => {
-                setTime(prev => prev - 1000);
+                setTime(TIME.START_TIME+times[0]-new Date().getTime());
             }, 1000);
         }
     }, [time]);
@@ -28,7 +41,7 @@ const TimeSlot2 = ({ leftTime }) => {
     useEffect(() => {
         if (time >= 1000) {
             setTimeout(() => {
-                setTime(prev => prev - 1000);
+                setTime(TIME.START_TIME+times[1]-new Date().getTime());
             }, 1000);
         }
     }, [time]);
@@ -41,7 +54,7 @@ const TimeSlot3 = ({ leftTime }) => {
     useEffect(() => {
         if (time >= 1000) {
             setTimeout(() => {
-                setTime(prev => prev - 1000);
+                setTime(TIME.START_TIME+times[2]-new Date().getTime());
             }, 1000);
         }
     }, [time]);
@@ -54,7 +67,7 @@ const TimeSlot4 = ({ leftTime }) => {
     useEffect(() => {
         if (time >= 1000) {
             setTimeout(() => {
-                setTime(prev => prev - 1000);
+                setTime(TIME.START_TIME+times[3]-new Date().getTime());
             }, 1000);
         }
     }, [time]);
@@ -67,7 +80,7 @@ const TimeSlot5 = ({ leftTime }) => {
     useEffect(() => {
         if (time >= 1000) {
             setTimeout(() => {
-                setTime(prev => prev - 1000);
+                setTime(TIME.START_TIME+times[4]-new Date().getTime());
             }, 1000);
         }
     }, [time]);
@@ -80,7 +93,7 @@ const TimeSlot6 = ({ leftTime }) => {
     useEffect(() => {
         if (time >= 1000) {
             setTimeout(() => {
-                setTime(prev => prev - 1000);
+                setTime(TIME.START_TIME+times[5]-new Date().getTime());
             }, 1000);
         }
     }, [time]);
@@ -93,7 +106,7 @@ const TimeSlot7 = ({ leftTime }) => {
     useEffect(() => {
         if (time >= 1000) {
             setTimeout(() => {
-                setTime(prev => prev - 1000);
+                setTime(TIME.START_TIME+times[6]-new Date().getTime());
             }, 1000);
         }
     }, [time]);
@@ -105,7 +118,7 @@ const TimeSlot8 = ({ leftTime }) => {
     useEffect(() => {
         if (time >= 1000) {
             setTimeout(() => {
-                setTime(prev => prev - 1000);
+                setTime(TIME.START_TIME+times[7]-new Date().getTime());
             }, 1000);
         }
     }, [time]);
@@ -118,7 +131,7 @@ const TimeSlot9 = ({ leftTime }) => {
     useEffect(() => {
         if (time >= 1000) {
             setTimeout(() => {
-                setTime(prev => prev - 1000);
+                setTime(TIME.START_TIME+times[8]-new Date().getTime());
             }, 1000);
         }
     }, [time]);
@@ -131,7 +144,7 @@ const TimeSlot10 = ({ leftTime }) => {
     useEffect(() => {
         if (time >= 1000) {
             setTimeout(() => {
-                setTime(prev => prev - 1000);
+                setTime(TIME.START_TIME+times[9]-new Date().getTime());
             }, 1000);
         }
     }, [time]);

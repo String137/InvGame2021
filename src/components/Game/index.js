@@ -13,9 +13,15 @@ import * as MONEY from '../../constants/money';
 import * as TIME from '../../constants/time';
 import Rank from '../Rank';
 import './index.css';
+import * as ROUTES from '../../constants/routes';
+import { auth } from 'firebase-admin';
 // import { useBeforeunload } from 'react-beforeunload';
-
-const GamepageBase = () => {
+function sleep(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
+const GamepageBase = (props) => {
     const [startTime] = useState(TIME.START_TIME);
     const [expired, setExpired] = useState(0);
     const time = [
@@ -30,6 +36,27 @@ const GamepageBase = () => {
         TIME.ACC_FINAL_INVEST_OFFSET,
         TIME.ACC_FINAL_REDIRECTION_OFFSET
     ];
+    const [loaded, setLoaded] = useState(false);
+    const [authFlag, setAuthFlag] = useState(true);
+    var fb = props.firebase;
+    // var authFlag = true;
+    console.log(authFlag);
+    fb.auth.onAuthStateChanged((user) => {
+        if (authFlag) {
+            setAuthFlag(false);
+            if (user) {
+                console.log("hihihi");
+                setLoaded(true);
+            }
+            else {
+                console.log("hehehe");
+                setLoaded(false);
+                
+                window.location.href = ROUTES.SIGN_IN;
+            }
+        }
+    })
+    const user = fb.auth.currentUser;
     useEffect(() => {
         if (expired <= 9) {
             setTimeout(() => {
@@ -39,14 +66,32 @@ const GamepageBase = () => {
 
 
     }, [expired, startTime, time]);
-   
+    if (user !== null) {
+        window.addEventListener("beforeunload", (ev) => {
+            // ev.preventDefault();
+            fb.db.ref(`/users/${user.uid}`).update({ loggedin: false });
+
+            fb.doSignOut();
+            if (authFlag) {
+                setAuthFlag(false);
+                fb.db.ref('/loggedinUser').transaction(function (param) {
+                    return param - 1;
+                })
+            }
+            // return ev.returnValue = 'Are you sure you want to close?';
+        });
+
+    }
+
     switch (expired) {
         case 0:
             return <div className="p5container">
                 <TimeSlot1 leftTime={startTime + time[expired] - new Date().getTime()} />
                 {/* <InvPage round={1} count={MONEY.ROUND1_TEAM} /> */}
-                <iframe className="p5" src="https://editor.p5js.org/quantum0430/embed/-b1N-tDv0"/>
+                <iframe className="p5" src="https://editor.p5js.org/quantum0430/embed/-b1N-tDv0" />
                 
+               
+
             </div>;
         case 1:
             return <>

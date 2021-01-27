@@ -13,11 +13,12 @@ const SignOutButton = ({ firebase, history }) => {
         firebase.db.ref('/loggedinUser').transaction(function (param) {
             return param - 1;
           });
-          firebase.doSignOut();
-          window.location.href = ROUTES.SIGN_IN;
-        
+          
         // firebase.db.ref().update(updates);
       }
+      firebase.doSignOut();
+          window.location.href = ROUTES.SIGN_IN;
+        
     }}>
       Sign Out
     </button >
