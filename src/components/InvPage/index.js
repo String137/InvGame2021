@@ -93,9 +93,6 @@ const InvPageBase = ({ round, firebase, count }) => {
                 alert(`남은 자산: ${asset - inputs.reduce((a, b) => a + b, 0)}원`);
                 setCheck(false);
             }
-            if (inputs.reduce((a, b) => a + b, 0) > asset) {
-                document.querySelector(".invest-done").checked = false;
-            }
         }
         else {
             setLoaded(false);
@@ -111,21 +108,24 @@ const InvPageBase = ({ round, firebase, count }) => {
     // setInputsum(inputs.reduce((a, b) => a+b, 0));
     async function complete({ target: { checked } }) {
         //CompanyPage.aftm
-        setInvDone(res=>!res);
         setInvDoneCheck(true);
-        
         var input = inputs.reduce((a, b) => a + b, 0);
         var updates = {};
-        if (asset >= input && checked) {
+        if (asset >= input && input >= 0 && checked) {
+            setInvDone(res=>!res);
             updates[`/users/${fb.auth.currentUser.uid}/invest/input`] = input;
             document.querySelectorAll("input").forEach(res=>res.disabled = true);
         }
         else {
+            if (inputs.reduce((a, b) => a + b, 0) > asset) {
+                document.querySelector(".invest-done").checked = false;
+            }
             const snapshot = await fb.db.ref(`/users/${fb.auth.currentUser.uid}/invest/`).once('value');
             const curms = Object.values(snapshot.val()).map(e => e.curm);
             for (var i = 0; i < 9; i++) {
                 updates[`/users/${fb.auth.currentUser.uid}/invest/company${i}/aftm`] = curms[i];
             }
+            setInvDone(false);
         }
         fb.db.ref().update(updates);
         
