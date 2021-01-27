@@ -61,6 +61,9 @@ const NavigationAdmin = () => (
       <Link to={ROUTES.COMPANY}>Companies</Link>
     </li>
     <li>
+      <Link to={ROUTES.ADMINRANK}>RANK</Link>
+    </li>
+    <li>
       <SignOutButton />
     </li>
   </ul>

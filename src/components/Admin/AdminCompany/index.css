@@ -4,3 +4,12 @@
 .render{
     /* background-color: coral; */
 }
+.nouser{
+    color: rgb(48, 212, 254);
+    font-size: 200px;
+}
+.noauth{
+    color: rgb(48, 212, 254);
+    font-size: 200px;
+    
+}

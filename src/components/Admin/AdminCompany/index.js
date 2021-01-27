@@ -7,6 +7,7 @@ class AdminCompany extends React.Component {
         super(props);
 
         this.state = {
+            user: null,
             loading: false,
             companies: [],
         };
@@ -14,7 +15,7 @@ class AdminCompany extends React.Component {
 
     componentDidMount() {
         this.setState({ loading: true });
-
+        this.setState({ user: this.props.firebase.auth.currentUser});
         this.props.firebase.db.ref('/companies').once('value').then(snapshot => {
             const companiesObject = snapshot.val();
             if (companiesObject) {
@@ -35,6 +36,12 @@ class AdminCompany extends React.Component {
         this.setState({
             loading: true,
         });
+    }
+    componentDidUpdate(){
+        if(this.state.user!==this.props.firebase.auth.currentUser){
+            this.setState({user:this.props.firebase.auth.currentUser});
+            // console.log(this.state.user);
+          }
     }
 
     resetInfo = () => {
@@ -86,7 +93,12 @@ class AdminCompany extends React.Component {
 
     render() {
         const { companies, loading } = this.state;
-
+        if(this.state.user===null){
+            return <div className="nouser">No user</div>;
+          }
+          else if(this.state.user.email!=="icists@icists.org"){
+            return <div className="noauth">No auth</div>;
+          }
         return (
             <div className="render">
                 <h1>Admin</h1>

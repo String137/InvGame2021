@@ -1,12 +1,12 @@
 export const OT_TIME = 1 * 1000;
 export const ROUND1_VIDEO = 1 * 10 * 1000;
-export const ROUND1_INVEST = 1 * 60 * 1000;
+export const ROUND1_INVEST = 2 * 60 * 1000;
 export const ROUND2_VIDEO = 1 * 60 * 1000;
-export const ROUND2_INVEST = 1 * 60 * 1000;
+export const ROUND2_INVEST = 2 * 60 * 1000;
 export const ROUND3_VIDEO = 1 * 60 * 1000;
-export const ROUND3_INVEST = 1 * 60 * 1000;
+export const ROUND3_INVEST = 2 * 60 * 1000;
 export const FINAL_VIDEO = 1 * 60 * 1000;
-export const FINAL_INVEST = 1 * 60 * 1000;
+export const FINAL_INVEST = 2 * 60 * 1000;
 export const FINAL_REDIRECTION = 1 * 60 * 1000;
 
 export const START_TIME = new Date('January 27, 2021 20:30:00').getTime();
