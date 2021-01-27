@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Navigation from '../Navigation';
 import SignUpPage from '../SignUp';
@@ -23,7 +23,7 @@ const App = () => {
   //   return confirmationMessage; 
   // })
   return (
-    <HashRouter>
+    <Router>
       <div>
         <Navigation />
         {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> */}
@@ -44,7 +44,7 @@ const App = () => {
         {/* <footer><div class ="copyrightFooter"> N13-1, KAIST 291 DAEHAK-RO, YUSEONG-GU, DAEJEON, KOREA<br></br>
 Copyright @ 2021 ICISTS Div. Tech & Design</div></footer>  */}
       </div>
-    </HashRouter>
+    </Router>
   );
 }
 
