@@ -66,9 +66,7 @@ const CompanyPage = ({ curm, name, invDone, index, calc, firebase, aftm }) => {
    
     return (
         <div className="wrapper">
-            <div className="company-logo">
-
-            </div>
+            <img className="company-logo" src={`/images/startup_logo/${index}.jpg`}/>
             <div className="company">
                 <Company className="company" name={name} />
             </div>
