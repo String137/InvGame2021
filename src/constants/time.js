@@ -11,8 +11,8 @@ export const FINAL_REDIRECTION = 1 * 60 * 1000;
 const YEAR = 2021;
 const MONTH = 1;
 const DATE = 28;
-const HOUR = 7;
-const MIN = 20;
+const HOUR = 13;
+const MIN = 23;
 const SEC = 0;
 
 export const START_TIME = 1000*(1611759600+(DATE-28)*86400+HOUR*3600+MIN*60);

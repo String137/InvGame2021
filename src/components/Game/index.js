@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { withFirebase } from "../Firebase";
 import { withRouter } from 'react-router-dom';
@@ -14,7 +13,7 @@ import * as TIME from '../../constants/time';
 import Rank from '../Rank';
 import './index.css';
 import * as ROUTES from '../../constants/routes';
-import { auth } from 'firebase-admin';
+// import { auth } from 'firebase-admin';
 // import { useBeforeunload } from 'react-beforeunload';
 function sleep(ms) {
     return new Promise((resolve) => {
@@ -88,7 +87,7 @@ const GamepageBase = (props) => {
             return <div className="p5container">
                 <TimeSlot1 leftTime={startTime + time[expired] - new Date().getTime()} />
                 {/* <InvPage round={1} count={MONEY.ROUND1_TEAM} /> */}
-                <iframe className="p5" src="https://editor.p5js.org/quantum0430/embed/-b1N-tDv0" />
+                {/* <iframe className="p5" src="https://editor.p5js.org/quantum0430/embed/-b1N-tDv0" /> */}
                 
                
 
