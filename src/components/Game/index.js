@@ -22,7 +22,7 @@ function sleep(ms) {
 }
 const GamepageBase = (props) => {
     const [startTime] = useState(TIME.START_TIME);
-    const [expired, setExpired] = useState(2);
+    const [expired, setExpired] = useState(0);
     const time = [
         0,
         TIME.ACC_ROUND1_VIDEO_OFFSET,
@@ -57,7 +57,7 @@ const GamepageBase = (props) => {
     })
     const user = fb.auth.currentUser;
     useEffect(() => {
-        if (expired <= 0) {
+        if (expired <= 9) {
             setTimeout(() => {
                 setExpired(expired + 1);
             }, startTime + time[expired] - new Date().getTime());
