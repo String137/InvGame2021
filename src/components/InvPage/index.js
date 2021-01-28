@@ -90,7 +90,7 @@ const InvPageBase = ({ round, firebase, count }) => {
 
                 // setInputsum(inputs.reduce((a, b) => a+b, 0));
                 // console.log(inputsum);
-                alert(`남은 자산: ${asset - inputs.reduce((a, b) => a + b, 0)}원`);
+                alert(`남은 자산: ${putcommas(asset - inputs.reduce((a, b) => a + b, 0))}원`);
                 setCheck(false);
             }
         }

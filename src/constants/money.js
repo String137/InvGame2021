@@ -1,9 +1,9 @@
 export const INITIAL_ASSET = 10000000;
-export const ROUND1_REWARD_RATIO = [0.20, 0.20, 0.20, 0.10, 0.10, 0.10, 0.05, 0.05, 0.05];
-export const ROUND2_REWARD_RATIO = [0.20, 0.16, 0.12, 0.08, 0.04, 0.00, 0.00, 0.00, 0.00];
-export const ROUND3_REWARD_RATIO = [0.20, 0.16, 0.12, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00];
+export const ROUND1_REWARD_RATIO = [0.213, 0.213, 0.213, 0.107, 0.107, 0.107, 0.051, 0.051, 0.051];
+export const ROUND2_REWARD_RATIO = [0.237, 0.182, 0.143, 0.091, 0.052, 0.00, 0.00, 0.00, 0.00];
+export const ROUND3_REWARD_RATIO = [0.251, 0.193, 0.147, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00];
 export const FINAL_REWARD_RATIO = [0.10, 0.00, -0.10, -1, -1, -1, -1, -1, -1];
-export const ROUND1_FEE_RATIO = 0.05;
+export const ROUND1_FEE_RATIO = 0.05; // 0.20
 export const ROUND2_FEE_RATIO = 0.05;
 export const ROUND3_FEE_RATIO = 0.05;
 export const FINAL_FEE_RATIO = 0.02;
