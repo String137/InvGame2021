@@ -101,7 +101,6 @@ class AdminPage extends Component {
     this.props.firebase.db.ref().update(updates)
     this.state.users.map(user => this.props.firebase.user(user.uid).update({
       asset: assets.INITIAL_ASSET,
-      loggedin: false,
       reward: 0,
       round1submitted: 0,
       round1getsubmit: false,
@@ -370,10 +369,23 @@ function putcommas(num) {
   }
   return res;
 }
-const UserList = ({ users }) => {
+
+
+
+const UserListBase = ({ users, firebase }) => {
+  var count = 0;
+  users.forEach((user)=>{
+    count += user['loggedin'] ? 1 : 0;
+  });
+
+  firebase.db.ref('/').update({loggedinUser:count});
+  
   return (
     <>
       <ul className="ul">
+        <h2>
+          로그인 한 사람 수 : {count}
+        </h2>
         {users.map(user => (
           <li key={user.uid}>
             <div>
@@ -394,5 +406,5 @@ const UserList = ({ users }) => {
       </ul>
     </>);
 };
-
+const UserList = withFirebase(UserListBase);
 export default withFirebase(AdminPage);

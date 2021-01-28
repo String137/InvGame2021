@@ -90,11 +90,19 @@
     background-color: none;
     transition: 0.3s;
 }
-.invest-done:checked~.invest-done-text, .invest-done-text:hover{
+.invest-done-text:hover{
     width: 100px;
     height: 100px;
     border-radius: 70px;
     border: solid rgb(95, 72, 240);
     background-color: rgba(95, 72, 240, 0.5);
+    transition: 0.3s;
+}
+.invest-done:checked~.invest-done-text{
+    width: 100px;
+    height: 100px;
+    border-radius: 70px;
+    border: solid rgb(95, 72, 240);
+    background-color: rgb(95, 72, 240);
     transition: 0.3s;
 }

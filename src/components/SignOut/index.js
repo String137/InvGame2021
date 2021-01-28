@@ -10,9 +10,9 @@ const SignOutButton = ({ firebase, history }) => {
       const user = firebase.auth.currentUser;
       firebase.db.ref(`/users/${user.uid}`).update({ loggedin: false });
       if (user.email !== "icists@icists.org") {
-        firebase.db.ref('/loggedinUser').transaction(function (param) {
-            return param - 1;
-          });
+        // firebase.db.ref('/loggedinUser').transaction(function (param) {
+        //     return param - 1;
+        //   });
           
         // firebase.db.ref().update(updates);
       }

@@ -178,10 +178,10 @@ class SignUpFormBase extends Component {
           />
           
           <input className="online-radio-button" type="radio" id="online" onClick={() => { this.setState({ radio: 1 }) }} checked={this.state.radio === 1} />
-          <label className="online-radio" htmlFor="online">온라인</label>
+          <label className="online-radio" htmlFor="online">개인참가</label>
           
           <input className="blend-radio-button" type="radio" id="blend" onClick={() => { this.setState({ radio: 2 }) }} checked={this.state.radio === 2} />
-          <label className="blend-radio" htmlFor="blend">블렌딩</label>
+          <label className="blend-radio" htmlFor="blend">팀참가</label>
           <button className="email-send" disabled={isInvalid} type="submit">
             Send Verification Link to Email
         </button>

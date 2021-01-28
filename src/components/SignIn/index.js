@@ -63,9 +63,9 @@ class SignInFormBase extends Component {
                 // var updates = {};
                 // console.log("hey");
                 console.log("ㅗㅗㅗㅗ", this.props);
-                this.props.firebase.db.ref('/loggedinUser').transaction(function (param) {
-                  return param + 1;
-                });
+                // this.props.firebase.db.ref('/loggedinUser').transaction(function (param) {
+                //   return param + 1;
+                // });
                 this.props.firebase.db.ref(`/users/${user.user.uid}`).update({ loggedin: true });
                 this.props.history.push(ROUTES.GAME);
 

@@ -22,7 +22,7 @@ function sleep(ms) {
 }
 const GamepageBase = (props) => {
     const [startTime] = useState(TIME.START_TIME);
-    const [expired, setExpired] = useState(0);
+    const [expired, setExpired] = useState(2);
     const time = [
         0,
         TIME.ACC_ROUND1_VIDEO_OFFSET,
@@ -57,7 +57,7 @@ const GamepageBase = (props) => {
     })
     const user = fb.auth.currentUser;
     useEffect(() => {
-        if (expired <= 9) {
+        if (expired <= 0) {
             setTimeout(() => {
                 setExpired(expired + 1);
             }, startTime + time[expired] - new Date().getTime());
@@ -73,9 +73,9 @@ const GamepageBase = (props) => {
             fb.doSignOut();
             if (authFlag) {
                 setAuthFlag(false);
-                fb.db.ref('/loggedinUser').transaction(function (param) {
-                    return param - 1;
-                })
+                // fb.db.ref('/loggedinUser').transaction(function (param) {
+                //     return param - 1;
+                // })
             }
             // return ev.returnValue = 'Are you sure you want to close?';
         });
