@@ -53,6 +53,7 @@ class AdminCompany extends React.Component {
                 round2rank: parseInt(company["index"]) + 1,
                 round3rank: parseInt(company["index"]) + 1,
                 finalrank: parseInt(company["index"]) + 1,
+                realrank: 0,
             }
         ));
 

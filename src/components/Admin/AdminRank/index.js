@@ -43,10 +43,65 @@ class AdminRank extends React.Component {
         );
         this.props.firebase.db.ref('/companies').once('value').then(
             (snapshot) => {
-                const objs = snapshot.val();
-                const companyRankList = Object.values(objs).sort((a, b) => a[`finalrank`] > b[`finalrank`] ? 1 : -1);
-                this.setState({companies:companyRankList});         
+                console.log("hohoho",snapshot.val());
+                var round2ranklist = snapshot.val().map(e=>e.round2rank);
+                var round3ranklist = snapshot.val().map(e=>e.round3rank);
+                var finalranklist = snapshot.val().map(e=>e.finalrank);
+                var realranklist = snapshot.val().map(e=>e.realrank);
+                var round2ordered = [0,0,0,0,0,0,0,0,0];
+                var round3ordered = [0,0,0,0,0,0,0,0,0];
+                var finalordered = [0,0,0,0,0,0,0,0,0];
+                var realordered = [0,0,0,0,0,0,0,0,0];
+                var checked = [false,false,false,false,false,false,false,false,false];
+                for(let i=0;i<9;i++){
+                    round2ordered[round2ranklist[i]-1]=i;
+                    round3ordered[round3ranklist[i]-1]=i;
+                    finalordered[finalranklist[i]-1]=i;
+                }
+                console.log(finalranklist);
+                for(let i=0;i<3;i++){
+                    realordered[i]=finalordered[i];
+                    checked[finalordered[i]]=true;
+                }
+                console.log("fin",realordered);
+                let j=3;
+                let i=0;
+                while(j<5){
+                    if(!checked[round3ordered[i]]){
+                        realordered[j] = round3ordered[i];
+                        checked[round3ordered[i]]=true;
+                        j++;
+                    }
+                    else{
+                        i++;
+                    }
+                }
+                let k=5;
+                let l=0;
+                while(k<9){
+                    if(!checked[round2ordered[l]]){
+                        realordered[k] = round2ordered[l];
+                        checked[round2ordered[l]]=true;
+                        k++;
+                    }
+                    else{
+                        l++;
+                    }
+                }
+                for(let i=0;i<9;i++){
+                    realranklist[realordered[i]] = i+1;
+                }
+                for(let i=0;i<9;i++){
+                    this.props.firebase.db.ref(`/companies/${i}`).update({realrank:realranklist[i]});
+                }
+                console.log(realranklist);
+                this.props.firebase.db.ref('/companies').once('value').then((snapshot) => {
+                    const objs = snapshot.val();
+                    const companyRankList = Object.values(objs).sort((a, b) => a[`realrank`] > b[`realrank`] ? 1 : -1);
+                    this.setState({ companies: companyRankList });
+                })
             }
+
         );
 
     }
@@ -89,12 +144,21 @@ class AdminRank extends React.Component {
                         스타트업 순위
                 </div>
                     <div className="final-company-rank">
-                        {this.state.companies.slice(0, 3).map(res => <div> {res["finalrank"]}. {res["companyname"]}</div>)}
+                        {this.state.companies.map(res => <div> {res["realrank"]}. {res["companyname"]}</div>)}
                     </div>
                 </div>
             </div>
         );
     }
+}
+function getRank(res) {
+    if (res["finalrank"] <= 3) {
+        return res["finalrank"];
+    }
+    if (res["round3rank"] <= 5) {
+        return res["round3rank"];
+    }
+    return res["round2rank"];
 }
 function three(num) {
     if (num < 10) {
