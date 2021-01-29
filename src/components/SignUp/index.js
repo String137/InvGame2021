@@ -37,7 +37,6 @@ class SignUpFormBase extends Component {
 
   onSubmit1 = event => {
     const { username, email, passwordOne } = this.state;
-    // console.log("sign in!!",this);
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -102,12 +101,10 @@ class SignUpFormBase extends Component {
       })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        //this.props.history.push(ROUTES.EMAIL_HAS_BEEN_SENT);
         let user = this.props.firebase.auth.currentUser;
         user.sendEmailVerification().then(function () {
           window.location.href = ROUTES.EMAIL_HAS_BEEN_SENT;
         }).catch(function (error) {
-          // console.log(error);
         });
       })
       .catch(error => {
@@ -176,18 +173,18 @@ class SignUpFormBase extends Component {
             type="password"
             placeholder="Confirm Password"
           />
-          
+
           <input className="online-radio-button" type="radio" id="online" onClick={() => { this.setState({ radio: 1 }) }} checked={this.state.radio === 1} />
           <label className="online-radio" htmlFor="online">개인참가</label>
-          
+
           <input className="blend-radio-button" type="radio" id="blend" onClick={() => { this.setState({ radio: 2 }) }} checked={this.state.radio === 2} />
           <label className="blend-radio" htmlFor="blend">팀참가</label>
           <button className="email-send" disabled={isInvalid} type="submit">
             Send Verification Link to Email
         </button>
-        <div>
-          {error && <p>{error.message}</p>}
-        </div> 
+          <div>
+            {error && <p>{error.message}</p>}
+          </div>
         </form>
 
       </>

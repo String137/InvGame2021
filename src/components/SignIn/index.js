@@ -39,10 +39,7 @@ class SignInFormBase extends Component {
   }
   async getLoggedIn(user) {
     const snapshot = await this.props.firebase.db.ref(`/users/${user.uid}/loggedin`).once('value');
-    // console.log(user);
-    // console.log("help..",snapshot);
     const loggedin = snapshot.val();
-    // console.log("loglog",loggedin);
     return loggedin;
   }
   onSubmit = event => {
@@ -52,29 +49,19 @@ class SignInFormBase extends Component {
       .then((user) => {
         if (user.user.emailVerified) {
           this.getLoggedIn(user.user).then((res) => {
-            console.log("logged in?");
             if (res === false) {
-              // console.log("this",this);
               this.setState({ ...INITIAL_STATE });
               if (user.user.email === "icists@icists.org") {
                 this.props.history.push(ROUTES.ADMIN);
               }
               else {
-                // var updates = {};
-                // console.log("hey");
-                console.log("ㅗㅗㅗㅗ", this.props);
-                // this.props.firebase.db.ref('/loggedinUser').transaction(function (param) {
-                //   return param + 1;
-                // });
                 this.props.firebase.db.ref(`/users/${user.user.uid}`).update({ loggedin: true });
                 this.props.history.push(ROUTES.GAME);
 
               }
             }
             else {
-              // console.log("이미..");
               alert("이미 로그인함");
-
             }
           });
 

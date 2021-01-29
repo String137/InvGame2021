@@ -15,7 +15,7 @@ class AdminCompany extends React.Component {
 
     componentDidMount() {
         this.setState({ loading: true });
-        this.setState({ user: this.props.firebase.auth.currentUser});
+        this.setState({ user: this.props.firebase.auth.currentUser });
         this.props.firebase.db.ref('/companies').once('value').then(snapshot => {
             const companiesObject = snapshot.val();
             if (companiesObject) {
@@ -37,15 +37,13 @@ class AdminCompany extends React.Component {
             loading: true,
         });
     }
-    componentDidUpdate(){
-        if(this.state.user!==this.props.firebase.auth.currentUser){
-            this.setState({user:this.props.firebase.auth.currentUser});
-            // console.log(this.state.user);
-          }
+    componentDidUpdate() {
+        if (this.state.user !== this.props.firebase.auth.currentUser) {
+            this.setState({ user: this.props.firebase.auth.currentUser });
+        }
     }
 
     resetInfo = () => {
-        // console.log(this.state.companies);
         this.state.companies.map(company => this.props.firebase.db.ref(`/companies/${company.index}`).update(
             {
                 stock: 0,
@@ -94,12 +92,12 @@ class AdminCompany extends React.Component {
 
     render() {
         const { companies, loading } = this.state;
-        if(this.state.user===null){
+        if (this.state.user === null) {
             return <div className="nouser">No user</div>;
-          }
-          else if(this.state.user.email!=="icists@icists.org"){
+        }
+        else if (this.state.user.email !== "icists@icists.org") {
             return <div className="noauth">No auth</div>;
-          }
+        }
         return (
             <div className="render">
                 <h1>Admin</h1>

@@ -14,7 +14,6 @@ const Redirection1Base = (props) => {
         )
     }
     async function setAsset() {
-        console.log("setAsset");
         const snapshot = await fb.db.ref(`/users/${user.uid}/invest/input`).once('value');
         const snapshot2 = await fb.db.ref(`/users/${user.uid}/asset`).once('value');
         const snapshot3 = await fb.db.ref(`/equal1`).once('value');
@@ -58,7 +57,6 @@ const Redirection1Base = (props) => {
 
     }
     async function getCurmsAndSet() {
-        console.log("getcurmset");
         const snapshot = await fb.db.ref(`/users/${user.uid}/invest/`).once('value');
         const value_list = Object.values(snapshot.val()).map(e => e.aftm);
         const snapshot2 = await fb.db.ref('/companies/').once('value');
@@ -73,13 +71,10 @@ const Redirection1Base = (props) => {
         updates[`/users/${user.uid}/asset`] = curAsset + reward;
         for (index = 0; index < 9; index++) {
             updates[`/users/${user.uid}/invest/company${index}/curm`] = value_list[index];
-            // updates[`/users/${user.uid}/invest/company${index}/aftm`] = value_list[index];
         }
         fb.db.ref().update(updates);
     }
     async function catchsubmit() {
-        console.log("catchsubmit!");
-
         await fb.db.ref(`/users/${user.uid}/round1submitted`).once('value').then((snapshot) => {
             if (snapshot.val() === 0) {
                 setAsset().then(() => {
@@ -91,11 +86,9 @@ const Redirection1Base = (props) => {
         })
     }
     async function catchEqual() {
-        console.log("catchequal!");
         const snapshottrue = await fb.db.ref('/equal1/').once('value');
         const snapshotget = await fb.db.ref(`/users/${user.uid}/round1getsubmit/`).once('value');
         const snapshotmit = await fb.db.ref(`/users/${user.uid}/round1submitted/`).once('value');
-        //    console.log("hihi",snapshottrue.val());
         if (snapshottrue.val() === true && snapshotget.val() === false && (snapshotmit.val() === 2 || snapshotmit.val() === 3)) {
             var updates = {};
             updates[`/users/${user.uid}/round1getsubmit`] = true;
@@ -107,31 +100,27 @@ const Redirection1Base = (props) => {
         }
     }
     async function updatesubmit() {
-        console.log("updatesubmit!");
         const snapshot = await fb.db.ref(`/users/${user.uid}/round1submitted/`).once('value');
-        // const snapshotuse = await fb.db.ref(`/using/`).once('value');
         if (snapshot.val() !== 2) {
             return;
-        }  
+        }
         else {
             // fb.db.ref('/').update({ using: true });
             var snap = await fb.db.ref('/round1submitted');
-            snap.transaction(function(param){
+            snap.transaction(function (param) {
                 return param + 1;
             });
-            
+
             fb.db.ref(`/users/${user.uid}`).update({ round1submitted: 3 });
             // fb.db.ref('/').update({ using: false });
             clearInterval(us);
         }
     }
     async function setequal() {
-        console.log("setequal!");
         const snapshot = await fb.db.ref('/round1submitted/').once('value');
         const snapshot2 = await fb.db.ref('/loggedinUser/').once('value');
         if (snapshot.val() === snapshot2.val()) {
             fb.db.ref('/').update({ equal1: true });
-            console.log("clear");
             clearInterval(se);
         }
     }

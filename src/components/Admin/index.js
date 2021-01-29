@@ -16,11 +16,10 @@ class AdminPage extends Component {
       round: 0,
     };
   }
-  
+
   componentDidMount() {
     this.setState({ loading: true });
-    this.setState({user:this.props.firebase.auth.currentUser});
-    // console.log(this.state.user);
+    this.setState({ user: this.props.firebase.auth.currentUser });
     this.props.firebase.db.ref('/users').once('value').then(snapshot => {
       const usersObject = snapshot.val();
       if (usersObject) {
@@ -46,9 +45,6 @@ class AdminPage extends Component {
         });
       }
     });
-    // this.getWinner().then(()=>{
-    //   this.setState({rank1load:false});
-    // });
   }
 
   componentWillUnmount() {
@@ -57,13 +53,8 @@ class AdminPage extends Component {
     });
   }
   componentDidUpdate() {
-    // if(this.rank1load===false){
-    // this.getWinner().then(()=>{
-    //   this.setState({rank1load: true});
-    // });
-    if(this.state.user!==this.props.firebase.auth.currentUser){
-      this.setState({user:this.props.firebase.auth.currentUser});
-      // console.log(this.state.user);
+    if (this.state.user !== this.props.firebase.auth.currentUser) {
+      this.setState({ user: this.props.firebase.auth.currentUser });
     }
   }
   setequal1 = () => {
@@ -194,21 +185,18 @@ class AdminPage extends Component {
       const snap = await this.props.firebase.db.ref('equal1').once('value');
       if (snap.val() === true) {
         this.props.firebase.db.ref('/').update({ finRound: 1 });
-        // clearInterval(this.aa);
       }
     }
     if (round === 1) {
       const snap = await this.props.firebase.db.ref('equal2').once('value');
       if (snap.val() === true) {
         this.props.firebase.db.ref('/').update({ finRound: 2 });
-        // clearInterval(this.aa);
       }
     }
     if (round === 2) {
       const snap = await this.props.firebase.db.ref('equal3').once('value');
       if (snap.val() === true) {
         this.props.firebase.db.ref('/').update({ finRound: 3 });
-        // clearInterval(this.aa);
       }
     }
     if (round === 3) {
@@ -218,23 +206,17 @@ class AdminPage extends Component {
         clearInterval(this.aa);
       }
     }
-    // console.log(round);
-    // clearInterval(this.aa);
   }
   getWinner = async () => {
     // return "1";
     const snapshot = await this.props.firebase.db.ref('/finRound').once('value');
     const round = snapshot.val();
-    // this.setState({rank1load: true});
-    // console.log("hey",this.state.curList);
     if (round === 0) {
       return 1;
     }
     else if (round === 1) {
-      // console.log("hihhi");
       const snap = await this.props.firebase.db.ref('/companies/').once('value');
       const list = snap.val().map(e => ({ rank: e.round1rank, index: e.index, name: e.companyname }));
-      // console.log(list.map(e=>e));
       list.sort(function (a, b) {
         if (a.rank > b.rank) {
           return 1;
@@ -301,10 +283,10 @@ class AdminPage extends Component {
   render() {
     const { users, loading } = this.state;
     // this.setRound();
-    if(this.state.user===null){
+    if (this.state.user === null) {
       return <div className="nouser">No user</div>;
     }
-    else if(this.state.user.email!=="icists@icists.org"){
+    else if (this.state.user.email !== "icists@icists.org") {
       return <div className="noauth">No auth</div>;
     }
     return (
@@ -328,7 +310,6 @@ class AdminPage extends Component {
             copyText = copyText + document.getElementById('passlist').children[i].innerHTML;
             copyText = copyText + "\n";
           }
-          // console.log(copyText);
           const temp = document.createElement('textarea');
           temp.value = copyText;
           document.body.appendChild(temp);
@@ -374,12 +355,12 @@ function putcommas(num) {
 
 const UserListBase = ({ users, firebase }) => {
   var count = 0;
-  users.forEach((user)=>{
-    count += user['loggedin'] ? 1 : 0;
+  users.forEach((user) => {
+    count += user['loggedin'] ? (user.email === "icists@icists.org" ? 0 : 1) : 0;
   });
 
-  firebase.db.ref('/').update({loggedinUser:count});
-  
+  firebase.db.ref('/').update({ loggedinUser: count });
+
   return (
     <>
       <ul className="ul">

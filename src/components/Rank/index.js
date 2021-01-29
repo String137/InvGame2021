@@ -9,8 +9,6 @@ const RankBase = ({ firebase }) => {
     const [companyList, setCompanyList] = useState([]);
 
     async function getRank() {
-        //updates['/equal1']=false;
-        //updates['/round1submitted']=0;
         const snapshot = await firebase.db.ref('/users/').once('value');
         const objs = snapshot.val();
         const userRankList = Object.values(objs).sort((a, b) => a[`asset`] > b[`asset`] ? -1 : 1);
@@ -50,7 +48,6 @@ const RankBase = ({ firebase }) => {
         }
         return res;
     }
-    // console.log("Rank", userList);
     return (
         <div className="final-rank-page-container">
             <div className="rank-left-header-container">
