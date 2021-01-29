@@ -30,14 +30,39 @@ const Redirection2Base = (props) => {
     }
     async function setCompany() {
         const snapshot = await fb.db.ref(`/companies/`).once('value');
-        const stocks = Object.values(snapshot.val()).map(e => e.stock);
+        // const stocks = Object.values(snapshot.val()).map(e => e.stock);
         const snapshot2 = await fb.db.ref(`/users/${user.uid}/invest/`).once('value');
         const curms = Object.values(snapshot2.val()).map(e => e.curm);
         const aftms = Object.values(snapshot2.val()).map(e => e.aftm);
         var updates = {};
-        for (var index = 0; index < 9; index++) {
-            updates[`/companies/${index}/stock`] = stocks[index] + aftms[index] - curms[index];
-        }
+        fb.db.ref(`/companies/0/stock`).transaction((param) => {
+            return param + aftms[0] - curms[0];
+        });
+        fb.db.ref(`/companies/1/stock`).transaction((param) => {
+            return param + aftms[1] - curms[1];
+        });
+        fb.db.ref(`/companies/2/stock`).transaction((param) => {
+            return param + aftms[2] - curms[2];
+        });
+        fb.db.ref(`/companies/3/stock`).transaction((param) => {
+            return param + aftms[3] - curms[3];
+        });
+        fb.db.ref(`/companies/4/stock`).transaction((param) => {
+            return param + aftms[4] - curms[4];
+        });
+        fb.db.ref(`/companies/5/stock`).transaction((param) => {
+            return param + aftms[5] - curms[5];
+        });
+        fb.db.ref(`/companies/6/stock`).transaction((param) => {
+            return param + aftms[6] - curms[6];
+        });
+        fb.db.ref(`/companies/7/stock`).transaction((param) => {
+            return param + aftms[7] - curms[7];
+        });
+        fb.db.ref(`/companies/8/stock`).transaction((param) => {
+            return param + aftms[8] - curms[8];
+        });
+
 
         updates[`/users/${user.uid}/round2submitted`] = 2;
         fb.db.ref().update(updates);
