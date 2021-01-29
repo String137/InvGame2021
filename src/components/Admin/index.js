@@ -240,7 +240,7 @@ class AdminPage extends Component {
           return -1;
         }
       });
-      this.setState({ curList: list });
+      this.setState({ curList: list.slice(0, 5) });
       this.setState({ round: 2 });
       return list;
     }
@@ -255,7 +255,7 @@ class AdminPage extends Component {
           return -1;
         }
       });
-      this.setState({ curList: list.slice(0, 5) });
+      this.setState({ curList: list.slice(0, 3) });
       this.setState({ round: 3 });
       return list;
     }
@@ -356,10 +356,12 @@ function putcommas(num) {
 const UserListBase = ({ users, firebase }) => {
   var count = 0;
   users.forEach((user) => {
-    count += user['loggedin'] ? (user.email === "icists@icists.org" ? 0 : 1) : 0;
-  });
-
+    count += user['loggedin'] ? 1 : 0;
+  })
+  if(count!==0){
   firebase.db.ref('/').update({ loggedinUser: count });
+  }
+
 
   return (
     <>

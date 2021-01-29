@@ -46,7 +46,7 @@ const Redirection3Base = (props) => {
         var updates = {};
         const snapshot = await fb.db.ref('/companies/').once('value');
         const objs = snapshot.val();
-        const rank = objs.sort((a, b) => a["stock"] < b["stock"] ? 1 : -1);
+        const rank = objs.sort((a, b) => parseInt(a["stock"]) < parseInt(b["stock"]) ? 1 : -1);
         for (var i = 0; i < objs.length; i++) {
             updates[`/companies/${rank[i]["index"]}/round3rank`] = i + 1;
         }

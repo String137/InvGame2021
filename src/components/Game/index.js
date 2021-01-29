@@ -24,7 +24,7 @@ const GamepageBase = (props) => {
     const [startTime] = useState(TIME.START_TIME);
     const [expired, setExpired] = useState(0);
     const time = [
-        0,
+        TIME.OT_TIME,
         TIME.ACC_ROUND1_VIDEO_OFFSET,
         TIME.ACC_ROUND1_INVEST_OFFSET,
         TIME.ACC_ROUND2_VIDEO_OFFSET,
