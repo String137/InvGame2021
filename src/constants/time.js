@@ -1,17 +1,17 @@
 export const OT_TIME = 15 * 1000;
-export const ROUND1_VIDEO = 5 * 10 * 1000;
+export const ROUND1_VIDEO = 3 * 10 * 1000;
 export const ROUND1_INVEST = 5 * 60 * 1000;
-export const ROUND2_VIDEO = 5 * 60 * 1000;
+export const ROUND2_VIDEO = 3 * 60 * 1000;
 export const ROUND2_INVEST = 5 * 60 * 1000;
-export const ROUND3_VIDEO = 5 * 60 * 1000;
+export const ROUND3_VIDEO = 3 * 60 * 1000;
 export const ROUND3_INVEST = 5 * 60 * 1000;
-export const FINAL_VIDEO = 5 * 60 * 1000;
+export const FINAL_VIDEO = 3 * 60 * 1000;
 export const FINAL_INVEST = 5 * 60 * 1000;
 export const FINAL_REDIRECTION = 2 * 60 * 1000;
 const YEAR = 2021;
 const MONTH = 1;
 const DATE = 29;
-const HOUR = 3;
+const HOUR = 15;
 const MIN = 0;
 const SEC = 0;
 
