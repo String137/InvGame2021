@@ -7,7 +7,8 @@ import Redirection1 from '../Redirection/redirection1';
 import Redirection2 from '../Redirection/redirection2';
 import Redirection3 from '../Redirection/redirection3';
 import RedirectionF from '../Redirection/redirectionfinal';
-import { TimeSlot1, TimeSlot2, TimeSlot3, TimeSlot4, TimeSlot5, TimeSlot6, TimeSlot7, TimeSlot8, TimeSlot9, TimeSlot10 } from '../TimeSlot';
+import RedirectionOT from '../Redirection/redirection_ot';
+import { TimeSlot1, TimeSlot2, TimeSlot3, TimeSlot4, TimeSlot5, TimeSlot6, TimeSlot7, TimeSlot8, TimeSlot9, TimeSlot10, TimeSlot11 } from '../TimeSlot';
 import * as MONEY from '../../constants/money';
 import * as TIME from '../../constants/time';
 import Rank from '../Rank';
@@ -24,6 +25,7 @@ const GamepageBase = (props) => {
     const [startTime] = useState(TIME.START_TIME);
     const [expired, setExpired] = useState(0);
     const time = [
+        0,
         TIME.OT_TIME,
         TIME.ACC_ROUND1_VIDEO_OFFSET,
         TIME.ACC_ROUND1_INVEST_OFFSET,
@@ -54,7 +56,7 @@ const GamepageBase = (props) => {
     })
     const user = fb.auth.currentUser;
     useEffect(() => {
-        if (expired <= 9) {
+        if (expired <= 10) {
             setTimeout(() => {
                 setExpired(expired + 1);
             }, startTime + time[expired] - new Date().getTime());
@@ -81,60 +83,62 @@ const GamepageBase = (props) => {
                 <TimeSlot1 leftTime={startTime + time[expired] - new Date().getTime()} />
                 {/* <InvPage round={1} count={MONEY.ROUND1_TEAM} /> */}
                 {/* <iframe className="p5" src="https://editor.p5js.org/quantum0430/embed/-b1N-tDv0" /> */}
-
-
-
-            </div>;
+                </div>;
         case 1:
             return <>
                 <TimeSlot2 leftTime={startTime + time[expired] - new Date().getTime()} />
-                <Redirection0 />
+                <RedirectionOT />
             </>;
         case 2:
             return <>
                 <TimeSlot3 leftTime={startTime + time[expired] - new Date().getTime()} />
-                <InvPage round={1} count={MONEY.ROUND1_TEAM} />
-
+                <Redirection0 />
             </>;
         case 3:
             return <>
                 <TimeSlot4 leftTime={startTime + time[expired] - new Date().getTime()} />
-                <Redirection1 />
+                <InvPage round={1} count={MONEY.ROUND1_TEAM} />
 
             </>;
         case 4:
             return <>
                 <TimeSlot5 leftTime={startTime + time[expired] - new Date().getTime()} />
-                <InvPage round={2} count={MONEY.ROUND2_TEAM} />
+                <Redirection1 />
 
             </>;
         case 5:
             return <>
                 <TimeSlot6 leftTime={startTime + time[expired] - new Date().getTime()} />
-                <Redirection2 />
+                <InvPage round={2} count={MONEY.ROUND2_TEAM} />
 
             </>;
         case 6:
             return <>
                 <TimeSlot7 leftTime={startTime + time[expired] - new Date().getTime()} />
-                <InvPage round={3} count={MONEY.ROUND3_TEAM} />
+                <Redirection2 />
 
             </>;
         case 7:
             return <>
                 <TimeSlot8 leftTime={startTime + time[expired] - new Date().getTime()} />
-                <Redirection3 />
+                <InvPage round={3} count={MONEY.ROUND3_TEAM} />
 
             </>;
         case 8:
             return <>
                 <TimeSlot9 leftTime={startTime + time[expired] - new Date().getTime()} />
-                <InvPage round={4} count={MONEY.FINAL_TEAM} />
+                <Redirection3 />
 
             </>;
         case 9:
             return <>
                 <TimeSlot10 leftTime={startTime + time[expired] - new Date().getTime()} />
+                <InvPage round={4} count={MONEY.FINAL_TEAM} />
+
+            </>;
+        case 10:
+            return <>
+                <TimeSlot11 leftTime={startTime + time[expired] - new Date().getTime()} />
                 <RedirectionF />
 
             </>;
