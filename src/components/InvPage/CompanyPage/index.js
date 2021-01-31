@@ -25,7 +25,7 @@ const CompanyPage = ({ curm, name, invDone, index, calc, firebase, aftm }) => {
             if (radioNum === 1) {
 
                 if (parseInt(parsed) > curm) {
-                    alert("hey!");
+                    alert("투자된 자산을 초과하는 금액입니다.");
                     setInputm(prev => prev);
                 }
                 else {
