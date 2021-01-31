@@ -129,16 +129,25 @@ const Redirection1Base = (props) => {
         if (snapshot.val() !== 2) {
             return;
         }
+        // else {
+        //     // fb.db.ref('/').update({ using: true });
+        //     var snap = await fb.db.ref('/round1submitted');
+        //     snap.transaction(function (param) {
+        //         return param + 1;
+        //     });
+
+        //     fb.db.ref(`/users/${user.uid}`).update({ round1submitted: 3 });
+        //     // fb.db.ref('/').update({ using: false });
+        //     clearInterval(us);
+        // }
         else {
-            // fb.db.ref('/').update({ using: true });
+            fb.db.ref(`/users/${user.uid}`).update({ round1submitted: 3 });
+            clearInterval(us);
             var snap = await fb.db.ref('/round1submitted');
             snap.transaction(function (param) {
                 return param + 1;
             });
-
-            fb.db.ref(`/users/${user.uid}`).update({ round1submitted: 3 });
-            // fb.db.ref('/').update({ using: false });
-            clearInterval(us);
+        
         }
     }
     async function setequal() {

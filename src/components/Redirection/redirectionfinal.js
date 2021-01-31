@@ -128,13 +128,22 @@ const RedirectionFBase = (props) => {
         if (snapshot.val() !== 2) {
             return;
         }
+        // else {
+        //     var snap = await fb.db.ref('/finalsubmitted');
+        //     snap.transaction(function (param) {
+        //         return param + 1;
+        //     })
+        //     fb.db.ref(`/users/${user.uid}`).update({ finalsubmitted: 3 });
+        //     clearInterval(us);
+        // }
         else {
+            fb.db.ref(`/users/${user.uid}`).update({ finalsubmitted: 3 });
+            clearInterval(us);
             var snap = await fb.db.ref('/finalsubmitted');
             snap.transaction(function (param) {
                 return param + 1;
-            })
-            fb.db.ref(`/users/${user.uid}`).update({ finalsubmitted: 3 });
-            clearInterval(us);
+            });
+        
         }
     }
     async function setequal() {

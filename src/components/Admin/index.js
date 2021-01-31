@@ -318,7 +318,7 @@ class AdminPage extends Component {
           document.body.removeChild(temp);
           alert('복사되었습니다, 감사합니다.');
         }}>복사하기</button>
-        <button onClick={this.resetInfo}>RESET Users INFO</button>
+        <button className="reset-button" onClick={this.resetInfo}>RESET Users INFO</button>
         <UserList users={users} />
       </div>
     );

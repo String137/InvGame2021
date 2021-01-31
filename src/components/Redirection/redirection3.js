@@ -130,13 +130,22 @@ const Redirection3Base = (props) => {
         if (snapshot.val() !== 2) {
             return;
         }
+        // else {
+        //     var snap = await fb.db.ref('/round3submitted');
+        //     snap.transaction(function (param) {
+        //         return param + 1;
+        //     })
+        //     fb.db.ref(`/users/${user.uid}`).update({ round3submitted: 3 });
+        //     clearInterval(us);
+        // }
         else {
+            fb.db.ref(`/users/${user.uid}`).update({ round3submitted: 3 });
+            clearInterval(us);
             var snap = await fb.db.ref('/round3submitted');
             snap.transaction(function (param) {
                 return param + 1;
-            })
-            fb.db.ref(`/users/${user.uid}`).update({ round3submitted: 3 });
-            clearInterval(us);
+            });
+        
         }
     }
     async function setequal() {
